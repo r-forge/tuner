@@ -1,4 +1,4 @@
-importFrom(graphics, plot, image)
+importFrom(graphics, plot, image)#
 import("stats","methods")
 exportClasses("Wspec","WspecMat","Wave")
 exportMethods("plot","image","summary","show","Wave","coerce","[","play","Arith", "periodogram")
