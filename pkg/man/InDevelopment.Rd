@@ -38,7 +38,7 @@ tempo(energy, upper = 0.75, lvquart = 9, f = 0.002, delta = 3,
 \value{
     Values are not yet documented.
 }
-\author{Uwe Ligges, \email{ligges@statistik.uni-dortmund.de}}
+\author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de}}
 \seealso{\code{\link{Wave}}, \code{\link{Wspec}}, \code{\link{periodogram}}, \code{\link{FF}}}
 \keyword{internal}
 \keyword{misc}
