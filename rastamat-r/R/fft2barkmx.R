@@ -1,0 +1,29 @@
+fft2barkmx <- function(nfft, sr=8000, nfilts=NULL, width=1.0, minfreq=0, maxfreq=sr/2){
+    min_bark <- hz2bark(minfreq)
+    nyqbark <- hz2bark(maxfreq) - min_bark
+
+    if(is.null(nfilts)){
+        nfilts <- ceiling(nyqbark) + 1
+    }
+
+    wts <- matrix(0, nrow=nfilts, ncol=nfft)
+
+    # Filterspacing in Bark
+    step_barks <- nyqbark/(nfilts-1)
+
+    # Frequency of each FFT bin in Bark
+    binbarks <- hz2bark( (0:(nfft/2)) * sr/nfft )
+
+    wtscalc <- function(i, min_bark=min_bark, step_barks=step_barks,
+                binbarks=binbarks){
+        f_bark_mid <- min_bark + (i-1) * step_barks
+        # Linear slopes in logarithmic space
+        lof <- (binbarks - f_bark_mid)/width - 0.5
+        hif <- (binbarks - f_bark_mid)/width + 0.5
+        return(10^(pmin(0, pmin(hif, -2.5 * lof))))
+    }
+    wts[,1:(nfft/2+1)] <- t(sapply(seq(nfilts), function(x) wtscalc(x, min_bark, step_barks,
+            binbarks)))
+    return(list(wts=wts))
+}
+
