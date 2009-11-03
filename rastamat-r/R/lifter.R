@@ -3,7 +3,7 @@ lifter <- function(x, lift=0.6, inv=FALSE){
 
     if(lift == 0){
         y <- x
-    } else
+    } else {
     if(lift > 0){
         liftwts <- c(1, (1:(ncep-1))^lift)
     } else
@@ -22,7 +22,7 @@ lifter <- function(x, lift=0.6, inv=FALSE){
     }
     
     y <- diag(liftwts) %*% x
-    
-    return(y)
+  }
+  return(y)
 }
 

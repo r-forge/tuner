@@ -21,7 +21,7 @@ audspec <- function(pspectrum, sr=16000, nfilts=ceiling(hz2bark(sr/2))+1,
     if(sumpower){
         aspectrum <- wts %*% pspectrum
     } else {
-        aspectrum <- (wts %*% sqrt(psectrum))^2
+        aspectrum <- (wts %*% sqrt(pspectrum))^2
     }
 
     return(list(aspectrum=aspectrum, wts=wts))
