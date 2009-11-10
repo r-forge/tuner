@@ -13,38 +13,38 @@ rastaplp <- function(samples, sr = 8000, dorasta = 1, modelorder = 8) {
   if (dorasta != 0) {
 
     # put in log domain
-    nl_aspectrum = log(aspectrum)
+    nl_aspectrum <- log(aspectrum)
 
     # next do rasta filtering
-    ras_nl_aspectrum = rastafilt(nl_aspectrum)
+    ras_nl_aspectrum <- rastafilt(nl_aspectrum)
 
     # do inverse log
-    aspectrum = exp(ras_nl_aspectrum)
+    aspectrum <- exp(ras_nl_aspectrum)
 
   }
 
   # do final auditory compressions
-  postspectrum = postaud(aspectrum, sr)$y
+  postspectrum <- postaud(aspectrum, sr)$y
 
   if (modelorder > 0) {
 
     # LPC analysis 
-    lpcas = dolpc(postspectrum, modelorder)
+    lpcas <- dolpc(postspectrum, modelorder)
 
     # convert lpc to cepstra
-    cepstra = lpc2cep(lpcas, modelorder+1)
+    cepstra <- lpc2cep(lpcas, modelorder+1)
 
     # .. or to spectra
-    temp = lpc2spec(lpcas, nbands)
-    spectra = temp$features
-    F = temp$F
-    M = temp$M
+    temp <- lpc2spec(lpcas, nbands)
+    spectra <- temp$features
+    F <- temp$F
+    M <- temp$M
 
   } else {
   
     # No LPC smoothing of spectrum
-    spectra = postspectrum
-    cepstra = spec2cep(spectra)
+    spectra <- postspectrum
+    cepstra <- spec2cep(spectra)
   
   }
 
