@@ -1,30 +1,19 @@
 \name{rastafilt}
 \alias{rastafilt}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
+\title{Using RASTA filter}
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+  \code{rastafilt} ist used to filter each frequency band with the RASTA (Relative Spectral Transform) filter.}
 \usage{
-rastafilt(x)
+  rastafilt(x)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+  \item{x}{a matrix where rows of x are the critical bands and columns of x are the frames.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+  Matrix of the same type as \code{x} after RASTA filtering.
 }
 \references{
 %% ~put references to the literature/web site here ~
