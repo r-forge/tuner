@@ -1,5 +1,5 @@
 # Not Yet Tested
-invpowerspec <- function(y, sr = 8000, wintime = 0.025, steptime = 0.010){
+invpowspec <- function(y, sr = 8000, wintime = 0.025, steptime = 0.010){
 
   nrow <- nrow(y)
   ncol <- ncol(y)
