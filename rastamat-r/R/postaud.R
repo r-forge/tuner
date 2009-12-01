@@ -1,4 +1,4 @@
-postaud <- function(x, fmax, fbtype=c("mel", "bark", "htkmel", "fcmel"),
+postaud <- function(x, fmax, fbtype=c("bark", "mel", "htkmel", "fcmel"),
 broaden=FALSE){
     nbands <- nrow(x)
     nframes <- ncol(x)
