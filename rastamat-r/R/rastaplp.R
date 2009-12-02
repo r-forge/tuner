@@ -47,6 +47,7 @@ rastaplp <- function(samples, sr = 8000, dorasta = 1, modelorder = 8) {
     cepstra <- spec2cep(spectra)
   
   }
+  cepstra <- lifter(cepstra, 0.6)
 
   return(list(cepstra=cepstra, spectra=spectra, pspectrum=pspectrum, lpcas=lpcas, F=F, M=M))
 
