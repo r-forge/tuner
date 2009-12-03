@@ -25,6 +25,7 @@ lpc2spec <- function(lpcas, nout = 17) {
     mags <- sqrt(t( ((1/abs(zz%*%aaa))^2) / gg[i] ))
   
     ix <- order(ff)
+    ff[which(sapply(ff, function(x) isTRUE(all.equal(0, x))))] <- 0
     keep <- ff[ix] > 0
     ix <- ix[keep]
     F[i,1:length(ix)] <- ff[ix]
