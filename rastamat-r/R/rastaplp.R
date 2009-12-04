@@ -1,10 +1,10 @@
-rastaplp <- function(samples, sr = 8000, dorasta = 1, modelorder = 8) {
+rastaplp <- function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 8) {
 
   # add miniscule amount of noise
   # samples <- samples + rnorm(length(samples)) * 0.0001
 
   # first compute power spectrum
-  pspectrum <- powspec(samples, sr)
+  pspectrum <- powspec(samples@left, sr)
 
   # next group to critical bands
   aspectrum <- audspec(pspectrum, sr)$aspectrum
