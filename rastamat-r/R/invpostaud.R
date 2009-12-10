@@ -1,4 +1,4 @@
-# In Development
+# Not Yet Tested
 invpostaud <- function(y, fmax, fbtype = "bark", broaden = 0){
 
 nbands  <- nrow(y)
