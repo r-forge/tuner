@@ -1,4 +1,4 @@
-# Not Yet Tested
+# INCORRECT S.B.
 ispecgram <- function(d, ftsize = -1, sr = -1, win = -1, nov = -1){
 
   nspec <- nrow(d)
@@ -31,11 +31,11 @@ ispecgram <- function(d, ftsize = -1, sr = -1, win = -1, nov = -1){
     ft <- d[,c]
     ft <- c( ft[1:(ftsize/2+1)], Conj(ft[seq(ftsize/2, 2, -1)]) )
 
-    if (max(Im(fft(ft, inverse=TRUE))) > 1e-5) {
+    if (max(Im(fft(ft, inverse=TRUE))) > 1e-5) { ### ERROR
       warning('imag oflow')
     }
   
-    px <- Re(fft(ft, inverse=TRUE))  # no shift in specgram
+    px <- Re(fft(ft, inverse=TRUE))  # no shift in specgram  ### ERROR
   
     b <- (c-1)*hop
     x[b+(1:ftsize)] <- x[b+(1:ftsize)] + px
