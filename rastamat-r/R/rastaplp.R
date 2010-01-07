@@ -1,13 +1,14 @@
+# TESTED - (CORRECT)
 rastaplp <- function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 8) {
 
   # add miniscule amount of noise
   # samples <- samples + rnorm(length(samples)) * 0.0001
 
   # first compute power spectrum
-  pspectrum <- powspec(samples@left, sr)
+  pspectrum <- powspec(samples@left/32768, sr)
 
   # next group to critical bands
-  aspectrum <- audspec(pspectrum, sr)$aspectrum
+  aspectrum <- audspec(pspectrum, sr)$aspectrum  # Ab hier numerisch ungenau ~ 2-3%
   nbands <- nrow(aspectrum)
 
   if (dorasta != 0) {
@@ -19,7 +20,7 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 
     ras_nl_aspectrum <- rastafilt(nl_aspectrum)
 
     # do inverse log
-    aspectrum <- exp(ras_nl_aspectrum)
+    aspectrum <- exp(ras_nl_aspectrum) # Fehler ~ 1%
 
   }
 

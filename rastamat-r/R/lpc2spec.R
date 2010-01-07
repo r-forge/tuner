@@ -1,3 +1,4 @@
+# INCOMPLETE S.B.
 lpc2spec <- function(lpcas, nout = 17) {
 
   rows <- nrow(lpcas)
@@ -16,20 +17,22 @@ lpc2spec <- function(lpcas, nout = 17) {
   F <- matrix(0, cols, floor(rows/2)) 
   M <- F
 
-  for (i in 1:cols) {
-    aaa <- aa[,i]
+  for (c in 1:cols) {
+    aaa <- aa[,c]
     rr <- polyroot(rev(t(aaa)))
-    ff <- Arg(t(rr))
+    ff <- Arg(t(rr))    # R erzeugt PI, wenn MatLab -PI
+    ff[ff == pi] <- -pi # Korrektur
 
     zz <- exp(1i * t(ff) %*% (0:(length(aaa)-1)))
-    mags <- sqrt(t( ((1/abs(zz%*%aaa))^2) / gg[i] ))
+    mags <- sqrt(t( ((1/abs(zz%*%aaa))^2) / gg[c] ))
   
     ix <- order(ff)
     ff[which(sapply(ff, function(x) isTRUE(all.equal(0, x))))] <- 0
+    cat(ff, " > ", ix, "\n")
     keep <- ff[ix] > 0
     ix <- ix[keep]
-    F[i,1:length(ix)] <- ff[ix]
-    M[i,1:length(ix)] <- mags[ix]
+    F[c,1:min(4, length(ix))] <- ff[ix][1:min(4, length(ix))]   # vorläufiges Work-Around
+    M[c,1:min(4, length(ix))] <- mags[ix][1:min(4, length(ix))] # -"-
   }
 
   return(list(features=features, F=F, M=M))
