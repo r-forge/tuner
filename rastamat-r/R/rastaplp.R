@@ -5,7 +5,7 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 
   # samples <- samples + rnorm(length(samples)) * 0.0001
 
   # first compute power spectrum
-  pspectrum <- powspec(samples@left/32768, sr)
+  pspectrum <- powspec(samples@left, sr)
 
   # next group to critical bands
   aspectrum <- audspec(pspectrum, sr)$aspectrum  # Ab hier numerisch ungenau ~ 2-3%
