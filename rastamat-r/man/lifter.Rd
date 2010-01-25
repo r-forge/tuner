@@ -1,43 +1,27 @@
 \name{lifter}
 \alias{lifter}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{ Liftering of cepstra }
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
-
-% y = lifter(x, lift, invs)
-%   Apply lifter to matrix of cepstra (one per column)
-%   lift = exponent of x i^n liftering
-%   or, as a negative integer, the length of HTK-style sin-curve liftering.
-%   If inverse == 1 (default 0), undo the liftering.
-% 2005-05-19 dpwe@ee.columbia.edu
+   Apply liftering to a matrix of cepstra.
 }
 \usage{
 lifter(x, lift = 0.6, inv = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ ~~Describe \code{x} here~~ }
-  \item{lift}{ ~~Describe \code{lift} here~~ }
-  \item{inv}{ ~~Describe \code{inv} here~~ }
+  \item{x}{ Matrix of cepstra, one sample/time frame per column. }
+  \item{lift}{ Liftering exponent, positive real number or a negative integer. }
+  \item{inv}{ Invert the liftering (undo a previous liftering). }
 }
 \details{
-  ~~ If necessary, more details than the description above ~~
+ If 'lift' is positive, then perform \eqn{x i^lift}, \eqn{i = 1, ldots, nrow(x)}
+liftering. If 'lift' is a negative integer, then perform HTK-style sin-curve
+liftering with length 'lift'.
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+Matrix of the liftered cepstra.
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
+\author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
@@ -69,7 +53,4 @@ function (x, lift = 0.6, inv = FALSE)
     return(y)
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ liftering }

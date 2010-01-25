@@ -6,6 +6,11 @@
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
+% [features,F,M] = lpc2spec(lpcas,nout)
+%    Convert LPC coeffs back into spectra
+%    nout is number of freq channels, default 17 (i.e. for 8 kHz)
+% 2003-04-11 dpwe@ee.columbia.edu  part of rastamat
+
 }
 \usage{
 lpc2spec(lpcas, nout = 17)

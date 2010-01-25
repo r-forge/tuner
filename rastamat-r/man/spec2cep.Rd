@@ -1,43 +1,26 @@
 \name{spec2cep}
 \alias{spec2cep}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{ Spectra to Cepstra Conversion }
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
-
-% [cep,dctm] = spec2cep(spec, ncep, type)
-%     Calculate cepstra from spectral samples (in columns of spec)
-%     Return ncep cepstral rows (defaults to 9)
-%     This one does type II dct, or type I if type is specified as 1
-%     dctm returns the DCT matrix that spec was multiplied by to give cep.
-% 2005-04-19 dpwe@ee.columbia.edu  for mfcc_dpwe
+Calculate cepstra from spectral samples (in columns of spec) through Discrete
+Cosine Transformation.
 }
 \usage{
 spec2cep(spec, ncep = 13, type = c("t2", "t1", "t3", "t4"))
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{spec}{ ~~Describe \code{spec} here~~ }
-  \item{ncep}{ ~~Describe \code{ncep} here~~ }
-  \item{type}{ ~~Describe \code{type} here~~ }
-}
-\details{
-  ~~ If necessary, more details than the description above ~~
+  \item{spec}{ Input spectra (samples/time frames in columns)}
+  \item{ncep}{ Number of cepstra to return }
+  \item{type}{ DCT Type }
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+  \item{cep }{Matrix of resulting cepstra.}
+  \item{dctm }{Returns the DCT matrix that spec was multiplied by to give cep.}
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
+\references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
+\author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
+\seealso{ \code{\link{cep2spec}}, \code{\link{lpc2cep}}, \code{\link{lpc2spec}}
 }
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
@@ -81,7 +64,6 @@ function (spec, ncep = 13, type = c("t2", "t1", "t3", "t4"))
     return(list(cep = cep, dctm = dctm))
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ cepstra }
+\keyword{ spectra }
+\keyword{ conversion }

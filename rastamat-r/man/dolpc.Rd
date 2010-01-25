@@ -1,48 +1,25 @@
 \name{dolpc}
 \alias{dolpc}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{ (Perceptive) Linear Prediction }
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
-%y = dolpc(x,modelorder)
-%
-% compute autoregressive model from spectral magnitude samples
-%
-% rows(x) = critical band
-% col(x) = frame
-%
-% row(y) = lpc a_i coeffs, scaled by gain
-% col(y) = frame
-%
-% modelorder is order of model, defaults to 8
-% 2003-04-12 dpwe@ee.columbia.edu after shire@icsi.berkeley.edu
-
+Compute autoregressive model from spectral magnitude samples via Levinson-Durbin
+recursion.
 }
 \usage{
 dolpc(x, modelorder = 8)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ ~~Describe \code{x} here~~ }
-  \item{modelorder}{ ~~Describe \code{modelorder} here~~ }
-}
-\details{
-  ~~ If necessary, more details than the description above ~~
+  \item{x}{ Matrix of spectral magnitude samples (each sample/time frame in one
+column). }
+  \item{modelorder}{ Lag of the AR model. }
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+Returns a matrix of the normalized AR coefficients (depending on the input
+spectrum: LPC or PLP coefficients). Every column represents one time frame.
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
+\author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
+\seealso{ \code{\link{levinson}} }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
@@ -62,7 +39,8 @@ function (x, modelorder = 8)
     return(y)
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ lpc }
+\keyword{ plp }
+\keyword{ levinson }
+\keyword{ durbin }
+\keyqord{ recursion }

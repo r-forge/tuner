@@ -1,12 +1,8 @@
-lpc2cep <- function(a, nout=NULL){
+lpc2cep <- function(a, nout=nrow(a)){
     arow <- nrow(a)
     acol <- ncol(a)
 
     order <- arow - 1
-
-    if(is.null(nout)){
-        nout <- order + 1
-    }
 
     mc <- matrix(0, nrow=nout, ncol=acol)
 

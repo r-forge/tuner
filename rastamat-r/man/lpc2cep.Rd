@@ -1,55 +1,34 @@
 \name{lpc2cep}
 \alias{lpc2cep}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{ LPC to cepstra conversion }
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
-
-% features = lpc2cep(lpcas,nout)
-%    Convert the LPC 'a' coefficients in each column of lpcas
-%    into frames of cepstra.
-%    nout is number of cepstra to produce, defaults to size(lpcas,1)
-% 2003-04-11 dpwe@ee.columbia.edu
+ Convert the LPC coefficients in each column of 'a'
+ into frames of cepstra.
 }
 \usage{
-lpc2cep(a, nout = NULL)
+lpc2cep(a, nout = nrow(a))
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{a}{ ~~Describe \code{a} here~~ }
-  \item{nout}{ ~~Describe \code{nout} here~~ }
-}
-\details{
-  ~~ If necessary, more details than the description above ~~
+  \item{a}{ Matrix of LPC coefficients. }
+  \item{nout}{ Number of cepstra to produce. }
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+Matrix of cepstra.
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
+\author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
+\seealso{ \code{\link{lpc2spec}}, \code{\link{spec2cep}}, \code{\link{cep2spec}} }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (a, nout = NULL) 
+function (a, nout = nrow(a)) 
 {
     arow <- nrow(a)
     acol <- ncol(a)
     order <- arow - 1
-    if (is.null(nout)) {
-        nout <- order + 1
-    }
     mc <- matrix(0, nrow = nout, ncol = acol)
     mc[1, ] = -log(a[1, ])
     a <- a/matrix(rep(a[1, ], arow), nrow = arow, byrow = TRUE)
@@ -64,7 +43,6 @@ function (a, nout = NULL)
     return(features)
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ lpc }
+\keyword{ cepstra }
+\keyword{ conversion }

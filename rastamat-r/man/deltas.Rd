@@ -1,41 +1,25 @@
 \name{deltas}
 \alias{deltas}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{ Calculate delta features }
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
-% D = deltas(X,W)  Calculate the deltas (derivatives) of a sequence
-%    Use a W-point window (W odd, default 9) to calculate deltas using a
-%    simple linear slope.  This mirrors the delta calculation performed 
-%    in feacalc etc.  Each row of X is filtered separately.
-% 2003-06-30 dpwe@ee.columbia.edu
-
+Calculate the deltas (derivatives) of a sequence of features using a simple
+linear slope.
 }
 \usage{
 deltas(x, w = 9)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ ~~Describe \code{x} here~~ }
-  \item{w}{ ~~Describe \code{w} here~~ }
+  \item{x}{ Matrix of features. Every column represents one point in time
+(time frame). Each row is filtered separately. }
+  \item{w}{ Window width, has the be odd. }
 }
-\details{
-  ~~ If necessary, more details than the description above ~~
-}
+\details{ This functiion mirrors the delta calculation performed in HTKs 'feacalc'.}
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+  Returns a matrix of the delta features.
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\references{Daniel P. W. Ellis:
+\url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/}, HTK }
+\author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
@@ -59,7 +43,4 @@ function (x, w = 9)
     return(d)
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ deltas }

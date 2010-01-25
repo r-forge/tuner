@@ -1,45 +1,27 @@
 \name{postaud}
 \alias{postaud}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{ Equal loudness compression }
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
-%y = postaud(x, fmax, fbtype)
-%
-% do loudness equalization and cube root compression
-% x = critical band filters
-% rows = critical bands
-% cols = frames
-
-
+Do loudness equalization and cube root compression
 }
 \usage{
 postaud(x, fmax, fbtype = c("mel", "bark", "htkmel", "fcmel"), broaden = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ ~~Describe \code{x} here~~ }
-  \item{fmax}{ ~~Describe \code{fmax} here~~ }
-  \item{fbtype}{ ~~Describe \code{fbtype} here~~ }
-  \item{broaden}{ ~~Describe \code{broaden} here~~ }
-}
-\details{
-  ~~ If necessary, more details than the description above ~~
+  \item{x}{ Matrix of spectra (output of \code{\link{audspec}}). }
+  \item{fmax}{ Maximum frequency im Hertz. }
+  \item{fbtype}{ Auditory frequency scale. }
+  \item{broaden}{ Use two additional frequency bands for calculation. }
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+Matrix of the per sample/frame (columns) spectra after applying the frequency
+dependant loudness equalization and compression.
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\references{Daniel P. W. Ellis
+\url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/}, Hynek
+Hermansky }
+\author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
+\seealso{ \code{\link{audspec}}, \code{\link{dolpc}}, \code{\link{rastaplp}} }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
@@ -73,7 +55,6 @@ function (x, fmax, fbtype = c("mel", "bark", "htkmel", "fcmel"),
     return(list(y = y, eql = eql))
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ plp }
+\keyword{ loudness }
+\keyword{ compression }

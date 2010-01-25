@@ -1,18 +1,14 @@
 \name{audspec}
 \alias{audspec}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{Frequency band conversion }
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
-%[aspectrum,wts] = audspec(pspectrum, sr, nfilts, fbtype, minfreq, maxfreq, sumpower, bwidth)
-%
-% perform critical band analysis (see PLP)
-% takes power spectrogram as input
+Perform critical band analysis (see PLP), whch means the reduction of the
+fourier frequencies of a signal's powerspectrum to a reduced number of frequency
+bands in an auditory frequency scale.
 }
 \usage{
 audspec(pspectrum, sr = 16000, nfilts = ceiling(hz2bark(sr/2)) + 1, fbtype = c("bark", "mel", "htkmel", "fcmel"), minfreq = 0, maxfreq = sr/2, sumpower = TRUE, bwidth = 1)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{pspectrum}{ Output of \code{\link{powspec}}, matrix with the powerspectrum
 of each time frame in its columns. }
@@ -22,27 +18,18 @@ of each time frame in its columns. }
   \item{minfreq}{ Lowest frequency. }
   \item{maxfreq}{ Highest frequency. }
   \item{sumpower}{ If 'TRUE' base the frequency scale transformation on the
-powerspectrum, if 'FALSE' on its squareroot (absolute value if the spectrum) and
+powerspectrum, if 'FALSE' on its squareroot (absolute value of the spectrum) and
 square it afterwards. }
-  \item{bwidth}{ ~~Describe \code{bwidth} here~~ }
-}
-\details{
-  ~~ If necessary, more details than the description above ~~
+  \item{bwidth}{ Modify the width of the frequency bands. }
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+  \item{aspectrum }{Matrix with the auditory spectrum of each time frame in its
+columns.}
+  \item{wts }{Weight matrix for the frequency band conversion.}
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
+\author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
+\seealso{\code{\link{fft2melmx}}, \code{\link{fft2barkmx}}}
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
@@ -72,7 +59,7 @@ function (pspectrum, sr = 16000, nfilts = ceiling(hz2bark(sr/2)) +
     return(list(aspectrum = aspectrum, wts = wts))
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ frequency }
+\keyword{ conversion }
+\keyword{ bark }
+\keyword{ mel }

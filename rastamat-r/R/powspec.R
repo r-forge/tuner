@@ -1,5 +1,5 @@
 # TESTED
-powspec <- function(x, sr=8000, wintime=0.025, steptime=0.010, dither=TRUE){
+powspec <- function(x, sr=8000, wintime=0.025, steptime=0.010, dither=FALSE){
     winpts <- round(wintime * sr)
     steppts <- round(steptime * sr)
 
@@ -11,7 +11,7 @@ powspec <- function(x, sr=8000, wintime=0.025, steptime=0.010, dither=TRUE){
 
     # Avoid digital zero
     if(dither){
-      #! y <- y + winpts
+      y <- y + winpts
     }
 
     return(y)

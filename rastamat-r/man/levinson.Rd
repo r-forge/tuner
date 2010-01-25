@@ -1,73 +1,43 @@
 \name{levinson}
 \alias{levinson}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{ Durbin-Levinson Recursion }
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
-## usage:  [a, v, ref] = levinson (acf [, p])
-##
-## Use the Durbin-Levinson algorithm to solve:
-##    toeplitz(acf(1:p)) * x = -acf(2:p+1).
-## The solution [1, x'] is the denominator of an all pole filter
-## approximation to the signal x which generated the autocorrelation
-## function acf.  
-##
-## acf is the autocorrelation function for lags 0 to p.
-## p defaults to length(acf)-1.
-## Returns 
-##   a=[1, x'] the denominator filter coefficients. 
-##   v= variance of the white noise = square of the numerator constant
-##   ref = reflection coefficients = coefficients of the lattice
-##         implementation of the filter
-## Use freqz(sqrt(v),a) to plot the power spectrum.
-   
-## Author:  Paul Kienzle <pkienzle@users.sf.net>
-
-## TODO: Matlab doesn't return reflection coefficients and 
-## TODO:    errors in addition to the polynomial a.
-## TODO: What is the difference between aryule, levinson, 
-## TODO:    ac2poly, ac2ar, lpc, etc.?
-  
-## Changes (Peter Lanspeary, 6 Nov 2006):
-##  Add input sanitising;
-##  avoid using ' (conjugate transpose) to force a column vector;
-##  take direct solution from Kay & Marple Eqn (2.39), code is now same
-##        as the theory;
-##  take Durbin-Levinson recursion from Kay & Marple Eqns (2.42-2.46),
-##        now works for complex data, code is now same as the theory;
-##  force real variance (get rid of imaginary part due to rounding error);
-##
-## REFERENCE
-## [1] Steven M. Kay and Stanley Lawrence Marple Jr.:
-##   "Spectrum analysis -- a modern perspective",
-##   Proceedings of the IEEE, Vol 69, pp 1380-1419, Nov., 1981
-
+Perform Durbin-Levinson recursion on vector or matrix.
 }
 \usage{
 levinson(x, p = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ ~~Describe \code{x} here~~ }
-  \item{p}{ ~~Describe \code{p} here~~ }
+  \item{x}{ Input signal. }
+  \item{p}{ Lag (defaults to \code{length(x)} or \code{nrow(x)}). }
 }
 \details{
-  ~~ If necessary, more details than the description above ~~
+ Use the Durbin-Levinson algorithm to solve:
+
+    \code{toeplitz(acf(1:p)) * y = -acf(2:p+1).}
+
+ The solution [1, y'] is the denominator of an all pole filter
+ approximation to the signal x which generated the autocorrelation
+ function acf.  
+
+ acf is the autocorrelation function for lags 0 to p.
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+  \item{a }{The denominator filter coefficients.}
+  \item{v }{Variance of the white noise = square of the numerator constant.}
+  \item{ref }{Reflection coefficients = coefficients of the lattice
+implementation of the filter.}
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
+\references{
+ Steven M. Kay and Stanley Lawrence Marple Jr.:
+   \emph{Spectrum analysis -- a modern perspective},
+   Proceedings of the IEEE, Vol 69, pp 1380-1419, Nov., 1981
 
- ~Make other sections like Warning with \section{Warning }{....} ~
+ Octave \url{http://octave.sf.net}
 }
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\author{ Original Octave version by Paul Kienzle
+  \email{pkienzle@users.sf.net}. Conversion to R by Sebastian Krey
+\email{krey@statistik.tu-dortmund.de}. }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
@@ -118,7 +88,6 @@ function (x, p = NULL)
     return(r)
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ levinson }
+\keyword{ durbin }
+\keyword{ recursion }
