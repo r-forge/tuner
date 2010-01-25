@@ -1,5 +1,6 @@
 # Not Yet Tested
-invaudspec <- function(aspectrum, sr = 16000, nfft = 512, fbtype = "bark", minfreq = 0, maxfreq = -1, sumpower = TRUE, bdwidth = 1){
+invaudspec <- function(aspectrum, sr = 16000, nfft = 512, fbtype = "bark", 
+    minfreq = 0, maxfreq = -1, sumpower = TRUE, bdwidth = 1){
 
   if (maxfreq == -1) {
     maxfreq <- sr/2

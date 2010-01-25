@@ -4,7 +4,7 @@ melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
             fbtype="mel", usecmp=FALSE, modelorder=0){
 
     if(preemph != 0){
-        ssamples <- filter(samples@left, filter=c(1, -preemph), method="convolution", sides=1, circular=F)
+        ssamples <- filter(samples@left, filter=c(1, -preemph), method="convolution", sides=1, circular=FALSE)
         ssamples[1] <- samples@left[1]
     } else {
         ssamples <- samples@left
@@ -45,4 +45,3 @@ melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
     return(list(cepstra=cepstra, aspectrum=aspectrum, pspectrum=pspectrum,
             lpcas=lpcas))
 }
-
