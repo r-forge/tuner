@@ -1,4 +1,3 @@
-# TESTED
 powspec <- function(x, sr=8000, wintime=0.025, steptime=0.010, dither=FALSE){
     winpts <- round(wintime * sr)
     steppts <- round(steptime * sr)
