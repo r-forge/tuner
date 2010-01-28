@@ -1,18 +1,17 @@
 # Not Yet Tested
-invpostaud <- function(y, fmax, fbtype = "bark", broaden = 0){
+invpostaud <- function(y, fmax, fbtype = c("bark", "mel", "htkmel", "fcmel"), broaden = 0){
+
+fbtype <- match.arg(fbtype)
 
 nbands  <- nrow(y)
 nframes <- ncol(y)
 
-if (fbtype == "bark") {
-  bandcfhz <- bark2hz(seq(0, hz2bark(fmax), length.out=nbands))
-} else if (fbtype == "mel") {
-  bandcfhz <- mel2hz(seq(0, hz2mel(fmax), length.out=nbands))
-} else if ((fbtype == "htkmel") || (fbtype == "fcmel")) {
-  bandcfhz <- mel2hz(seq(0, hz2mel(fmax,1), length.out=nbands),1)
-} else {
-  stop("unknown fbtype ", fbtype)
-}
+bandcfhz <- switch(fbtype,
+    "bark" = bark2hz(seq(0, hz2bark(fmax), length.out=nbands)),
+    "mel" = mel2hz(seq(0, hz2mel(fmax), length.out=nbands)),
+    mel2hz(seq(0, hz2mel(fmax,1), length.out=nbands),1)
+)
+
 
 # Remove extremal bands (the ones that got duplicated)
 bandcfhz <- bandcfhz[(1+broaden):(nbands-broaden)]

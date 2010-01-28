@@ -22,11 +22,11 @@ invaudspec <- function(aspectrum, sr = 16000, nfft = 512, fbtype = "bark",
   }
  
   # Cut off 2nd half
-  wts <- wts[,1:((nfft/2)+1)]
+  wts <- wts[,1:((nfft/2)+1),drop=FALSE]
 
   # Just transpose, fix up 
   ww   <- t(wts)%*%wts
-  iwts <- t(wts)/kronecker(t(rep(1, nfilts)), t(max(mean(diag(ww))/100, sum(ww))))
+  iwts <- t(wts)/kronecker(t(rep(1, nfilts)), pmax(mean(diag(ww))/100, colSums(ww)))
 
   # Apply weights
   if (sumpower) {
