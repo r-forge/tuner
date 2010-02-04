@@ -1,11 +1,10 @@
-# INCORRECT S.B.
-ispecgram <- function(d, ftsize = -1, sr = -1, win = -1, nov = -1){
+ispecgram <- function(d, ftsize = -1, win = -1, nov = -1){
 
   nspec <- nrow(d)
   ncol  <- ncol(d)
 
   if (ftsize == -1) {
-    ftsize <- 2*(nrow(d)-1)
+    ftsize <- 2*(nspec-1)
   }
   if (win == -1) {
     win <- ftsize
@@ -17,7 +16,7 @@ ispecgram <- function(d, ftsize = -1, sr = -1, win = -1, nov = -1){
   hop <- win - nov;
 
   if (nspec != (ftsize/2)+1) {
-    warning('number of rows should be ftsize/2+1')
+    stop('number of rows should be ftsize/2+1')
   }
 
   xlen <- ftsize + (ncol-1) * hop
@@ -31,11 +30,11 @@ ispecgram <- function(d, ftsize = -1, sr = -1, win = -1, nov = -1){
     ft <- d[,c]
     ft <- c( ft[1:(ftsize/2+1)], Conj(ft[seq(ftsize/2, 2, -1)]) )
 
-    if (max(Im(fft(ft, inverse=TRUE))) > 1e-5) { ### ERROR
-      warning('imag oflow')
+    if (max(Im(fft(ft, inverse=TRUE)/length(ft))) > 1e-5) {
+      cat('imag oflow')
     }
   
-    px <- Re(fft(ft, inverse=TRUE))  # no shift in specgram  ### ERROR
+    px <- Re(fft(ft, inverse=TRUE)/length(ft))
   
     b <- (c-1)*hop
     x[b+(1:ftsize)] <- x[b+(1:ftsize)] + px
@@ -45,6 +44,3 @@ ispecgram <- function(d, ftsize = -1, sr = -1, win = -1, nov = -1){
 
   return(x)
 }
-
-
-
