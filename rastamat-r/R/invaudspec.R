@@ -1,25 +1,17 @@
 # Not Yet Tested
-invaudspec <- function(aspectrum, sr = 16000, nfft = 512, fbtype = "bark", 
-    minfreq = 0, maxfreq = -1, sumpower = TRUE, bdwidth = 1){
-
-  if (maxfreq == -1) {
-    maxfreq <- sr/2
-  }
+invaudspec <- function(aspectrum, sr = 16000, nfft = 512, fbtype = c("bark", "mel", "htkmel", "fcmel"), 
+    minfreq = 0, maxfreq = sr/2, sumpower = TRUE, bdwidth = 1){
 
   nfilts  <- nrow(aspectrum)
   nframes <- ncol(aspectrum)
 
-  if (fbtype == "bark") {
-    wts <- fft2barkmx(nfft, sr, nfilts, bwidth, minfreq, maxfreq)
-  } else if (fbtype == "mel") {
-    wts <- fft2melmx(nfft, sr, nfilts, bwidth, minfreq, maxfreq)
-  } else if (fbtype == "htkmel") {
-    wts <- fft2melmx(nfft, sr, nfilts, bwidth, minfreq, maxfreq, 1, 1)
-  } else if (fbtype == "fcmel") {
-    wts <- fft2melmx(nfft, sr, nfilts, bwidth, minfreq, maxfreq, 1)
-  } else {
-    stop("fbtype", fbtype, "not recognized")
-  }
+  fbtype <- match.arg(fbtype)
+  wts <- switch(fbtype,
+          bark = fft2barkmx(nfft, sr, nfilts, bdwidth, minfreq, maxfreq),
+          mel  = fft2melmx(nfft, sr, nfilts, bdwidth, minfreq, maxfreq),
+          htkmel = fft2melmx(nfft, sr, nfilts, bdwidth, minfreq, maxfreq, TRUE, TRUE),
+          fcmel = fft2melmx(nfft, sr, nfilts, bdwidth, minfreq, maxfreq, TRUE)
+  )
  
   # Cut off 2nd half
   wts <- wts[,1:((nfft/2)+1),drop=FALSE]
