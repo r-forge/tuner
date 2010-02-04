@@ -1,4 +1,3 @@
-# TESTED - (CORRECT)
 rastaplp <- function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 8) {
 
   # add miniscule amount of noise
