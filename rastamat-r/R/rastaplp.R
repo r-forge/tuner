@@ -38,8 +38,8 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 
     # .. or to spectra
     temp <- lpc2spec(lpcas, nbands)
     spectra <- temp$features
-    F <- temp$F
-    M <- temp$M
+    Fout <- temp$Fout
+    Mout <- temp$Mout
 
   } else {
   
@@ -50,6 +50,6 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 
   }
   cepstra <- lifter(cepstra, 0.6)
 
-  return(list(cepstra=cepstra, spectra=spectra, pspectrum=pspectrum, lpcas=lpcas, F=F, M=M))
+  return(list(cepstra=cepstra, spectra=spectra, pspectrum=pspectrum, lpcas=lpcas, Fout=Fout, Mout=Mout))
 
 }

@@ -1,4 +1,3 @@
-# INCOMPLETE S.B.
 lpc2spec <- function(lpcas, nout = 17) {
 
   rows <- nrow(lpcas)
@@ -14,8 +13,8 @@ lpc2spec <- function(lpcas, nout = 17) {
   # Actual polyvals, in power (mag^2)
   features <- t(t((1/abs(zz %*% aa))^2) / gg)
 
-  F <- matrix(0, cols, floor(rows/2)) 
-  M <- F
+  Fout <- matrix(0, cols, floor(rows/2)) 
+  Mout <- Fout
 
   for (c in 1:cols) {
     aaa <- aa[,c]
@@ -27,14 +26,16 @@ lpc2spec <- function(lpcas, nout = 17) {
     mags <- sqrt(t( ((1/abs(zz%*%aaa))^2) / gg[c] ))
   
     ix <- order(ff)
-    ff[which(sapply(ff, function(x) isTRUE(all.equal(0, x))))] <- 0
-    cat(ff, " > ", ix, "\n")
+    ff[which(sapply(ff, function(x) isTRUE(all.equal(0, x, 1e-1))))] <- 0
+    ########### DEBUG ################################
+    if (sum(ff > 0) > 4) { cat(c, ":", ff, "\n") } ###
+    ##################################################
     keep <- ff[ix] > 0
     ix <- ix[keep]
-    F[c,1:min(4, length(ix))] <- ff[ix][1:min(4, length(ix))]   # vorläufiges Work-Around
-    M[c,1:min(4, length(ix))] <- mags[ix][1:min(4, length(ix))] # -"-
+    Fout[c,1:length(ix)] <- ff[ix]
+    Mout[c,1:length(ix)] <- mags[ix]
   }
 
-  return(list(features=features, F=F, M=M))
+  return(list(features=features, Fout=Fout, Mout=Mout))
 
 }
