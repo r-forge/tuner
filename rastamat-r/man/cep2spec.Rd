@@ -1,52 +1,26 @@
 \name{cep2spec}
 \alias{cep2spec}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
+\title{ Cepstra to Spectra Conversion }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+  Reverse the cepstrum to recover a spectrum. I.e. converse of \code{\link{spec2cep}}.
 }
 \usage{
 cep2spec(cep, nfreq = 21, type = 2)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{cep}{
-%%     ~~Describe \code{cep} here~~
-}
-  \item{nfreq}{
-%%     ~~Describe \code{nfreq} here~~
-}
-  \item{type}{
-%%     ~~Describe \code{type} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
+  \item{cep}  { Input cepstra }
+  \item{nfreq}{ How many points to reconstruct in spec }
+  \item{type} { DCT Type }
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+  \item{spec} {Matrix of resulting spectra.}
+  \item{idctm}{Inverse DCT matrix that spec was multiplied by to give spec.}
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+\references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
 \author{
 %%  ~~who you are~~
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+\seealso{ \code{\link{spec2cep}} }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
@@ -58,38 +32,28 @@ function(cep, nfreq=21, type=2){
   ncep <- nrow(cep)
   ncol <- ncol(cep)
 
-  # Make the DCT matrix
   dctm  <- matrix(rep(0, ncep*nfreq), ncol=col)
   idctm <- t(dctm)
 
   if ((type == 2) || (type == 3)) {
-    # this is the orthogonal one, so inv matrix is same as fwd matrix
     for (i in 1:ncep) {
       dctm[i,] <- cos((i-1) * seq(1, (2*nfreq-1), 2) / (2*nfreq) * pi) * sqrt(2/nfreq)
     }
     if (type == 2) {
-      # make it unitary! (but not for HTK type 3)
       dctm[1,] <- dctm[1,]/sqrt(2)
     } else {
       dctm[1,] <- dctm[1,]/2
     }
     idctm <- t(Conj(dctm))
   } else if (type == 4) {
-    # type 1 with implicit repetition of first, last bins
-    # so all we do is reconstruct the middle nfreq rows of an nfreq+2 row idctm
     for (i in 1:ncep) {
-      # 2x to compensate for fact that only getting +ve freq half
       idctm[,i] <- 2*cos((i-1) * t(1:nfreq) / (nfreq+1) * pi)
     }
-    # fixup 'non-repeated' basis fns 
     idctm[, c(1, ncep)] <- idctm[, c(1, ncep)]/2
   } else { 
-    # dpwe type 1 - idft of cosine terms
     for (i in 1:ncep) {
-      # 2x to compensate for fact that only getting +ve freq half
       idctm[,i] <- 2*cos((i-1) * t(0:(nfreq-1)) / (nfreq-1) * pi)
     }
-    # fixup 'non-repeated' basis fns 
     idctm[, c(1, ncep)] <- idctm[, c(1, ncep)]/2
   }
 
@@ -98,7 +62,6 @@ function(cep, nfreq=21, type=2){
   return(list(spec=spec, idctm=idctm))
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ cepstra }
+\keyword{ spectra }
+\keyword{ conversion }
