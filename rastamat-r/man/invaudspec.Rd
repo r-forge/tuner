@@ -1,67 +1,35 @@
 \name{invaudspec}
 \alias{invaudspec}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+\title{ Inverse frequency band conversion }
+\description{ Invert (as best we can) the effects of \code{\link{audspec}}.}
 \usage{
 invaudspec(aspectrum, sr = 16000, nfft = 512, fbtype = "bark", minfreq = 0, maxfreq = -1, sumpower = TRUE, bdwidth = 1)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{aspectrum}{
-%%     ~~Describe \code{aspectrum} here~~
+  \item{aspectrum}{Matrix with the auditory spectrum of each time frame in its
+columns.}
+  \item{sr}{ Samplerate of the original recording.}
+  \item{nfft}{%%     ~~Describe \code{nfft} here~~
 }
-  \item{sr}{
-%%     ~~Describe \code{sr} here~~
-}
-  \item{nfft}{
-%%     ~~Describe \code{nfft} here~~
-}
-  \item{fbtype}{
-%%     ~~Describe \code{fbtype} here~~
-}
-  \item{minfreq}{
-%%     ~~Describe \code{minfreq} here~~
-}
-  \item{maxfreq}{
-%%     ~~Describe \code{maxfreq} here~~
-}
-  \item{sumpower}{
-%%     ~~Describe \code{sumpower} here~~
-}
-  \item{bdwidth}{
-%%     ~~Describe \code{bdwidth} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
+  \item{fbtype}{ Used auditory frequency scale.}
+  \item{minfreq}{ Lowest frequency.}
+  \item{maxfreq}{ Highest frequency. }
+  \item{sumpower}{ If 'TRUE' base the frequency scale transformation on the
+auditory spectrum, if 'FALSE' on its squareroot (absolute value of the spectrum) and
+square it afterwards.
+  \item{bdwidth}{ Modify the width of the frequency bands.}
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+  \item{spec }{Matrix with the powerspectrum
+of each time frame in its columns.}
+  \item{wts }{}
+  \item{iwts }{}
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+\references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
 \author{
 %%  ~~who you are~~
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+\seealso{\code{\link{audspec}}}
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
@@ -108,5 +76,7 @@ function(aspectrum, sr = 16000, nfft = 512, fbtype = "bark", minfreq = 0, maxfre
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ frequency }
+\keyword{ conversion }
+\keyword{ mel }
+\keyword{ bark }
