@@ -14,8 +14,9 @@ postaud(x, fmax, fbtype = c("mel", "bark", "htkmel", "fcmel"), broaden = FALSE)
   \item{broaden}{ Use two additional frequency bands for calculation. }
 }
 \value{
-Matrix of the per sample/frame (columns) spectra after applying the frequency
-dependant loudness equalization and compression.
+  \item{x }{Matrix of the per sample/frame (columns) spectra after applying the frequency
+dependant loudness equalization and compression. }
+  \item{eql }{Vector of the equal loudness curve. }
 }
 \references{Daniel P. W. Ellis
 \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/}, Hynek

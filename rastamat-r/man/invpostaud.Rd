@@ -1,55 +1,33 @@
 \name{invpostaud}
 \alias{invpostaud}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+\title{ Inversion of equal loudness compression.}
+\description{ Invert the equal lodness compression effect of \code{\link{postaud}}.}
 \usage{
 invpostaud(y, fmax, fbtype = "bark", broaden = 0)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{y}{
-%%     ~~Describe \code{y} here~~
-}
-  \item{fmax}{
-%%     ~~Describe \code{fmax} here~~
-}
-  \item{fbtype}{
-%%     ~~Describe \code{fbtype} here~~
-}
-  \item{broaden}{
-%%     ~~Describe \code{broaden} here~~
-}
+  \item{y}{ Matrix of spectra.}
+  \item{fmax}{ Maximum frequency im Hertz.}
+  \item{fbtype}{ Auditory frequency scale.}
+  \item{broaden}{ Use two additional frequency bands for calculation.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+  \item{x }{Matrix of the per sample/frame (columns) spectra after applying the frequency
+dependant loudness equalization and compression. }
+  \item{eql }{Vector of the equal loudness curve. }
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+\references{Daniel P. W. Ellis
+\url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/}, Hynek
+Hermansky }
 \author{
 %%  ~~who you are~~
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+\seealso{\code{\link{postaud}}}
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
@@ -96,5 +74,6 @@ x <- x[(1+broaden):(nbands-broaden),] / kronecker(t(rep(1, nframes)), t(Conj(eql
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ loudness }
+\keyword{ compression }
+\keyword{ inverse }

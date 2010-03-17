@@ -1,43 +1,17 @@
 \name{ispecgram}
 \alias{ispecgram}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
+\title{ Inverse spectrogram }
 }
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+\description{ Inversion of \code{\link{specgram}}. Restore signal from spectrogram.}
 }
-\usage{
-ispecgram(d, ftsize = -1, sr = -1, win = -1, nov = -1)
-}
-%- maybe also 'usage' for other objects documented here.
+\usage{ispecgram(d, ftsize = -1, win = -1, nov = -1)}
 \arguments{
-  \item{d}{
-%%     ~~Describe \code{d} here~~
+  \item{d}{}
+  \item{ftsize}{}
+  \item{win}{}
+  \item{nov}{}
 }
-  \item{ftsize}{
-%%     ~~Describe \code{ftsize} here~~
-}
-  \item{sr}{
-%%     ~~Describe \code{sr} here~~
-}
-  \item{win}{
-%%     ~~Describe \code{win} here~~
-}
-  \item{nov}{
-%%     ~~Describe \code{nov} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
+\value{ Vector of samples. }
 \references{
 %% ~put references to the literature/web site here ~
 }
@@ -50,22 +24,20 @@ ispecgram(d, ftsize = -1, sr = -1, win = -1, nov = -1)
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+\seealso{ \code{\code{specgram}}, \code{\link{fft}} }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function(d, ftsize = -1, sr = -1, win = -1, nov = -1){
+function(d, ftsize = -1, win = -1, nov = -1){
 
   nspec <- nrow(d)
   ncol  <- ncol(d)
 
   if (ftsize == -1) {
-    ftsize <- 2*(nrow(d)-1)
+    ftsize <- 2*(nspec-1)
   }
   if (win == -1) {
     win <- ftsize
@@ -77,7 +49,7 @@ function(d, ftsize = -1, sr = -1, win = -1, nov = -1){
   hop <- win - nov;
 
   if (nspec != (ftsize/2)+1) {
-    warning('number of rows should be ftsize/2+1')
+    stop('number of rows should be ftsize/2+1')
   }
 
   xlen <- ftsize + (ncol-1) * hop
@@ -91,11 +63,11 @@ function(d, ftsize = -1, sr = -1, win = -1, nov = -1){
     ft <- d[,c]
     ft <- c( ft[1:(ftsize/2+1)], Conj(ft[seq(ftsize/2, 2, -1)]) )
 
-    if (max(Im(fft(ft, inverse=TRUE))) > 1e-5) {
-      warning('imag oflow')
+    if (max(Im(fft(ft, inverse=TRUE)/length(ft))) > 1e-5) {
+      cat('imag oflow')
     }
   
-    px <- Re(fft(ft, inverse=TRUE))  # no shift in specgram
+    px <- Re(fft(ft, inverse=TRUE)/length(ft))
   
     b <- (c-1)*hop
     x[b+(1:ftsize)] <- x[b+(1:ftsize)] + px
@@ -108,5 +80,5 @@ function(d, ftsize = -1, sr = -1, win = -1, nov = -1){
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ spectrogram }
+\keyword{ inverse }

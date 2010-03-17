@@ -130,5 +130,5 @@ function (x, n = min(256, length(x)), Fs = 2, window = hanning.window(n),
     return(list(S = S, f = f, t = t))
   }
 }
-\keyword{ spectogram }
+\keyword{ spectrogram }
 \keyword{ spectrum }
