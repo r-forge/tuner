@@ -2,7 +2,7 @@
 \alias{invpowspec}
 \title{ Inverse Powerspectrum }
 }
-\description{ Restores the audio signal out of a powerspectrum computed of it. }
+\description{ Restore the audio signal out of a powerspectrum computed of it. }
 \usage{
 invpowspec(y, sr = 8000, wintime = 0.025, steptime = 0.01)
 }

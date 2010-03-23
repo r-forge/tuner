@@ -3,7 +3,7 @@
 \title{ Powerspectrum }
 \description{
 Compute the powerspectrum of the input signal.
-Basically outputs a power spectrogram using a Hamming window.
+Basically output a power spectrogram using a Hamming window.
 }
 \usage{
 powspec(x, sr = 8000, wintime = 0.025, steptime = 0.01, dither = FALSE)

@@ -2,7 +2,7 @@
 \alias{audspec}
 \title{Frequency band conversion }
 \description{
-Perform critical band analysis (see PLP), whch means the reduction of the
+Perform critical band analysis (see PLP), which means the reduction of the
 fourier frequencies of a signal's powerspectrum to a reduced number of frequency
 bands in an auditory frequency scale.
 }

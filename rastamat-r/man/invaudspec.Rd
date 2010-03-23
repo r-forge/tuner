@@ -1,7 +1,7 @@
 \name{invaudspec}
 \alias{invaudspec}
 \title{ Inverse frequency band conversion }
-\description{ Invert (as best we can) the effects of \code{\link{audspec}}.}
+\description{ Invert the effects of \code{\link{audspec}}. }
 \usage{
 invaudspec(aspectrum, sr = 16000, nfft = 512, fbtype = "bark", minfreq = 0, maxfreq = -1, sumpower = TRUE, bdwidth = 1)
 }
