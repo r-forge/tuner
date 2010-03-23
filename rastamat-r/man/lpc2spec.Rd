@@ -1,54 +1,22 @@
 \name{lpc2spec}
 \alias{lpc2spec}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-% [features,F,M] = lpc2spec(lpcas,nout)
-%    Convert LPC coeffs back into spectra
-%    nout is number of freq channels, default 17 (i.e. for 8 kHz)
-% 2003-04-11 dpwe@ee.columbia.edu  part of rastamat
-
-}
+\title{ LPC to spectra conversion }
+\description{ Convert the LPC coefficients back into spectra. }
 \usage{
 lpc2spec(lpcas, nout = 17)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{lpcas}{
-%%     ~~Describe \code{lpcas} here~~
-}
-  \item{nout}{
-%%     ~~Describe \code{nout} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
+  \item{lpcas}{ matrix of LPC coefficients for each time frame }
+  \item{nout}{ number of freq channels }
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+  \item{features }{frequence features for each time frame}
+  \item{Fout }{}
+  \item{Mout }{}
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+\references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
+\author{ Stefan Tewes \email{stefan.tewes@tu-dortmund.de} }
+\seealso{ \code{\link{lpc2cep}}, \code{\link{spec2cep}}, \code{\link{cep2spec}} }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
@@ -94,5 +62,6 @@ function(lpcas, nout = 17) {
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ lpc }
+\keyword{ spectra }
+\keyword{ conversion }
