@@ -12,17 +12,8 @@
   \item{nov}{}
 }
 \value{ Vector of samples. }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
+\references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
+\author{ Stefan Tewes \email{stefan.tewes@tu-dortmund.de} }
 
 \seealso{ \code{\code{specgram}}, \code{\link{fft}} }
 \examples{

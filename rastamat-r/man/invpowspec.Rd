@@ -16,9 +16,7 @@ and each row represents a frequency.}
 }
 \value{Vector of samples representing the restored signal.}
 \references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
-\author{
-%%  ~~who you are~~
-}
+\author{ Stefan Tewes \email{stefan.tewes@tu-dortmund.de} }
 \seealso{ \code{\link{powspec}}, \code{\link{specgram}}, \code{\link{ispecgram}} }
 \examples{
 ##---- Should be DIRECTLY executable !! ----

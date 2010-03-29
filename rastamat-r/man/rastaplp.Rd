@@ -1,68 +1,39 @@
 \name{rastaplp}
 \alias{rastaplp}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+\title{RASTA}
+\description{ log rasta with fixed parameters }
 \usage{
 rastaplp(samples, sr = 8000, dorasta = 1, modelorder = 8)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{samples}{
-%%     ~~Describe \code{samples} here~~
-}
-  \item{sr}{
-%%     ~~Describe \code{sr} here~~
-}
-  \item{dorasta}{
-%%     ~~Describe \code{dorasta} here~~
-}
-  \item{modelorder}{
-%%     ~~Describe \code{modelorder} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
+  \item{samples}{ Vector of samples.}
+  \item{sr}{ Sampling rate of samples.}
+  \item{dorasta}{}
+  \item{modelorder}{}
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+  \item{cepstra }{Matrix of resulting cepstra.}
+  \item{spectra }{Matrix of resulting spectra.}
+  \item{pspectrum }{Matrix of resulting power spectrum.}
+  \item{lpcas }{Matrix of the normalized AR coefficients.}
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+\references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
+\author{ Stefan Tewes \email{stefan.tewes@tu-dortmund.de} }
+\seealso{ \code{\link{powspec}}, \code{\link{audpec}}, \code{\link{aspectrum}}, \code{\link{rastafilt}}, \code{\link{dolpc}}, \code{\link{lpc2spec}} }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function(samples, sr = 8000, dorasta = 1, modelorder = 8) {
+function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 8) {
 
   # add miniscule amount of noise
   # samples <- samples + rnorm(length(samples)) * 0.0001
 
   # first compute power spectrum
-  pspectrum <- powspec(samples, sr)
+  pspectrum <- powspec(samples@left, sr)
 
   # next group to critical bands
   aspectrum <- audspec(pspectrum, sr)$aspectrum
@@ -77,7 +48,7 @@ function(samples, sr = 8000, dorasta = 1, modelorder = 8) {
     ras_nl_aspectrum <- rastafilt(nl_aspectrum)
 
     # do inverse log
-    aspectrum <- exp(ras_nl_aspectrum)
+    aspectrum <- exp(ras_nl_aspectrum) # Fehler ~ 1\%
 
   }
 
@@ -95,8 +66,8 @@ function(samples, sr = 8000, dorasta = 1, modelorder = 8) {
     # .. or to spectra
     temp <- lpc2spec(lpcas, nbands)
     spectra <- temp$features
-    F <- temp$F
-    M <- temp$M
+    Fout <- temp$Fout
+    Mout <- temp$Mout
 
   } else {
   
@@ -105,12 +76,14 @@ function(samples, sr = 8000, dorasta = 1, modelorder = 8) {
     cepstra <- spec2cep(spectra)
   
   }
+  cepstra <- lifter(cepstra, 0.6)
 
-  return(list(cepstra=cepstra, spectra=spectra, pspectrum=pspectrum, lpcas=lpcas, F=F, M=M))
+  return(list(cepstra=cepstra, spectra=spectra, pspectrum=pspectrum, lpcas=lpcas, Fout=Fout, Mout=Mout))
 
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ spectrum }
+\keyword{ rasta }
+\keyword{ cepstrum }

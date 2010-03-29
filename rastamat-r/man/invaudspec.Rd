@@ -26,9 +26,7 @@ of each time frame in its columns.}
   \item{iwts }{}
 }
 \references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
-\author{
-%%  ~~who you are~~
-}
+\author{ Stefan Tewes \email{stefan.tewes@tu-dortmund.de} }
 \seealso{\code{\link{audspec}}}
 \examples{
 ##---- Should be DIRECTLY executable !! ----

@@ -6,15 +6,11 @@
 \usage{
 invpostaud(y, fmax, fbtype = "bark", broaden = 0)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{y}{ Matrix of spectra.}
   \item{fmax}{ Maximum frequency im Hertz.}
   \item{fbtype}{ Auditory frequency scale.}
   \item{broaden}{ Use two additional frequency bands for calculation.}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
 }
 \value{
   \item{x }{Matrix of the per sample/frame (columns) spectra after applying the frequency
@@ -24,9 +20,7 @@ dependant loudness equalization and compression. }
 \references{Daniel P. W. Ellis
 \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/}, Hynek
 Hermansky }
-\author{
-%%  ~~who you are~~
-}
+\author{ Stefan Tewes \email{stefan.tewes@tu-dortmund.de} }
 \seealso{\code{\link{postaud}}}
 \examples{
 ##---- Should be DIRECTLY executable !! ----

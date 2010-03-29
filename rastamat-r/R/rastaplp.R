@@ -7,7 +7,7 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 
   pspectrum <- powspec(samples@left, sr)
 
   # next group to critical bands
-  aspectrum <- audspec(pspectrum, sr)$aspectrum  # Ab hier numerisch ungenau ~ 2-3%
+  aspectrum <- audspec(pspectrum, sr)$aspectrum
   nbands <- nrow(aspectrum)
 
   if (dorasta != 0) {
