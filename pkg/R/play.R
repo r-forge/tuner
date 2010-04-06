@@ -6,7 +6,7 @@ function(object, player, ...){
     if(missing(player)){
         player <- getWavPlayer()
         if(.Platform$OS.type == "windows" && is.null(player)){
-            player <- "c:/Program Files/Windows Media Player/wmplayer.exe"
+            player <- shQuote("c:/Program Files/Windows Media Player/wmplayer.exe")
             if(!file.exists(player)){
                 player <- "mplay32"
                 if(missing(...))
