@@ -5,7 +5,10 @@
   Calculate Mel-frequency cepstral coefficients.
 }
 \usage{
-melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01, numcep = 13, lifterexp = 0.6, sumpower = TRUE, preemph = 0.97, dither = FALSE, minfreq = 0, maxfreq = sr/2, nbands = 40, bwidth = 1, dcttype = "t2", fbtype = "mel", usecmp = FALSE, modelorder = 0)
+melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01, 
+    numcep = 13, lifterexp = 0.6, sumpower = TRUE, preemph = 0.97, 
+    dither = FALSE, minfreq = 0, maxfreq = sr/2, nbands = 40, bwidth = 1, 
+    dcttype = "t2", fbtype = "mel", usecmp = FALSE, modelorder = 0)
 }
 \arguments{
   \item{samples}{ Object of class 'Wave'. }
@@ -70,47 +73,7 @@ For more detail on reproducing other programs' outputs, see
 \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/mfccs.html}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01, 
-    numcep = 13, lifterexp = 0.6, sumpower = TRUE, preemph = 0.97, 
-    dither = FALSE, minfreq = 0, maxfreq = sr/2, nbands = 40, 
-    bwidth = 1, dcttype = "t2", fbtype = "mel", usecmp = FALSE, 
-    modelorder = 0) 
-{
-    if (preemph != 0) {
-        ssamples <- filter(samples@left, filter = c(1, -preemph), 
-            method = "convolution", sides = 1, circular = F)
-        ssamples[1] <- samples@left[1]
-    }
-    else {
-        ssamples <- samples@left
-    }
-    pspectrum <- powspec(ssamples, sr, wintime, hoptime, dither)
-    aspectrum <- audspec(pspectrum, sr, nbands, fbtype, minfreq, 
-        maxfreq, sumpower, bwidth)$aspectrum
-    if (usecmp) {
-        aspectrum <- postaud(aspectrum, maxfreq, fbtype)$y
-    }
-    lpcas <- NULL
-    if (modelorder > 0) {
-        if (dcttype != "t1") {
-            warning("PLP cepstra are implicitly dcttype 1")
-        }
-        lpcas <- dolpc(aspectrum, modelorder)
-        cepstra <- lpc2cep(lpcas, numcep)
-    }
-    else {
-        cepstra <- spec2cep(aspectrum, numcep, dcttype)$cep
-    }
-    cepstra <- lifter(cepstra, lifterexp)
-    return(list(cepstra = cepstra, aspectrum = aspectrum, pspectrum = pspectrum, 
-        lpcas = lpcas))
-  }
 }
-\keyword{ mfcc }
-\keyword{ lpc }
-\keyword{ plp }
+\concept{ mfcc }
+\concept{ lpc }
+\concept{ plp }

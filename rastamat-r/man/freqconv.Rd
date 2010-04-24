@@ -11,14 +11,14 @@ von the Melscale.
 \usage{
 bark2hz(z)
 hz2bark(f)
-hz2mel(f, htk=FALSE)
-mel2hz(z, htk=FALSE)
+hz2mel(f, htk = FALSE)
+mel2hz(z, htk = FALSE)
 }
 \arguments{
   \item{f}{ Frequency in Hertz }
   \item{z}{ Frequency in the auditory frequency scale }
-  \item{htk}{ Use the HTK-Melscale ('TRUE') or Slaney's Melscale from the
-Auditory Toolbox ('FALSE') }
+  \item{htk}{ Use the HTK-Melscale (\code{TRUE}) or Slaney's Melscale from the
+Auditory Toolbox (\code{FALSE}) }
 }
 \value{
 The value of the input in the target frequency scale.
@@ -28,16 +28,9 @@ The value of the input in the target frequency scale.
 Slaney: Auditory Toolbox }
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ mel }
-\keyword{ bark }
-\keyword{ hertz }
-\keyword{ frequency }
-\keyword{ conversion }
+\concept{ mel }
+\concept{ bark }
+\concept{ hertz }
+\concept{ frequency }
+\concept{ conversion }

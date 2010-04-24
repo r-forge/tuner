@@ -7,7 +7,8 @@ overlapping slices, windows each slice and applies a Fourier
 transform to determine the frequency components at that slice.
 }
 \usage{
-specgram(x, n = min(256, length(x)), Fs = 2, window = hanning.window(n), overlap = ceiling(length(window)/2))
+specgram(x, n = min(256, length(x)), Fs = 2, window = hanning.window(n), 
+    overlap = ceiling(length(window)/2))
 }
 \arguments{
   \item{x}{ the vector of samples. }
@@ -87,48 +88,6 @@ the image.
   \email{pkienzle@users.sf.net}. Conversion to R by Tom Short. }
 \seealso{ \code{\link{fft}} }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x, n = min(256, length(x)), Fs = 2, window = hanning.window(n), 
-    overlap = ceiling(length(window)/2)) 
-{
-    lx <- length(x)
-    lw <- length(window)
-    if (lw == 1) 
-        window <- hanning.window(window)
-    if (length(n) > 1) 
-        stop("specgram does not handle frequency vectors yet")
-    win_size <- lw
-    if (win_size > n) {
-        n <- win_size
-        warning("specgram fft size adjusted to", n)
-    }
-    step <- win_size - overlap
-    if (lx > win_size) 
-        offset <- seq(1, lx - win_size, by = step)
-    else offset <- 1
-    lo <- length(offset)
-    S <- matrix(0, n, lo)
-    for (i in 1:lo) {
-        S[1:win_size, i] = x[offset[i]:(offset[i] + win_size - 
-            1)] * window
-    }
-    ps <- planFFT(n)
-    S <- apply(S, 2, function(x) FFT(x, plan = ps))
-    if (n\%\%2 == 1) {
-        ret_n <- (n + 1)/2
-    }
-    else {
-        ret_n <- n/2
-    }
-    S <- S[1:ret_n, ]
-    f <- (0:(ret_n - 1)) * Fs/n
-    t <- offset/Fs
-    return(list(S = S, f = f, t = t))
-  }
 }
-\keyword{ spectrogram }
-\keyword{ spectrum }
+\concept{ spectrogram }
+\concept{ spectrum }
