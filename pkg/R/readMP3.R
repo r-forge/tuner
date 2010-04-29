@@ -4,5 +4,5 @@
 
 readMP3 <- function(filename){
     data <- readBin(filename, raw(), n = file.info(filename)$size)
-    .Call("do_read_mp3", data, package = "readmp3")
+    .Call("do_read_mp3", data, package = "tuneR")
 }
