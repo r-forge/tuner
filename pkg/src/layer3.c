@@ -32,10 +32,12 @@
 #  include <assert.h>
 # endif
 
-# ifdef HAVE_LIMITS_H
-#  include <limits.h>
-# else
-#  define CHAR_BIT  8
+# ifndef CHAR_BIT
+#  ifdef HAVE_LIMITS_H
+#   include <limits.h>
+#  else
+#   define CHAR_BIT  8
+#  endif
 # endif
 
 # include "fixed.h"
