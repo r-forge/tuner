@@ -1,3 +1,8 @@
+# This code is based on the Matlab implementations of PLP and Rasta
+# feature calculations by Daniel P. W. Ellis of Columbia University /
+# International Computer Science Institute.  For more details, see:
+# http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
+
 # Not Yet Tested
 invaudspec <- function(aspectrum, sr = 16000, nfft = 512, fbtype = c("bark", "mel", "htkmel", "fcmel"), 
     minfreq = 0, maxfreq = sr/2, sumpower = TRUE, bdwidth = 1){

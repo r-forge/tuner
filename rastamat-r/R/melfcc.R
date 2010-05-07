@@ -1,7 +1,19 @@
+# This code is based on the Matlab implementations of PLP and Rasta
+# feature calculations by Daniel P. W. Ellis of Columbia University /
+# International Computer Science Institute.  For more details, see:
+# http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
+
 melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
             numcep=13, lifterexp=0.6, sumpower=TRUE, preemph=0.97, dither=FALSE,
             minfreq=0, maxfreq=sr/2, nbands=40, bwidth=1.0, dcttype="t2",
             fbtype="mel", usecmp=FALSE, modelorder=0){
+
+    if(!is(samples, "Wave")) 
+        stop("'samples' needs to be of class 'Wave'")
+    validObject(samples)
+
+    if(samples@stereo) 
+        stop("Stereo processing not yet implemented...")
 
     if(preemph != 0){
         ssamples <- filter(samples@left, filter=c(1, -preemph), method="convolution", sides=1, circular=FALSE)

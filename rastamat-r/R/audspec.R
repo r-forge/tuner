@@ -1,3 +1,8 @@
+# This code is based on the Matlab implementations of PLP and Rasta
+# feature calculations by Daniel P. W. Ellis of Columbia University /
+# International Computer Science Institute.  For more details, see:
+# http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
+
 audspec <- function(pspectrum, sr=16000, nfilts=ceiling(hz2bark(sr/2))+1,
                 fbtype=c("bark", "mel", "htkmel", "fcmel"), minfreq=0,
                 maxfreq=sr/2, sumpower=TRUE, bwidth=1.0){

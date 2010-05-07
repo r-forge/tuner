@@ -1,3 +1,8 @@
+# This code is based on the Matlab implementations of PLP and Rasta
+# feature calculations by Daniel P. W. Ellis of Columbia University /
+# International Computer Science Institute.  For more details, see:
+# http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
+
 spec2cep <- function(spec, ncep=13, type=c("t2", "t1", "t3", "t4")){
 
     # DCT Matrix

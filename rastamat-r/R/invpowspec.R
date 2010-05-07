@@ -1,3 +1,8 @@
+# This code is based on the Matlab implementations of PLP and Rasta
+# feature calculations by Daniel P. W. Ellis of Columbia University /
+# International Computer Science Institute.  For more details, see:
+# http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
+
 # Not Yet Tested
 invpowspec <- function(y, sr = 8000, wintime = 0.025, steptime = 0.010){
 

@@ -1,4 +1,16 @@
+# This code is based on the Matlab implementations of PLP and Rasta
+# feature calculations by Daniel P. W. Ellis of Columbia University /
+# International Computer Science Institute.  For more details, see:
+# http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
+
 rastaplp <- function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 8) {
+
+  if(!is(samples, "Wave")) 
+      stop("'samples' needs to be of class 'Wave'")
+  validObject(samples)
+
+  if(samples@stereo) 
+      stop("Stereo processing not yet implemented...")
 
   # add miniscule amount of noise
   # samples <- samples + rnorm(length(samples)) * 0.0001

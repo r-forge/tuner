@@ -1,3 +1,8 @@
+# This code is based on the Matlab implementations of PLP and Rasta
+# feature calculations by Daniel P. W. Ellis of Columbia University /
+# International Computer Science Institute.  For more details, see:
+# http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
+
 fft2melmx <- function(nfft, sr=8000, nfilts=40, width=1.0, minfrq=0, maxfrq=sr/2,
                 htkmel=FALSE, constamp=FALSE){
     fftfrqs <- (0:(nfft-1))/nfft * sr
