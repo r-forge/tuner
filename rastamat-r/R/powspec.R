@@ -4,6 +4,15 @@
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
 powspec <- function(x, sr=8000, wintime=0.025, steptime=0.010, dither=FALSE){
+  
+    if(!is.numeric(x) || !is.vector(x))
+      stop("'x' has to be a numeric vector.")
+
+    if(!(is.integer(sr) && is.numeric(wintime) && is.numeric(steptime)) ||
+      sr <= 0 || wintime <= 0 || steptime <= 0)
+      stop("'sr', 'wintime' and 'steptime' have to be positive; 'sr' also
+        integer valued")
+
     winpts <- round(wintime * sr)
     steppts <- round(steptime * sr)
 

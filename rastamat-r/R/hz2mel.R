@@ -4,6 +4,10 @@
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
 hz2mel <- function(f, htk=FALSE){
+    
+    if(!is.numeric(f) || f < 0)
+      stop("frequencies have to be non-negative")
+
     if(htk){
         z <- 2595 * log10(1 + f/700)
     } else {

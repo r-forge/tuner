@@ -5,6 +5,10 @@
 
 postaud <- function(x, fmax, fbtype=c("bark", "mel", "htkmel", "fcmel"),
 broaden=FALSE){
+
+    if(!(is.numeric(x) && is.matrix(x)))
+      stop("'x' has to be a numeric matrix")
+
     nbands <- nrow(x)
     nframes <- ncol(x)
 

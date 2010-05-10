@@ -5,6 +5,12 @@
 
 lpc2spec <- function(lpcas, nout = 17) {
 
+  if(!(is.numeric(lpcas) && is.matrix(lpcas)))
+    stop("'lpcas' has to be a numeric matrix")
+
+  if(!(is.integer(nout) && nout > 0))
+      stop("'modelorder' has to be a positive integer")
+
   rows <- nrow(lpcas)
   cols <- ncol(lpcas)
   morder <- rows - 1

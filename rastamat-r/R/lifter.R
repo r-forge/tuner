@@ -4,6 +4,10 @@
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
 lifter <- function(x, lift=0.6, inv=FALSE){
+
+    if(!(is.numeric(x) && is.matrix(x)))
+      stop("'x' has to be a numeric matrix")
+
     ncep <- nrow(x)
 
     if(lift == 0){

@@ -3,7 +3,7 @@
 # International Computer Science Institute.  For more details, see:
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
-rastaplp <- function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 8) {
+rastaplp <- function(samples, sr = samples@samp.rate, dorasta = TRUE, modelorder = 8) {
 
   if(!is(samples, "Wave")) 
       stop("'samples' needs to be of class 'Wave'")
@@ -11,6 +11,9 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 
 
   if(samples@stereo) 
       stop("Stereo processing not yet implemented...")
+
+  if(!is.null(modelorder) && !(is.integer(modelorder) && modelorder > 0))
+      stop("'modelorder' has to be a non-negative integer or NULL")
 
   # add miniscule amount of noise
   # samples <- samples + rnorm(length(samples)) * 0.0001
@@ -22,7 +25,7 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = 1, modelorder = 
   aspectrum <- audspec(pspectrum, sr)$aspectrum
   nbands <- nrow(aspectrum)
 
-  if (dorasta != 0) {
+  if (dorasta) {
 
     # put in log domain
     nl_aspectrum <- log(aspectrum)

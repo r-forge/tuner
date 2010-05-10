@@ -4,6 +4,13 @@
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
 dolpc <- function(x, modelorder=8){
+
+    if(!(is.numeric(x) && is.matrix(x)))
+      stop("'x' has to be a numeric matrix")
+
+    if(!(is.integer(modelorder) && modelorder > 0)
+        stop("'modelorder' has to be a positive integer")
+
     nbands <- nrow(x)
 
     # px <- planFFT(2*nbands-2)

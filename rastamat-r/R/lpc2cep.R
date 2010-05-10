@@ -4,6 +4,13 @@
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
 lpc2cep <- function(a, nout=nrow(a)){
+
+    if(!(is.numeric(a) && is.matrix(a)))
+      stop("'a' has to be a numeric matrix")
+
+    if(!(is.integer(nout) && nout > 0))
+        stop("'modelorder' has to be a positive integer")
+
     arow <- nrow(a)
     acol <- ncol(a)
 

@@ -4,6 +4,10 @@
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
 deltas <- function(x, w=9){
+
+    if(!(is.numeric(x) && is.matrix(x)))
+      stop("'x' has to be a numeric matrix")
+
     nr <- nrow(x)
     nc <- ncol(x)
 

@@ -5,6 +5,13 @@
 
 fft2melmx <- function(nfft, sr=8000, nfilts=40, width=1.0, minfrq=0, maxfrq=sr/2,
                 htkmel=FALSE, constamp=FALSE){
+
+    if(!(is.integer(sr) && is.integer(nfft)) || sr <= 0 || nfft <= 0)
+      stop("'sr' and 'nfft' have to be positive integers")
+
+    if(!is.null(nfilts) && !(is.integer(nfilts) && nfilts > 0))
+      stop("'nfilts' has to be positive integers valued")
+
     fftfrqs <- (0:(nfft-1))/nfft * sr
 
     minmel <- hz2mel(minfrq, htkmel)

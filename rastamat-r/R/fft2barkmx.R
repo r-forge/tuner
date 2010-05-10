@@ -4,6 +4,13 @@
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
 fft2barkmx <- function(nfft, sr=8000, nfilts=NULL, width=1.0, minfreq=0, maxfreq=sr/2){
+
+    if(!(is.integer(sr) && is.integer(nfft)) || sr <= 0 || nfft <= 0)
+      stop("'sr' and 'nfft' have to be positive integers")
+
+    if(!is.null(nfilts) && !(is.integer(nfilts) && nfilts > 0))
+      stop("'nfilts' has to be positive integers valued")
+
     min_bark <- hz2bark(minfreq)
     nyqbark <- hz2bark(maxfreq) - min_bark
 

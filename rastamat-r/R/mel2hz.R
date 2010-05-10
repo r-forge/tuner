@@ -4,6 +4,10 @@
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
 mel2hz <- function(z, htk=FALSE){
+    
+    if(!is.numeric(z) || z < 0)
+      stop("frequencies have to be non-negative")
+
     if(htk){
         f <- 700 * (10^(z/2595) - 1)
     } else {
