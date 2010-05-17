@@ -13,8 +13,14 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; If not, see <http://www.gnu.org/licenses/>.
 
+## FFTW support and input checks added by Sebastian Krey
+
 specgram <- function(x, n = min(256, length(x)), Fs = 2, window =
     hanning.window(n), overlap = ceiling(length(window)/2)){
+  
+    if(!(is.numeric(x) && is.vector(x)))
+      stop("'x' has to be a numeric vector.")
+
     lx <- length(x)
     lw <- length(window)
     # Create hanning window
@@ -61,6 +67,12 @@ specgram <- function(x, n = min(256, length(x)), Fs = 2, window =
     f <- (0:(ret_n-1)) * Fs/n
     t <- offset/Fs
 
-    return(list(S=S, f=f, t=t))
+    res <- list(S=S, f=f, t=t)
+    class(res) <- "specgram"
+    return(res)
+}
+
+print.specgram <- plot.specgram <- function(x, ...) {
+  image(20*log10(t(abs(x$S))), col = gray(0:512 / 512), axes = FALSE, ...)
 }
 
