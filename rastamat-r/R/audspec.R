@@ -10,7 +10,7 @@ audspec <- function(pspectrum, sr=16000, nfilts=ceiling(hz2bark(sr/2))+1,
     if(!(is.numeric(pspectrum) && is.matrix(pspectrum)))
       stop("'pspectrum' has to be a numeric matrix")
 
-    if(!is.integer(sr) || sr <= 0)
+    if(!(sr==as.integer(sr) && sr > 0))
       stop("'sr' has to be a positive integer")
 
     nfreqs <- nrow(pspectrum)

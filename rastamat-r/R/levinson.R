@@ -35,7 +35,7 @@ levinson <- function(x, p=NULL){
         a <- c(1, a)
         return(list(a=a, v=v, ref=ref))
     }
-    if(!is.null(p) && (p-as.integer(p)!=0)) stop("p must be integer.")
+    if(!is.null(p) && (p!=as.integer(p))) stop("p must be integer.")
     if(is.vector(x)){
         lx <- length(x)
         if(is.null(p) ||p >= lx) p <- lx - 1

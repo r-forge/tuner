@@ -16,7 +16,7 @@ melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
     if(samples@stereo) 
         stop("Stereo processing not yet implemented...")
 
-    if(!is.null(modelorder) && !(is.integer(modelorder) && modelorder > 0))
+    if(!is.null(modelorder) && !(modelorder==as.integer(modelorder) && modelorder > 0))
         stop("'modelorder' has to be a non-negative integer or NULL")
 
     if(modelorder > 0 && numcep > modelorder+1)

@@ -8,7 +8,7 @@ spec2cep <- function(spec, ncep=13, type=c("t2", "t1", "t3", "t4")){
     if(!(is.numeric(x) && is.matrix(x)))
       stop("'x' has to be a numeric matrix")
 
-    if(!(is.integer(ncep) && ncep > 0))
+    if(!(ncep==as.integer(ncep) && ncep > 0))
         stop("'ncep' has to be a positive integer")
 
     # DCT Matrix

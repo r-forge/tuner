@@ -11,7 +11,7 @@ lifter <- function(x, lift=0.6, inv=FALSE, HTK=FALSE){
   if(lift < 0)
     stop("'lift' has to be non-negativ")
 
-  if(HTK && !is.integer(lift))
+  if(HTK && !(lift==as.integer(lift)))
     stop("HTK liftering value must be integer!")
 
   ncep <- nrow(x)

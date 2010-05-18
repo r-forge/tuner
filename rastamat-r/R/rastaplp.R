@@ -12,7 +12,7 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = TRUE, modelorder
   if(samples@stereo) 
       stop("Stereo processing not yet implemented...")
 
-  if(!is.null(modelorder) && !(is.integer(modelorder) && modelorder > 0))
+  if(!is.null(modelorder) && !(modelorder==as.integer(modelorder) && modelorder > 0))
       stop("'modelorder' has to be a non-negative integer or NULL")
 
   # add miniscule amount of noise

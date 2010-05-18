@@ -18,7 +18,7 @@
 specgram <- function(x, n = min(256, length(x)), Fs = 2, window =
     hanning.window(n), overlap = ceiling(length(window)/2)){
   
-    if(!(is.numeric(x) && is.vector(x)))
+    if(!is.vector(x, mode="numeric"))
       stop("'x' has to be a numeric vector.")
 
     lx <- length(x)
