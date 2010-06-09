@@ -63,8 +63,8 @@ static R_INLINE int scale(mad_fixed_t sample) {
 }
 
 static enum mad_flow mad_output_cb(void *blob,
-				   const mad_header_t *header,
-				   mad_pcm_t *pcm) {
+                   const mad_header_t *header,
+                   mad_pcm_t *pcm) {
   int i;
   const int nchannels = pcm->channels;
   const R_len_t nsamples = pcm->length;
@@ -74,9 +74,9 @@ static enum mad_flow mad_output_cb(void *blob,
       /* Use 'tricky' switch with fallthrough! */
       switch(nchannels) {
       case 2:
-	  data->right_output[data->output_pos + i] = scale(pcm->samples[1][i]);
+      data->right_output[data->output_pos + i] = scale(pcm->samples[1][i]);
       case 1:
-	  data->left_output[data->output_pos + i] = scale(pcm->samples[0][i]);
+      data->left_output[data->output_pos + i] = scale(pcm->samples[0][i]);
       }
   }
   data->output_pos += nsamples;
@@ -95,9 +95,10 @@ SEXP do_read_mp3(SEXP s_blob) {
   /* Scan stream to determine the number of samples */
   state.input = blob;
   state.input_size = n_blob;
+  state.output_size = 0;
   mad_decoder_init(&decoder, &state, 
-		   mad_input_cb, mad_header_cb, NULL,
-		   NULL, NULL, NULL);
+           mad_input_cb, mad_header_cb, NULL,
+           NULL, NULL, NULL);
   result = mad_decoder_run(&decoder, MAD_DECODER_MODE_SYNC);
   mad_decoder_finish(&decoder);
 
@@ -119,8 +120,8 @@ SEXP do_read_mp3(SEXP s_blob) {
   state.input = blob;
   state.input_size = n_blob;
   mad_decoder_init(&decoder, &state,
-		   mad_input_cb, NULL, NULL,
-		   mad_output_cb, NULL, NULL);
+           mad_input_cb, NULL, NULL,
+           mad_output_cb, NULL, NULL);
 
   result = mad_decoder_run(&decoder, MAD_DECODER_MODE_SYNC);  
   mad_decoder_finish(&decoder);
