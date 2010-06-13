@@ -1,4 +1,4 @@
-cmrare <- function(x, v1=c(1,2), v2=c(0,8), p=3, qmax=512, ...){
+cmrare <- function(x, v1=c(1,2), v2=c(1,8), p=3, qmax=512, ...){
   if(is(x, "Wave")){
     x  <- spectempevo(x, ...)
   }
@@ -13,10 +13,7 @@ cmrare <- function(x, v1=c(1,2), v2=c(0,8), p=3, qmax=512, ...){
   qq <- qr(outer(seq(qmax), 0:p, "^"))
 
   cmrare.fit <- function(n1, n2){
-    if(n2 == 0)
-      y <- xs[seq(qmax),n1+1]/xs[seq(qmax),1]
-    else
-      y <- apply(xs[seq(qmax),(n1:n2)+1, drop=FALSE], 1, sum)/( (n2-n1+1) * xs[seq(qmax),1])
+    y <- apply(xs[seq(qmax),(n1:n2)+1, drop=FALSE], 1, sum)/( (n2-n1+1) * xs[seq(qmax),1])
     return(qr.coef(qq, y))
   }
 
