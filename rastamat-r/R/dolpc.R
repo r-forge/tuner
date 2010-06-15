@@ -8,7 +8,7 @@ dolpc <- function(x, modelorder=8){
     if(!(is.numeric(x) && is.matrix(x)))
       stop("'x' has to be a numeric matrix")
 
-    if(!(modelorder == as.integer(modelorder) && modelorder > 0)
+    if(!(modelorder == as.integer(modelorder) && modelorder > 0))
         stop("'modelorder' has to be a positive integer")
 
     nbands <- nrow(x)

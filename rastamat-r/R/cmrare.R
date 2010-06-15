@@ -18,23 +18,25 @@ cmrare <- function(x, v1=c(1,2), v2=c(1,8), p=3, qmax=512, ...){
   }
 
   b <- mapply(cmrare.fit, v1, v2)
+  rownames(b) <- paste("p", 0:p, sep="")
+  colnames(b) <- mapply(function(x,y) paste("v", "_", x, "_", y, sep=""), v1, v2)
 
   return(b)
 }
 
-require(tuneR)
-a <- readWave("~/documents/Uni/Daten/McGill/piano-pl/pip_g4.wav")
-
-#for(i in list.files("~/documents/Uni/Software/rastamat-r/R")) source(paste("~/documents/Uni/Software/rastamat-r/R/", i, sep=""))
-setwd("~/documents/Uni/Software/tuner/rastamat-r/R")
-source("powspec.R")
-source("specgram.R")
-source("windowfunctions.R")
-source("spectempevo.R")
-
-print(system.time(stevos2 <- spectempevo(a)))
-print(gc())
-save(stevos2, file="~/stevos2.Rdata")
-
-
+# require(tuneR)
+# a <- readWave("~/documents/Uni/Daten/McGill/piano-pl/pip_g4.wav")
+# 
+# #for(i in list.files("~/documents/Uni/Software/rastamat-r/R")) source(paste("~/documents/Uni/Software/rastamat-r/R/", i, sep=""))
+# setwd("~/documents/Uni/Software/tuner/rastamat-r/R")
+# source("powspec.R")
+# source("specgram.R")
+# source("windowfunctions.R")
+# source("spectempevo.R")
+# 
+# print(system.time(stevos2 <- spectempevo(a)))
+# print(gc())
+# save(stevos2, file="~/stevos2.Rdata")
+# 
+# 
 #Olaf: d <- qr(A); c1 <- qr.coef(d, y1); c2 <- qr.coef(d, y2) sollte dann die schnellste möglichtkeit sein.
