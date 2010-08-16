@@ -5,8 +5,8 @@
 
 spec2cep <- function(spec, ncep=13, type=c("t2", "t1", "t3", "t4")){
 
-    if(!(is.numeric(x) && is.matrix(x)))
-      stop("'x' has to be a numeric matrix")
+    if(!(is.numeric(spec) && is.matrix(spec)))
+      stop("'spec' has to be a numeric matrix")
 
     if(!(ncep==as.integer(ncep) && ncep > 0))
         stop("'ncep' has to be a positive integer")
@@ -53,4 +53,3 @@ spec2cep <- function(spec, ncep=13, type=c("t2", "t1", "t3", "t4")){
 
     return(list(cep=cep, dctm=dctm))
 }
-

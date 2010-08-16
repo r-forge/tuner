@@ -4,8 +4,7 @@
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
 powspec <- function(x, sr=8000, wintime=0.025, steptime=0.010, dither=FALSE){
-  
-    if(!is.vector(x, mode="numeric"))
+    if((!is.numeric(x)) || (!is.null(dim(x))))
       stop("'x' has to be a numeric vector.")
 
     if(!(sr==as.integer(sr) && is.numeric(wintime) && is.numeric(steptime)) ||
@@ -29,4 +28,3 @@ powspec <- function(x, sr=8000, wintime=0.025, steptime=0.010, dither=FALSE){
 
     return(y)
 }
-
