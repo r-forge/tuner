@@ -10,7 +10,7 @@ fft2melmx <- function(nfft, sr=8000, nfilts=40, width=1.0, minfrq=0, maxfrq=sr/2
       stop("'sr' and 'nfft' have to be positive integers")
 
     if(!is.null(nfilts) && !(nfilts==as.integer(nfilts) && nfilts > 0))
-      stop("'nfilts' has to be positive integers valued")
+      stop("'nfilts' has to be positive and integer valued")
 
     fftfrqs <- (0:(nfft-1))/nfft * sr
 

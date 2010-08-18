@@ -9,7 +9,7 @@ lifter <- function(x, lift=0.6, inv=FALSE, HTK=FALSE){
     stop("'x' has to be a numeric matrix")
 
   if(lift < 0)
-    stop("'lift' has to be non-negativ")
+    stop("'lift' has to be non-negative")
 
   if(HTK && !(lift==as.integer(lift)))
     stop("HTK liftering value must be integer!")

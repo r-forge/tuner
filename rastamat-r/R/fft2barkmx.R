@@ -9,7 +9,7 @@ fft2barkmx <- function(nfft, sr=8000, nfilts=NULL, width=1.0, minfreq=0, maxfreq
       stop("'sr' and 'nfft' have to be positive integers")
 
     if(!is.null(nfilts) && !(nfilts==as.integer(nfilts) && nfilts > 0))
-      stop("'nfilts' has to be positive integers valued")
+      stop("'nfilts' has to be positive and integer valued")
 
     min_bark <- hz2bark(minfreq)
     nyqbark <- hz2bark(maxfreq) - min_bark
