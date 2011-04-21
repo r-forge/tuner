@@ -2,10 +2,10 @@ citHeader("To cite tuneRin publications use:")
 
 citEntry(entry       = "Manual",
 	title        = "{tuneR}: Analysis of music",
-	author       = personList(person(first="Uwe", last="Ligges", email="Uwe.Ligges@R-project.org")),
-	year         = 2009,
+	author       = c(person(given="Uwe", family="Ligges", email="Uwe.Ligges@R-project.org")),
+	year         = 2011,
 	url          = "http://r-forge.r-project.org/projects/tuner/",
-	textVersion  = paste("Ligges, Uwe (2009).",
+	textVersion  = paste("Ligges, Uwe (2011).",
 		"tuneR: Analysis of music.",
 		"URL: http://r-forge.r-project.org/projects/tuner/.")
 	)
