@@ -101,6 +101,8 @@ SEXP do_read_mp3(SEXP s_blob) {
            NULL, NULL, NULL);
   result = mad_decoder_run(&decoder, MAD_DECODER_MODE_SYNC);
   mad_decoder_finish(&decoder);
+  if (0 != result)
+      error("MAD decoder error. Your MP3 is likely corrupt.");
 
   /* Allocate result matrix based on calculated number of samples */
   PROTECT(s_res = NEW_OBJECT(MAKE_CLASS("Wave")));
@@ -123,10 +125,13 @@ SEXP do_read_mp3(SEXP s_blob) {
            mad_input_cb, NULL, NULL,
            mad_output_cb, NULL, NULL);
 
-  result = mad_decoder_run(&decoder, MAD_DECODER_MODE_SYNC);  
+  result = mad_decoder_run(&decoder, MAD_DECODER_MODE_SYNC);
   mad_decoder_finish(&decoder);
-  
-  /* Unprotect memory and return results. */
+  /* Unprotect memory */
   UNPROTECT(1); /* s_res */
+
+  if (0 != result)
+      error("MAD decoder error. Your MP3 is likely corrupt.");
+  
   return s_res;
 }
