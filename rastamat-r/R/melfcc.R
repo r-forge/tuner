@@ -7,7 +7,8 @@ melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
             numcep=13, lifterexp=0.6, HTKlifter=FALSE,
             sumpower=TRUE, preemph=0.97, dither=FALSE,
             minfreq=0, maxfreq=sr/2, nbands=40, bwidth=1.0, dcttype="t2",
-            fbtype="mel", usecmp=FALSE, modelorder=NULL, spec.out=FALSE){
+            fbtype="mel", usecmp=FALSE, modelorder=NULL, spec_out=FALSE,
+            frames_in_rows=TRUE){
 
     if(!is(samples, "Wave")) 
         stop("'samples' needs to be of class 'Wave'")
@@ -61,11 +62,25 @@ melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
     # Liftering
     cepstra <- lifter(cepstra, lifterexp, HTK=HTKlifter)
 
-    if(spec.out){
-      res <- (list(cepstra=cepstra, aspectrum=aspectrum, pspectrum=pspectrum,
-              lpcas=lpcas))
+    if(spec_out){
+      if(frames_in_rows){
+        if(is.null(lpcas)){
+          res <- (list(cepstra=t(cepstra), aspectrum=t(aspectrum),
+                  pspectrum=t(pspectrum), lpcas=lpcas))
+        } else {
+          res <- (list(cepstra=t(cepstra), aspectrum=t(aspectrum),
+                  pspectrum=t(pspectrum), lpcas=t(lpcas)))
+        }
+      } else {
+        res <- (list(cepstra=cepstra, aspectrum=aspectrum, pspectrum=pspectrum,
+                lpcas=lpcas))
+      }
     } else {
-      res <- cepstra
+      if(frames_in_rows){
+        res <- t(cepstra)
+      } else {
+        res <- cepstra
+      }
     }
     return(res)
 }
