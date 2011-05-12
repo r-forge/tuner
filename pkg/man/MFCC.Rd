@@ -33,7 +33,7 @@ In a last step an inverse discrete cosine transformation is applied to the signa
 }
 \value{
 A matrix (number of Hamming windows)-rows and \code{K+1} columns. 
-The first columns is the energy, the follwing \code{K} columns the extracted MFCC features.
+The first columns is the center, the follwing \code{K} columns the extracted MFCC features.
 }
 \note{This function is still in development and highly EXPERIMENTAL!!!}
 \examples{
