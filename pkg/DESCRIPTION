@@ -1,8 +1,8 @@
 Package: tuneR
-Version: 0.3-0
-Date: 2010-04-29
+Version: 0.3-1
+Date: 2010-05-12
 Title: Analysis of music
-Author: Uwe Ligges <ligges@statistik.tu-dortmund.de> with contributions from Olaf Mersmann, Andrea Preusser, and Claus Weihs, as well as code fragments and ideas from the former package 'sound' by Matthias Heymann.
+Author: Uwe Ligges <ligges@statistik.tu-dortmund.de> with contributions from Sebastian Krey, Olaf Mersmann, Andrea Preusser, and Claus Weihs, as well as code fragments and ideas from the former package 'sound' by Matthias Heymann.
 Maintainer: Uwe Ligges <ligges@statistik.tu-dortmund.de>
 Depends: R (>= 2.10.0), methods
 Suggests: pastecs
