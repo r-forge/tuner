@@ -3,7 +3,12 @@
 # International Computer Science Institute.  For more details, see:
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
-rastaplp <- function(samples, sr = samples@samp.rate, dorasta = TRUE, modelorder = 8) {
+rastaplp <- function(samples, sr = samples@samp.rate, dorasta = TRUE,
+            modelorder= 8, wintime=0.025, hoptime=0.010,
+            lifterexp=0.6, HTKlifter=FALSE,
+            sumpower=TRUE, dither=TRUE,
+            minfreq=0, maxfreq=sr/2, nbands=ceiling(hz2bark(sr/2))+1, bwidth=1.0,
+            fbtype="bark", spec_out=FALSE, frames_in_rows=TRUE) {
 
   if(!is(samples, "Wave")) 
       stop("'samples' needs to be of class 'Wave'")
@@ -19,11 +24,12 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = TRUE, modelorder
   # samples <- samples + rnorm(length(samples)) * 0.0001
 
   # first compute power spectrum
-  pspectrum <- powspec(samples@left, sr)
+  pspectrum <- powspec(samples@left, sr, wintime, hoptime, dither)
 
   # next group to critical bands
-  aspectrum <- audspec(pspectrum, sr)$aspectrum
-  nbands <- nrow(aspectrum)
+  aspectrum <- audspec(pspectrum, sr, nbands, fbtype, minfreq, maxfreq,
+                    sumpower, bwidth)$aspectrum
+  # nbands <- nrow(aspectrum)
 
   if (dorasta) {
 
@@ -39,7 +45,7 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = TRUE, modelorder
   }
 
   # do final auditory compressions
-  postspectrum <- postaud(aspectrum, sr)$y
+  postspectrum <- postaud(aspectrum, maxfreq, fbtype)$y
 
   if (modelorder > 0) {
 
@@ -62,8 +68,21 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = TRUE, modelorder
     cepstra <- spec2cep(spectra)
   
   }
-  cepstra <- lifter(cepstra, 0.6)
+  cepstra <- lifter(cepstra, lifterexp, HTK=HTKlifter)
 
-  return(list(cepstra=cepstra, spectra=spectra, pspectrum=pspectrum, lpcas=lpcas, Fout=Fout, Mout=Mout))
-
+  if(spec_out){
+    if(frames_in_rows){
+      res <- list(cepstra=t(cepstra), spectra=t(spectra),
+          pspectrum=t(pspectrum), lpcas=t(lpcas), Fout=t(Fout), Mout=t(Mout)) 
+    } else {
+      res <- list(cepstra=cepstra, spectra=spectra, pspectrum=pspectrum, lpcas=lpcas, Fout=Fout, Mout=Mout) 
+    }
+  } else {
+    if(frames_in_rows){
+      res <- list(cepstra=t(cepstra), lpcas=t(lpcas), Fout=t(Fout), Mout=t(Mout)) 
+    } else {
+      res <- list(cepstra=cepstra, lpcas=lpcas, Fout=Fout, Mout=Mout) 
+    }
+  }
+  return(res)
 }

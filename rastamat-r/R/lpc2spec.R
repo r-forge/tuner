@@ -9,7 +9,7 @@ lpc2spec <- function(lpcas, nout = 17) {
     stop("'lpcas' has to be a numeric matrix")
 
   if(!(nout==as.integer(nout) && nout > 0))
-      stop("'modelorder' has to be a positive integer")
+      stop("'nout' has to be a positive integer")
 
   rows <- nrow(lpcas)
   cols <- ncol(lpcas)
@@ -24,7 +24,8 @@ lpc2spec <- function(lpcas, nout = 17) {
   # Actual polyvals, in power (mag^2)
   features <- t(t((1/abs(zz %*% aa))^2) / gg)
 
-  Fout <- matrix(0, cols, floor(rows/2)) 
+  # Switch rows and columns for more consistent output format
+  Fout <- matrix(0, floor(rows/2), cols) 
   Mout <- Fout
 
   for (c in 1:cols) {
@@ -40,8 +41,8 @@ lpc2spec <- function(lpcas, nout = 17) {
     ff[which(sapply(ff, function(x) isTRUE(all.equal(0, x))))] <- 0
     keep <- ff[ix] > 0
     ix <- ix[keep]
-    Fout[c,1:length(ix)] <- ff[ix]
-    Mout[c,1:length(ix)] <- mags[ix]
+    Fout[1:length(ix),c] <- ff[ix]
+    Mout[1:length(ix),c] <- mags[ix]
   }
 
   return(list(features=features, Fout=Fout, Mout=Mout))
