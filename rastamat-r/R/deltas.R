@@ -8,6 +8,9 @@ deltas <- function(x, w=9){
     if(!(is.numeric(x) && is.matrix(x)))
       stop("'x' has to be a numeric matrix")
 
+    if(!(w==as.integer(w) && nout > 0))
+      stop("'w' has to be a positive integer")
+
     nr <- nrow(x)
     nc <- ncol(x)
 
@@ -17,7 +20,7 @@ deltas <- function(x, w=9){
     win <- seq(hlen, -hlen, -1)
 
     # Pad data
-    xx <- matrix(c(rep(x[,1], hlen), x, rep(x[,1], hlen)), nrow=nr)
+    xx <- matrix(c(rep(x[,1], hlen), x, rep(x[,nc], hlen)), nrow=nr)
 
     # Delta filtering alog rows
     d <-  t(apply(xx, 1, function(x) {convolve(x, win, conj=FALSE, type="open")[-(1:(length(win)-1))]}))

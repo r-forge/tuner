@@ -21,6 +21,10 @@ spectrum: LPC or PLP coefficients). Every column represents one time frame.
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
 \seealso{ \code{\link{levinson}} }
 \examples{
+  testsound <- normalize(sine(400) + sine(1000) + square(250), "16")
+  pspectrum <- powspec(testsound@left, testsound@samp.rate)
+  aspectrum <- audspec(pspectrum, testsound@samp.rate)$aspectrum
+  lpcas <- dolpc(aspectrum, 10)
 }
 \concept{ lpc }
 \concept{ plp }

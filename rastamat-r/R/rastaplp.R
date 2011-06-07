@@ -79,9 +79,9 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = TRUE,
     }
   } else {
     if(frames_in_rows){
-      res <- list(cepstra=t(cepstra), lpcas=t(lpcas), Fout=t(Fout), Mout=t(Mout)) 
+      res <- list(cepstra=t(cepstra), lpcas=t(lpcas)) 
     } else {
-      res <- list(cepstra=cepstra, lpcas=lpcas, Fout=Fout, Mout=Mout) 
+      res <- list(cepstra=cepstra, lpcas=lpcas) 
     }
   }
   return(res)

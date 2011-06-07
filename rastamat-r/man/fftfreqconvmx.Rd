@@ -29,7 +29,8 @@ per Bark/Mel between \code{minfreq} and \code{maxfreq}. }
 }
 \references{Daniel P. W. Ellis:
 \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/}, Malcolm
-Slaney: Auditory Toolbox }
+Slaney: Auditory Toolbox
+\url{http://cobweb.ecn.purdue.edu/~malcolm/interval/1998-010/}}
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
 \note{
       While wts has nfft columns, the second half are all zero. 

@@ -6,9 +6,10 @@
 }
 \usage{
 melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01, 
-    numcep = 13, lifterexp = 0.6, sumpower = TRUE, preemph = 0.97, 
-    dither = FALSE, minfreq = 0, maxfreq = sr/2, nbands = 40, bwidth = 1, 
-    dcttype = "t2", fbtype = "mel", usecmp = FALSE, modelorder = 0,
+    numcep = 13, lifterexp = 0.6, HTKlifter=FALSE,
+    sumpower = TRUE, preemph = 0.97, dither = FALSE,
+    minfreq = 0, maxfreq = sr/2, nbands = 40, bwidth = 1, 
+    dcttype = "t2", fbtype = "mel", usecmp = FALSE, modelorder = NULL,
     spec_out=FALSE, frames_in_rows=TRUE)
 }
 \arguments{
@@ -17,7 +18,8 @@ melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01,
   \item{wintime}{ Window length in sec. }
   \item{hoptime}{ Step between successive windows in sec. }
   \item{numcep}{ Number of cepstra to return. }
-  \item{lifterexp}{ Exponent for liftering; 0 = none; < 0 = HTK sin lifter. }
+  \item{lifterexp}{ Exponent for liftering; 0 = none; }
+  \item{HTKlifter}{ Use HTK sin lifter. }
   \item{sumpower}{ 'TRUE': sum abs(fft)^2; 'FALSE': sum abs(fft) }
   \item{preemph}{ Apply pre-emphasis filter [1 -preemph] (0 = none). }
   \item{dither}{ Add offset to spectrum as if dither noise. }
@@ -29,9 +31,9 @@ melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01,
   \item{fbtype}{ Auditory frequency scale to use: 'mel','bark','htkmel','fcmel' }
   \item{usecmp}{ Apply equal-loudness weighting and cube-root compression (PLP
 instead of LPC). }
-  \item{modelorder}{ If > 0, fit a linear prediction model of this order and
+  \item{modelorder}{ If > 0, fit a linear prediction (autoregressive-) model of this order and
 calculation of cepstra out of 'lpcas' }
-  \item{spec.out}{ Should matrices of the power- and the auditory-spectrum be
+  \item{spec_out}{ Should matrices of the power- and the auditory-spectrum be
     returned}
   \item{frames_in_rows}{ Return time frames in rows instead of columns (original Matlab code)}
 }
