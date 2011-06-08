@@ -22,6 +22,10 @@ spec2cep(spec, ncep = 13, type = c("t2", "t1", "t3", "t4"))
 \seealso{ \code{\link{cep2spec}}, \code{\link{lpc2cep}}, \code{\link{lpc2spec}}
 }
 \examples{
+  testsound <- normalize(sine(400) + sine(1000) + square(250), "16")
+  pspectrum <- powspec(testsound@left, testsound@samp.rate)
+  aspectrum <- audspec(pspectrum, testsound@samp.rate)
+  cepstra <- spec2cep(aspectrum$aspectrum, numcep, dcttype)
 }
 \concept{ cepstra }
 \concept{ spectra }

@@ -31,6 +31,9 @@ squared afterwards.}
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
 \seealso{\code{\link{fft2melmx}}, \code{\link{fft2barkmx}}}
 \examples{
+  testsound <- normalize(sine(400) + sine(1000) + square(250), "16")
+  pspectrum <- powspec(testsound@left, testsound@samp.rate)
+  aspectrum <- audspec(pspectrum, testsound@samp.rate)
 }
 \concept{frequency}
 \concept{conversion}

@@ -3,7 +3,7 @@
 \alias{fft2melmx}
 \title{ Convert FFT frequency bins to Bark/Mel bins }
 \description{
- Generate a matrix of weights to combine FFT bins into Bark bins.
+ Generate a matrix of weights to combine FFT bins into Bark/Mel bins.
 }
 \usage{
 fft2barkmx(nfft, sr = 8000, nfilts = NULL, width = 1, minfreq = 0, 
@@ -35,12 +35,11 @@ Slaney: Auditory Toolbox
 \note{
       While wts has nfft columns, the second half are all zero. 
       Hence, Bark spectrum is \code{fft2barkmx(nfft, sr) * abs(fft(xincols, nfft))}.
-
-      You can exactly duplicate the mel matrix in Slaney's \file{mfcc.m}
-      as \code{fft2melmx(512, 8000, 40, 1, 133.33, 6855.5, FALSE, FALSE)}.
 }
 \seealso{ \code{\link{hz2bark}}, \code{\link{hz2mel}} }
 \examples{
+  #Mel matrix in Slaney's mfcc.m:
+  fft2melmx(512, 8000, 40, 1, 133.33, 6855.5, FALSE, FALSE)
 }
 \concept{ fft }
 \concept{ frequency }

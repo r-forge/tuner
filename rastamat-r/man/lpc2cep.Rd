@@ -12,12 +12,17 @@ lpc2cep(a, nout = nrow(a))
   \item{nout}{ Number of cepstra to produce. }
 }
 \value{
-Matrix of cepstra.
+Matrix of cepstra (one column per time frame).
 }
 \references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
 \seealso{ \code{\link{lpc2spec}}, \code{\link{spec2cep}}, \code{\link{cep2spec}} }
 \examples{
+  testsound <- normalize(sine(400) + sine(1000) + square(250), "16")
+  pspectrum <- powspec(testsound@left, testsound@samp.rate)
+  aspectrum <- audspec(pspectrum, testsound@samp.rate)
+  lpcas <- dolpc(aspectrum$aspectrum, 8)
+  cepstra <- lpc2cep(lpcas)
 }
 \concept{ lpc }
 \concept{ cepstra }
