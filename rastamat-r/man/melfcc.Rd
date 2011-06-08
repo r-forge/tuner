@@ -9,18 +9,19 @@ melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01,
     numcep = 13, lifterexp = 0.6, HTKlifter=FALSE,
     sumpower = TRUE, preemph = 0.97, dither = FALSE,
     minfreq = 0, maxfreq = sr/2, nbands = 40, bwidth = 1, 
-    dcttype = "t2", fbtype = "mel", usecmp = FALSE, modelorder = NULL,
-    spec_out=FALSE, frames_in_rows=TRUE)
+    dcttype = c("t2", "t1", "t3", "t4"), 
+    fbtype = c("mel", "htkmel", "fcmel", "bark"),  usecmp = FALSE, 
+    modelorder = NULL, spec_out=FALSE, frames_in_rows=TRUE)
 }
 \arguments{
-  \item{samples}{ Object of class 'Wave'. }
+  \item{samples}{ Object of class \sQuote{Wave}. }
   \item{sr}{ Sampling rate of the signal. }
   \item{wintime}{ Window length in sec. }
   \item{hoptime}{ Step between successive windows in sec. }
   \item{numcep}{ Number of cepstra to return. }
   \item{lifterexp}{ Exponent for liftering; 0 = none; }
   \item{HTKlifter}{ Use HTK sin lifter. }
-  \item{sumpower}{ 'TRUE': sum abs(fft)^2; 'FALSE': sum abs(fft) }
+  \item{sumpower}{\code{TRUE}: \code{sum(abs(fft)^2)}; \code{FALSE}: \code{sum(abs(fft))}}
   \item{preemph}{ Apply pre-emphasis filter [1 -preemph] (0 = none). }
   \item{dither}{ Add offset to spectrum as if dither noise. }
   \item{minfreq}{ Lowest band edge of mel filters (Hz). }
@@ -28,7 +29,7 @@ melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01,
   \item{nbands}{ Number of warped spectral bands to use. }
   \item{bwidth}{ Width of spectral bands in Bark/Mel. }
   \item{dcttype}{ Type of DCT used - 1 or 2 (or 3 for HTK or 4 for feacalc). }
-  \item{fbtype}{ Auditory frequency scale to use: 'mel','bark','htkmel','fcmel' }
+  \item{fbtype}{ Auditory frequency scale to use: 'mel', 'bark','htkmel','fcmel' }
   \item{usecmp}{ Apply equal-loudness weighting and cube-root compression (PLP
 instead of LPC). }
   \item{modelorder}{ If > 0, fit a linear prediction (autoregressive-) model of this order and

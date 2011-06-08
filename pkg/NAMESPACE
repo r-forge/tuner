@@ -1,5 +1,6 @@
 useDynLib(tuneR)
 importFrom(graphics, plot, image)
+importFrom(signal, hamming, hanning, specgram)
 import("stats","methods")
 exportClasses("Wspec","WspecMat","Wave")
 exportMethods("plot","image","summary","show","Wave","coerce","[","play","Arith", "periodogram")

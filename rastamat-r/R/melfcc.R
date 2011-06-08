@@ -6,10 +6,15 @@
 melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
             numcep=13, lifterexp=0.6, HTKlifter=FALSE,
             sumpower=TRUE, preemph=0.97, dither=FALSE,
-            minfreq=0, maxfreq=sr/2, nbands=40, bwidth=1.0, dcttype="t2",
-            fbtype="mel", usecmp=FALSE, modelorder=NULL, spec_out=FALSE,
+            minfreq=0, maxfreq=sr/2, nbands=40, bwidth=1.0, 
+            dcttype = c("t2", "t1", "t3", "t4"),
+            fbtype = c("mel", "htkmel", "fcmel", "bark"), 
+            usecmp=FALSE, modelorder=NULL, spec_out=FALSE,
             frames_in_rows=TRUE){
 
+    dcttype <- match.arg(dcttype)
+    fbtype <- match.arg(fbtype)
+    
     if(!is(samples, "Wave")) 
         stop("'samples' needs to be of class 'Wave'")
     validObject(samples)
@@ -24,19 +29,20 @@ melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
         stop("No. of cepstra can't be larger than 'modelorder+1'")
 
     if(preemph != 0){
-        ssamples <- as.vector(filter(samples@left, filter=c(1, -preemph), method="convolution", sides=1, circular=FALSE))
+        ssamples <- as.vector(filter(samples@left, filter=c(1, -preemph), 
+            method="convolution", sides=1, circular=FALSE))
         ssamples[1] <- samples@left[1]
     } else {
         ssamples <- samples@left
     }
 
     # Compute FFT power spectrum
-    pspectrum <- powspec(ssamples, sr, wintime, hoptime, dither)
+    pspectrum <- powspec(ssamples, sr=sr, wintime=wintime, steptime=hoptime, dither=dither)
 
     # Conversion to Mel/Bark scale
-    aspectrum <- audspec(pspectrum, sr, nbands, fbtype, minfreq, maxfreq,
-                    sumpower, bwidth)$aspectrum
-
+    aspectrum <- audspec(pspectrum=pspectrum, sr=sr, nfilts=nbands, 
+                         fbtype=fbtype, minfreq=minfreq, maxfreq=maxfreq,
+                         sumpower=sumpower, bwidth=bwidth)$aspectrum
     # PLP-like weighting and compression
     if(usecmp){
         aspectrum <- postaud(aspectrum, maxfreq, fbtype)$y
@@ -64,16 +70,11 @@ melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
 
     if(spec_out){
       if(frames_in_rows){
-        if(is.null(lpcas)){
-          res <- (list(cepstra=t(cepstra), aspectrum=t(aspectrum),
-                  pspectrum=t(pspectrum), lpcas=lpcas))
-        } else {
-          res <- (list(cepstra=t(cepstra), aspectrum=t(aspectrum),
-                  pspectrum=t(pspectrum), lpcas=t(lpcas)))
-        }
+          res <- list(cepstra=t(cepstra), aspectrum=t(aspectrum),
+                  pspectrum=t(pspectrum), lpcas = if(is.null(lpcas)) lpcas else t(lpcas))
       } else {
-        res <- (list(cepstra=cepstra, aspectrum=aspectrum, pspectrum=pspectrum,
-                lpcas=lpcas))
+        res <- list(cepstra=cepstra, aspectrum=aspectrum, pspectrum=pspectrum,
+                lpcas=lpcas)
       }
     } else {
       if(frames_in_rows){

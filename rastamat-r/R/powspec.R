@@ -16,7 +16,7 @@ powspec <- function(x, sr=8000, wintime=0.025, steptime=0.010, dither=FALSE){
     steppts <- round(steptime * sr)
 
     nfft <- 2^(ceiling(log(winpts)/log(2)))
-    window <- hamming.window(winpts)
+    window <- hamming(winpts)
     noverlap <- winpts - steppts
 
     y <- abs(specgram(x, nfft, sr, window, noverlap)$S)^2
