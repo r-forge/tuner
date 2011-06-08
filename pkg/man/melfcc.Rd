@@ -80,6 +80,10 @@ For more detail on reproducing other programs' outputs, see
   #original Matlab code (note: modelorder limits the number of cepstra)
   m2 <- melfcc(testsound, numcep=9, usecmp=TRUE, modelorder=8, spec_out=TRUE, frames_in_rows=FALSE)
 }
-\concept{ mfcc }
-\concept{ lpc }
-\concept{ plp }
+\keyword{ts}
+\concept{mfcc}
+\concept{lpc}
+\concept{plp}
+\concept{mel}
+\concept{cepstrum}
+
