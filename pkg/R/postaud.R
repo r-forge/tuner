@@ -16,10 +16,10 @@ broaden=FALSE){
     
     fbtype <- match.arg(fbtype)
     bandcfhz <- switch(fbtype,
-                    bark = bark2hz(seq(0, hz2bark(fmax), length.out=nfpts)),
-                    mel = mel2hz(seq(0, hz2mel(fmax), length.out=nfpts)),
-                    htkmel = mel2hz(seq(0, hz2mel(fmax, TRUE), length.out=nfpts), TRUE),
-                    fcmel = mel2hz(seq(0, hz2mel(fmax, TRUE), length.out=nfpts), TRUE),
+                    bark = bark2hz(z=seq(0, hz2bark(f=fmax), length.out=nfpts)),
+                    mel = mel2hz(z=seq(0, hz2mel(f=fmax), length.out=nfpts)),
+                    htkmel = mel2hz(z=seq(0, hz2mel(f=fmax, htk=TRUE), length.out=nfpts), htk=TRUE),
+                    fcmel = mel2hz(z=seq(0, hz2mel(f=fmax, htk=TRUE), length.out=nfpts), htk=TRUE),
     )
     bandcfhz <- bandcfhz[(1+broaden):(nfpts-broaden)]
 

@@ -26,7 +26,7 @@ deltas <- function(x, w=9){
     d <-  t(apply(xx, 1, function(x) {convolve(x, win, conj=FALSE, type="open")[-(1:(length(win)-1))]}))
 
     # Trim edges
-    d <- d[,2 * hlen + 1:nc]
+    d <- d[,2 * hlen + 1:nc,drop=FALSE]
 
     return(d)
 }

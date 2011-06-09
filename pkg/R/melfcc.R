@@ -37,7 +37,7 @@ melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
     }
 
     # Compute FFT power spectrum
-    pspectrum <- powspec(ssamples, sr=sr, wintime=wintime, steptime=hoptime, dither=dither)
+    pspectrum <- powspec(x=ssamples, sr=sr, wintime=wintime, steptime=hoptime, dither=dither)
 
     # Conversion to Mel/Bark scale
     aspectrum <- audspec(pspectrum=pspectrum, sr=sr, nfilts=nbands, 
@@ -45,7 +45,7 @@ melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
                          sumpower=sumpower, bwidth=bwidth)$aspectrum
     # PLP-like weighting and compression
     if(usecmp){
-        aspectrum <- postaud(aspectrum, maxfreq, fbtype)$y
+        aspectrum <- postaud(x=aspectrum, fmax=maxfreq, fbtype=fbtype)$y
     }
 
     #lpcas <- numeric(0)
@@ -56,17 +56,17 @@ melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
         }
 
         # LPC/PLP
-        lpcas <- dolpc(aspectrum, modelorder)
+        lpcas <- dolpc(x=aspectrum, modelorder=modelorder)
 
         # Cepstra out of LPC/PLP
-        cepstra <- lpc2cep(lpcas, numcep)
+        cepstra <- lpc2cep(a=lpcas, nout=numcep)
     } else {
         # Cepstra via DCT
-        cepstra <- spec2cep(aspectrum, numcep, dcttype)$cep
+        cepstra <- spec2cep(spec=aspectrum, ncep=numcep, type=dcttype)$cep
     }
 
     # Liftering
-    cepstra <- lifter(cepstra, lifterexp, HTK=HTKlifter)
+    cepstra <- lifter(x=cepstra, lift=lifterexp, HTK=HTKlifter)
 
     if(spec_out){
       if(frames_in_rows){

@@ -47,9 +47,9 @@ levinson <- function(x, p=NULL){
         zr <- apply(x, 2, function(y) fit(y, p))
         # Construct output matrices
         zr <- matrix(unlist(zr), nrow=lx[2], byrow=TRUE)
-        a <- zr[,1:(p+1)]
+        a <- zr[,1:(p+1), drop=FALSE]
         v <- zr[,p+2]
-        ref <- t(zr[,-(1:(p+2))])
+        ref <- t(zr[,-(1:(p+2)), drop=FALSE])
         r <- list(a=a, v=v, ref=ref)
     } else {
         stop("x must be a vector or matrix.")

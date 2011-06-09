@@ -3,7 +3,7 @@
 # International Computer Science Institute.  For more details, see:
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
-lifter <- function(x, lift=0.6, inv=FALSE, HTK=FALSE){
+lifter <- function(x, lift=0.6, inv=FALSE, htk=FALSE){
 
   if(!(is.numeric(x) && is.matrix(x)))
     stop("'x' has to be a numeric matrix")
@@ -11,16 +11,16 @@ lifter <- function(x, lift=0.6, inv=FALSE, HTK=FALSE){
   if(lift < 0)
     stop("'lift' has to be non-negative")
 
-  if(HTK && !(lift==as.integer(lift)))
-    stop("HTK liftering value must be integer!")
+  if(htk && !(lift==as.integer(lift)))
+    stop("htk liftering value must be integer!")
 
   ncep <- nrow(x)
 
   if(lift == 0){
       y <- x
   } else {
-    if(HTK){
-      # HTK liftering
+    if(htk){
+      # htk liftering
       liftwts <- c(1, (1+ lift/2 * sin( (1:(ncep-1)) * pi/lift)))
     } else {
       liftwts <- c(1, (1:(ncep-1))^lift)

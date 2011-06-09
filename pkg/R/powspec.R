@@ -19,7 +19,7 @@ powspec <- function(x, sr=8000, wintime=0.025, steptime=0.010, dither=FALSE){
     window <- hamming(winpts)
     noverlap <- winpts - steppts
 
-    y <- abs(specgram(x, nfft, sr, window, noverlap)$S)^2
+    y <- abs(specgram(x=x, n=nfft, Fs=sr, window=window, overlap=noverlap)$S)^2
 
     # Avoid digital zero
     if(dither){

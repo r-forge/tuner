@@ -14,10 +14,10 @@ fft2melmx <- function(nfft, sr=8000, nfilts=40, width=1.0, minfrq=0, maxfrq=sr/2
 
     fftfrqs <- (0:(nfft-1))/nfft * sr
 
-    minmel <- hz2mel(minfrq, htkmel)
-    maxmel <- hz2mel(maxfrq, htkmel)
+    minmel <- hz2mel(f=minfrq, htk=htkmel)
+    maxmel <- hz2mel(f=maxfrq, htk=htkmel)
     # Frequency of each FFT bin in Mel
-    binfrqs <- mel2hz(minmel + (0:(nfilts+1))/(nfilts+1) * (maxmel-minmel), htkmel)
+    binfrqs <- mel2hz(z=minmel + (0:(nfilts+1))/(nfilts+1) * (maxmel-minmel), htk=htkmel)
 
     binbin <- round(binfrqs/sr * (nfft-1))
 
@@ -32,7 +32,7 @@ fft2melmx <- function(nfft, sr=8000, nfilts=40, width=1.0, minfrq=0, maxfrq=sr/2
 
         return(pmax(0, pmin(loslope, hislope)))
     }
-    wts <- t(sapply(seq(nfilts), function(x) wtscalc(x, binfrqs)))
+    wts <- t(sapply(seq(nfilts), function(x) wtscalc(i=x, binfrqs=binfrqs)))
 
     if(!constamp){
         # Scale to be approx constant E (Slaney-style mel)
@@ -40,7 +40,7 @@ fft2melmx <- function(nfft, sr=8000, nfilts=40, width=1.0, minfrq=0, maxfrq=sr/2
     }
 
     # Ensure 2nd half of FFT ist zero
-#    wts[,(nfft/2 + 1):nfft] <- 0
+#    wts[,(nfft/2 + 1):nfft, drop=FALSE] <- 0
 
     return(list(wts=wts, binfrqs=binfrqs))
 }

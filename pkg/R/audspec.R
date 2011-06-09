@@ -20,13 +20,17 @@ audspec <- function(pspectrum, sr=16000, nfilts=ceiling(hz2bark(sr/2))+1,
     # Construct weight matrix
     fbtype <- match.arg(fbtype)
     wts <- switch(fbtype,
-            bark = fft2barkmx(nfft, sr, nfilts, bwidth, minfreq, maxfreq)$wts,
-            mel = fft2melmx(nfft, sr, nfilts, bwidth, minfreq, maxfreq)$wts,
-            htkmel = fft2melmx(nfft, sr, nfilts, bwidth, minfreq, maxfreq, TRUE, TRUE)$wts,
-            fcmel = fft2melmx(nfft, sr, nfilts, bwidth, minfreq, maxfreq, TRUE, FALSE)$wts
+            bark = fft2barkmx(nfft=nfft, sr=sr, nfilts=nfilts, width=bwidth,
+                minfreq=minfreq, maxfreq=maxfreq)$wts,
+            mel = fft2melmx(nfft=nfft, sr=sr, nfilts=nfilts, width=bwidth,
+                minfreq=minfreq, maxfreq=maxfreq)$wts,
+            htkmel = fft2melmx(nfft=nfft, sr=sr, nfilts=nfilts, width=bwidth,
+                minfreq=minfreq, maxfreq=maxfreq, htkmel=TRUE, constamp=TRUE)$wts,
+            fcmel = fft2melmx(nfft=nfft, sr=sr, nfilts=nfilts, width=bwidth,
+                minfreq=minfreq, maxfreq=maxfreq, htkmel=TRUE, constamp=FALSE)$wts
     )
 
-    wts <- wts[,1:nfreqs]
+    wts <- wts[,1:nfreqs,drop=FALSE]
 
     # Integrate FFT bins into Mel bins, in abs or abs^2 domain
     if(sumpower){

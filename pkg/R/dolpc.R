@@ -19,10 +19,10 @@ dolpc <- function(x, modelorder=8){
             function(y) Re(fft(y, inverse=TRUE))/length(y))
             # function(y) Re(IFFT(y, plan=px)))
     # First half only
-    r <- r[1:nbands,]
+    r <- r[1:nbands,,drop=FALSE]
 
     # Find LPC coeffs by Levinson-Durbin
-    levcoef <- levinson(r, modelorder)
+    levcoef <- levinson(x=r, p=modelorder)
 
     # Normalize each poly by gain
     y <- t(levcoef$a) / matrix(rep(levcoef$v, modelorder+1), nrow=modelorder+1,

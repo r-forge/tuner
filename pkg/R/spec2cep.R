@@ -44,10 +44,10 @@ spec2cep <- function(spec, ncep=13, type=c("t2", "t1", "t3", "t4")){
 
     type <- match.arg(type)
     dctm <- switch(type,
-                t1 = dctm1(spec, ncep),
-                t2 = dctm2(spec, ncep),
-                t3 = dctm23(spec, ncep),
-                t4 = dctm4(spec, ncep))
+                t1 = dctm1(spec=spec, ncep=ncep),
+                t2 = dctm2(spec=spec, ncep=ncep),
+                t3 = dctm23(spec=spec, ncep=ncep),
+                t4 = dctm4(spec=spec, ncep=ncep))
 
     cep <- dctm %*% log(spec)
 
