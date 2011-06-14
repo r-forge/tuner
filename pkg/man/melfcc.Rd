@@ -6,7 +6,7 @@
 }
 \usage{
 melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01, 
-    numcep = 13, lifterexp = 0.6, HTKlifter=FALSE,
+    numcep = 13, lifterexp = 0.6, htklifter=FALSE,
     sumpower = TRUE, preemph = 0.97, dither = FALSE,
     minfreq = 0, maxfreq = sr/2, nbands = 40, bwidth = 1, 
     dcttype = c("t2", "t1", "t3", "t4"), 
@@ -20,7 +20,7 @@ melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01,
   \item{hoptime}{ Step between successive windows in sec. }
   \item{numcep}{ Number of cepstra to return. }
   \item{lifterexp}{ Exponent for liftering; 0 = none; }
-  \item{HTKlifter}{ Use HTK sin lifter. }
+  \item{htklifter}{ Use HTK sin lifter. }
   \item{sumpower}{\code{TRUE}: \code{sum(abs(fft)^2)}; \code{FALSE}: \code{sum(abs(fft))}}
   \item{preemph}{ Apply pre-emphasis filter [1 -preemph] (0 = none). }
   \item{dither}{ Add offset to spectrum as if dither noise. }

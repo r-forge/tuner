@@ -5,10 +5,13 @@
 
 rastaplp <- function(samples, sr = samples@samp.rate, dorasta = TRUE,
             modelorder= 8, wintime=0.025, hoptime=0.010,
-            lifterexp=0.6, HTKlifter=FALSE,
+            lifterexp=0.6, htklifter=FALSE,
             sumpower=TRUE, dither=TRUE,
             minfreq=0, maxfreq=sr/2, nbands=ceiling(hz2bark(sr/2))+1, bwidth=1.0,
-            fbtype="bark", spec_out=FALSE, frames_in_rows=TRUE) {
+            fbtype=c("bark", "mel", "htkmel", "fcmel"),
+            spec_out=FALSE, frames_in_rows=TRUE, ...) {
+
+  fbtype <- match.arg(fbtype)
 
   if(!is(samples, "Wave")) 
       stop("'samples' needs to be of class 'Wave'")
@@ -24,11 +27,12 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = TRUE,
   # samples <- samples + rnorm(length(samples)) * 0.0001
 
   # first compute power spectrum
-  pspectrum <- powspec(samples@left, sr, wintime, hoptime, dither)
+  pspectrum <- powspec(x=samples@left, sr=sr, wintime=wintime, steptime=hoptime,
+      dither=dither)
 
   # next group to critical bands
-  aspectrum <- audspec(pspectrum, sr, nbands, fbtype, minfreq, maxfreq,
-                    sumpower, bwidth)$aspectrum
+  aspectrum <- audspec(pspectrum=pspectrum, sr=sr, nfilts=nbands, fbtype=fbtype,
+      minfreq=minfreq, maxfreq=maxfreq, sumpower=sumpower, bwidth=bwidth)$aspectrum
   # nbands <- nrow(aspectrum)
 
   if (dorasta) {
@@ -45,18 +49,18 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = TRUE,
   }
 
   # do final auditory compressions
-  postspectrum <- postaud(aspectrum, maxfreq, fbtype)$y
+  postspectrum <- postaud(x=aspectrum, fmax=maxfreq, fbtype=fbtype)$y
 
   if (modelorder > 0) {
 
     # LPC analysis 
-    lpcas <- dolpc(postspectrum, modelorder)
+    lpcas <- dolpc(x=postspectrum, modelorder=modelorder)
 
     # convert lpc to cepstra
-    cepstra <- lpc2cep(lpcas, modelorder+1)
+    cepstra <- lpc2cep(a=lpcas, nout=modelorder+1)
 
     # .. or to spectra
-    temp <- lpc2spec(lpcas, nbands)
+    temp <- lpc2spec(lpcas=lpcas, nout=nbands)
     spectra <- temp$features
     Fout <- temp$Fout
     Mout <- temp$Mout
@@ -65,10 +69,10 @@ rastaplp <- function(samples, sr = samples@samp.rate, dorasta = TRUE,
   
     # No LPC smoothing of spectrum
     spectra <- postspectrum
-    cepstra <- spec2cep(spectra)
+    cepstra <- spec2cep(spec=spectra, ...)
   
   }
-  cepstra <- lifter(cepstra, lifterexp, HTK=HTKlifter)
+  cepstra <- lifter(x=cepstra, lift=lifterexp, htk=htklifter)
 
   if(spec_out){
     if(frames_in_rows){

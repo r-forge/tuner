@@ -12,10 +12,14 @@ invaudspec <- function(aspectrum, sr = 16000, nfft = 512, fbtype = c("bark", "me
 
   fbtype <- match.arg(fbtype)
   wts <- switch(fbtype,
-          bark = fft2barkmx(nfft, sr, nfilts, bdwidth, minfreq, maxfreq),
-          mel  = fft2melmx(nfft, sr, nfilts, bdwidth, minfreq, maxfreq),
-          htkmel = fft2melmx(nfft, sr, nfilts, bdwidth, minfreq, maxfreq, TRUE, TRUE),
-          fcmel = fft2melmx(nfft, sr, nfilts, bdwidth, minfreq, maxfreq, TRUE)
+          bark = fft2barkmx(nfft=nfft, sr=sr, nfilts=nfilts, width=bdwidth,
+              minfreq=minfreq, maxfreq=maxfreq),
+          mel  = fft2melmx(nfft=nfft, sr=sr, nfilts=nfilts, width=bdwidth,
+              minfreq=minfreq, maxfreq=maxfreq),
+          htkmel = fft2melmx(nfft=nfft, sr=sr, nfilts=nfilts, width=bdwidth,
+              minfreq=minfreq, maxfreq=maxfreq, htkmel=TRUE, constamp=TRUE),
+          fcmel = fft2melmx(nfft=nfft, sr=sr, nfilts=nfilts, width=bdwidth,
+              minfreq=minfreq, maxfreq=maxfreq, htkmel=TRUE, constamp=FALSE)
   )
  
   # Cut off 2nd half

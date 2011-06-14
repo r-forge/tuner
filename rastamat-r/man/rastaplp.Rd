@@ -5,10 +5,10 @@
 \usage{
 rastaplp(samples, sr = samples@samp.rate, dorasta = TRUE,
             modelorder= 8, wintime=0.025, hoptime=0.010,
-            lifterexp=0.6, HTKlifter=FALSE,
+            lifterexp=0.6, htklifter=FALSE,
             sumpower=TRUE, dither=TRUE,
             minfreq=0, maxfreq=sr/2, nbands=ceiling(hz2bark(sr/2))+1, bwidth=1.0,
-            fbtype="bark", spec_out=FALSE, frames_in_rows=TRUE) {
+            fbtype="bark", spec_out=FALSE, frames_in_rows=TRUE, ...) {
 }
 \arguments{
   \item{samples}{ Object of class 'Wave'.}

@@ -12,9 +12,10 @@ nbands  <- nrow(y)
 nframes <- ncol(y)
 
 bandcfhz <- switch(fbtype,
-    "bark" = bark2hz(seq(0, hz2bark(fmax), length.out=nbands)),
-    "mel" = mel2hz(seq(0, hz2mel(fmax), length.out=nbands)),
-    mel2hz(seq(0, hz2mel(fmax,1), length.out=nbands),1)
+    "bark" = bark2hz(z=seq(0, hz2bark(f=fmax), length.out=nbands)),
+    "mel" = mel2hz(z=seq(0, hz2mel(f=fmax), length.out=nbands)),
+    "htkmel" = mel2hz(z=seq(0, hz2mel(f=fmax, htk=TRUE), length.out=nbands), htk=TRUE),
+    "fcmel" = mel2hz(z=seq(0, hz2mel(f=fmax, htk=TRUE), length.out=nbands), htk=TRUE),
 )
 
 

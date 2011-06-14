@@ -15,7 +15,7 @@ spectempevo <- function(samples, sr=samples@samp.rate, wintime=0.032, hoptime=0.
     }
 
     # Compute FFT power spectrum
-    pspectrum <- powspec(ssamples, sr, wintime, hoptime, dither)
+    pspectrum <- powspec(x=ssamples, sr=sr, wintime=wintime, steptime=hoptime, dither=dither)
     dpsp <-dim(pspectrum)
 
     # Cepstra via FFT
