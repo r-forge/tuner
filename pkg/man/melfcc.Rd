@@ -6,7 +6,7 @@
 }
 \usage{
 melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01, 
-    numcep = 13, lifterexp = 0.6, htklifter=FALSE,
+    numcep = 12, lifterexp = 0.6, htklifter=FALSE,
     sumpower = TRUE, preemph = 0.97, dither = FALSE,
     minfreq = 0, maxfreq = sr/2, nbands = 40, bwidth = 1, 
     dcttype = c("t2", "t1", "t3", "t4"), 
@@ -21,7 +21,10 @@ melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01,
   \item{numcep}{ Number of cepstra to return. }
   \item{lifterexp}{ Exponent for liftering; 0 = none; }
   \item{htklifter}{ Use HTK sin lifter. }
-  \item{sumpower}{\code{TRUE}: \code{sum(abs(fft)^2)}; \code{FALSE}: \code{sum(abs(fft))}}
+  %\item{sumpower}{\code{sumpower=TRUE}: \code{sum(abs(fft)^2)}; \code{sumpower=FALSE}: \code{sum(abs(fft))}}
+  \item{sumpower}{ If \code{sumpower=TRUE} the frequency scale transformation is based on the
+powerspectrum, if \code{sumpower=FALSE} it is based on its squareroot (absolute value of the spectrum) and
+squared afterwards.}
   \item{preemph}{ Apply pre-emphasis filter [1 -preemph] (0 = none). }
   \item{dither}{ Add offset to spectrum as if dither noise. }
   \item{minfreq}{ Lowest band edge of mel filters (Hz). }
@@ -29,7 +32,8 @@ melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01,
   \item{nbands}{ Number of warped spectral bands to use. }
   \item{bwidth}{ Width of spectral bands in Bark/Mel. }
   \item{dcttype}{ Type of DCT used - 1 or 2 (or 3 for HTK or 4 for feacalc). }
-  \item{fbtype}{ Auditory frequency scale to use: 'mel', 'bark','htkmel','fcmel' }
+  \item{fbtype}{ Auditory frequency scale to use: \sQuote{mel},
+    \sQuote{bark},\sQuote{htkmel},\sQuote{fcmel} }
   \item{usecmp}{ Apply equal-loudness weighting and cube-root compression (PLP
 instead of LPC). }
   \item{modelorder}{ If > 0, fit a linear prediction (autoregressive-) model of this order and
@@ -60,14 +64,18 @@ scale) of the signal}
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
 \note{
 The following non-default values nearly duplicate Malcolm Slaney's mfcc
-(i.e. melfcc(d, 16000, ...) =~= log(10)*2*mfcc(d,16000) )
-with wintime=0.016, lifterexp=0, minfreq=133.33, maxfreq=6855.6, sumpower=0
+(i.e. \code{melfcc(d, 16000, ...)} =~= \code{log(10)*2*mfcc(d,16000)} )
+with \code{wintime=0.016}, \code{lifterexp=0}, \code{minfreq=133.33},
+\code{maxfreq=6855.6}, \code{sumpower=FALSE}.
 
 The following non-default values nearly duplicate HTK's MFCC
-(i.e. melfcc(d, 16000, ...) =~= 2*htkmelfcc(:,[13,[1:12]])'
- where HTK config has PREEMCOEF = 0.97, NUMCHANS = 20, CEPLIFTER = 22, 
- NUMCEPS = 12, WINDOWSIZE = 250000.0, USEHAMMING = T, TARGETKIND = MFCC_0)
- lifterexp=-22, nbands=20, maxfreq=8000, sumpower=0, fbtype="htkmel", dcttype="t3"
+(i.e. \code{melfcc(d, 16000, ...)} =~= \code{2*htkmelfcc(:,[13,[1:12]])}
+where HTK config has \sQuote{PREEMCOEF = 0.97}, \sQuote{NUMCHANS = 20},
+\sQuote{CEPLIFTER = 22}, \sQuote{NUMCEPS = 12}, \sQuote{WINDOWSIZE = 250000.0}, \sQuote{USEHAMMING = T},
+\sQuote{TARGETKIND = MFCC_0})
+\code{lifterexp=22}, \code{htklifter=TRUE}, \code{nbands=20},
+\code{maxfreq=8000}, \code{sumpower=FALSE},
+\code{fbtype="htkmel"}, \code{dcttype="t3"}
 
 For more detail on reproducing other programs' outputs, see
 \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/mfccs.html}

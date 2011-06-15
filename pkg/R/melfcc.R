@@ -4,7 +4,7 @@
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
 melfcc <- function(samples, sr=samples@samp.rate, wintime=0.025, hoptime=0.010,
-            numcep=13, lifterexp=0.6, HTKlifter=FALSE,
+            numcep=12, lifterexp=0.6, HTKlifter=FALSE,
             sumpower=TRUE, preemph=0.97, dither=FALSE,
             minfreq=0, maxfreq=sr/2, nbands=40, bwidth=1.0, 
             dcttype = c("t2", "t1", "t3", "t4"),

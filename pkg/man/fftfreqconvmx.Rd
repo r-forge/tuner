@@ -16,12 +16,13 @@ fft2melmx(nfft, sr = 8000, nfilts = 40, width = 1, minfrq = 0,
   \item{nfft}{ Source FFT size. }
   \item{sr}{ Sampling rate of the signal. }
   \item{nfilts}{ Number of desired output frequency bands. If \code{NULL} then one
-per Bark/Mel between \code{minfreq} and \code{maxfreq}. }
+    per Bark/Mel between \code{minfreq} and \code{maxfreq}. }
   \item{width}{ Width of each output frequency band in Bark/Mel. }
   \item{minfreq}{ Minimum frequency. }
   \item{maxfreq}{ Maximum frequency. }
   \item{htkmel}{ Use HTK- or Slaney's curve of the Melscale. }
-  \item{constamp}{ Make integration windows peak at 1 (\code{TRUE}) or sum to 1 (\code{FALSE}) }
+  \item{constamp}{ Make integration windows peak at 1 (\code{constamp=TRUE}) or
+    sum to 1 (\code{constamp=FALSE}) }
 }
 \value{
   \item{wts }{The weight matrix with 'nfft' columns and 'nfilts' rows.}
@@ -34,7 +35,7 @@ Slaney: Auditory Toolbox
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
 \note{
       While wts has nfft columns, the second half are all zero. 
-      Hence, Bark spectrum is \code{fft2barkmx(nfft, sr) * abs(fft(xincols, nfft))}.
+      Hence, Bark spectrum is \code{fft2barkmx(nfft, sr) %*% abs(fft(xincols, nfft))}.
 }
 \seealso{ \code{\link{hz2bark}}, \code{\link{hz2mel}} }
 \examples{
