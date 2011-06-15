@@ -34,7 +34,7 @@ spectempevo <- function(samples, sr=samples@samp.rate, wintime=0.032, hoptime=0.
     stevo <- array(numeric(K*dpsp[1]*llambda), c(K, dpsp[1], llambda))
     for(i in seq(lambda)){
       # stevo[,,i] <- apply(cepstra[,lambda[i]:(lambda[i]+K-1)], 1, function(x) abs(fft(x)))
-      stevo[,,i] <- abs(mvfft(t(cepstra[,lambda[i]:(lambda[i]+K-1)])))
+      stevo[,,i] <- abs(mvfft(t(cepstra[,lambda[i]:(lambda[i]+K-1),drop=FALSE])))
     }
     
     return(stevo)

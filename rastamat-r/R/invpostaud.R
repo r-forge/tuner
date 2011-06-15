@@ -37,7 +37,7 @@ if (eql[1] == 0) {  # or maybe always
 }
 
 # weight the critical bands
-x <- x[(1+broaden):(nbands-broaden),] / kronecker(t(rep(1, nframes)), t(Conj(eql)))
+x <- x[(1+broaden):(nbands-broaden),,drop=FALSE] / kronecker(t(rep(1, nframes)), t(Conj(eql)))
 
   return(list(x=x, eql=eql))
 }

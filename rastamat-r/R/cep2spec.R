@@ -44,7 +44,7 @@ cep2spec <- function(cep, nfreq=21, type=2){
     idctm[, c(1, ncep)] <- idctm[, c(1, ncep)]/2
   }
 
-  spec <- exp(idctm*cep)
+  spec <- exp(idctm %*% cep)
 
   return(list(spec=spec, idctm=idctm))
 }
