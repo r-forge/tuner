@@ -79,7 +79,7 @@ the image.
 \value{
   \item{S }{complex output of the FFT, one row per slice. }
   \item{f }{the frequency indices corresponding to the rows of S.}
-  \item{t }{the time indices corresponding to the columns of S..}
+  \item{t }{the time indices corresponding to the columns of S.}
 }
 \references{
   Octave Forge \url{http://octave.sf.net}

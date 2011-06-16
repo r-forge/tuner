@@ -15,18 +15,18 @@ rastaplp(samples, sr = samples@samp.rate, dorasta = TRUE,
   \item{sr}{ Sampling rate of the signal}
   \item{dorasta}{ Use rasta filtering or not. }
   \item{modelorder}{ If > 0, fit a linear prediction (autoregressive-) model of this order and
-calculation of cepstra out of 'lpcas' }
+calculation of cepstra out of \code{lpcas} }
   \item{wintime}{ Window length in sec. }
   \item{hoptime}{ Step between successive windows in sec. }
   \item{lifterexp}{ Exponent for liftering; 0 = none. }
   \item{HTKlifter}{ Use HTK sin lifter. }
-  \item{sumpower}{ 'TRUE': sum abs(fft)^2; 'FALSE': sum abs(fft) }
+  \item{sumpower}{ \code{sumpower=TRUE}: sum abs(fft)^2; \code{sumpower=FALSE}: sum abs(fft) }
   \item{dither}{ Add offset to spectrum as if dither noise. }
   \item{minfreq}{ Lowest band edge of mel filters (Hz). }
   \item{maxfreq}{ Highest band edge of mel filters (Hz). }
   \item{nbands}{ Number of warped spectral bands to use. }
   \item{bwidth}{ Width of spectral bands in Bark/Mel. }
-  \item{dcttype}{ Type of DCT used - 1 or 2 (or 3 for HTK or 4 for feacalc). }
+  %\item{dcttype}{ Type of DCT used - 1 or 2 (or 3 for HTK or 4 for feacalc). }
   \item{fbtype}{ Auditory frequency scale to use: 'mel','bark','htkmel','fcmel' }
   \item{spec_out}{ Should matrices of the power- and the auditory-spectrum be
     returned}
