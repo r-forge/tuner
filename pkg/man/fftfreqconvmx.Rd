@@ -35,15 +35,15 @@ Slaney: Auditory Toolbox
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
 \note{
       While wts has nfft columns, the second half are all zero. 
-      Hence, Bark spectrum is \code{fft2barkmx(nfft, sr) %*% abs(fft(xincols, nfft))}.
+      Hence, Bark spectrum is \code{fft2barkmx(nfft, sr) \%*\% abs(fft(xincols, nfft))}.
 }
 \seealso{ \code{\link{hz2bark}}, \code{\link{hz2mel}} }
 \examples{
   #Mel matrix in Slaney's mfcc.m:
   fft2melmx(512, 8000, 40, 1, 133.33, 6855.5, FALSE, FALSE)
 }
-\concept{ fft }
-\concept{ frequency }
-\concept{ bark }
-\concept{ mel }
-\concept{ conversion }
+\concept{fft}
+\concept{frequency}
+\concept{bark}
+\concept{mel}
+\concept{conversion}
