@@ -6,7 +6,7 @@ function(object, a = 0.1, HW.width = 0.025, HW.overlapping = 0.25,
     mc <- match.call()
     if("T.overlapping" %in% names(as.list(mc)))
         warning("T.overlapping ignored!")
-    melfcc(object, sr=samples@samp.rate, wintime=HW.width, hoptime=(1-HW.overlapping)*HW.width,
+    melfcc(samples=object, sr=samples@samp.rate, wintime=HW.width, hoptime=(1-HW.overlapping)*HW.width,
         preemph=a, nbands=T.number, fbtype = "htkmel", numcep = K, ...)$cepstra
     
 }

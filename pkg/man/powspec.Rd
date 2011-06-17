@@ -23,7 +23,7 @@ and each row represents a frequency.
 }
 \references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
-\seealso{ \code{\link{specgram}} }
+\seealso{ \code{\link[signal]{specgram}} }
 \examples{
   testsound <- normalize(sine(400) + sine(1000) + square(250), "16")
   pspectrum <- powspec(testsound@left, testsound@samp.rate)

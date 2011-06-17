@@ -5,7 +5,7 @@
 Do loudness equalization and cube root compression
 }
 \usage{
-postaud(x, fmax, fbtype = c("mel", "bark", "htkmel", "fcmel"), broaden = FALSE)
+postaud(x, fmax, fbtype = c("bark", "mel", "htkmel", "fcmel"), broaden = FALSE)
 }
 \arguments{
   \item{x}{ Matrix of spectra (output of \code{\link{audspec}}). }

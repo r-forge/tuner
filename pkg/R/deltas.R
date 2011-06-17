@@ -8,7 +8,7 @@ deltas <- function(x, w=9){
     if(!(is.numeric(x) && is.matrix(x)))
       stop("'x' has to be a numeric matrix")
 
-    if(!(w==as.integer(w) && nout > 0))
+    if(!(w==as.integer(w) && w > 0))
       stop("'w' has to be a positive integer")
 
     nr <- nrow(x)

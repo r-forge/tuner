@@ -9,8 +9,8 @@
 fft2barkmx(nfft, sr = 8000, nfilts = NULL, width = 1, minfreq = 0, 
     maxfreq = sr/2)
     
-fft2melmx(nfft, sr = 8000, nfilts = 40, width = 1, minfrq = 0, 
-    maxfrq = sr/2, htkmel = FALSE, constamp = FALSE)
+fft2melmx(nfft, sr = 8000, nfilts = 40, width = 1, minfreq = 0, 
+    maxfreq = sr/2, htkmel = FALSE, constamp = FALSE)
 }
 \arguments{
   \item{nfft}{ Source FFT size. }
@@ -26,7 +26,7 @@ fft2melmx(nfft, sr = 8000, nfilts = 40, width = 1, minfrq = 0,
 }
 \value{
   \item{wts }{The weight matrix with 'nfft' columns and 'nfilts' rows.}
-  \item{binfrqs }{Edge frequencies of the bins.}
+  \item{binfreqs }{Edge frequencies of the bins.}
 }
 \references{Daniel P. W. Ellis:
 \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/}, Malcolm
