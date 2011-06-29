@@ -5,12 +5,12 @@
   Calculate Mel-frequency cepstral coefficients.
 }
 \usage{
-melfcc(samples, sr = samples@samp.rate, wintime = 0.025, hoptime = 0.01, 
-    numcep = 12, lifterexp = 0.6, htklifter=FALSE,
+melfcc(samples, sr = samples@samp.rate, wintime = 0.025, 
+    hoptime = 0.01, numcep = 12, lifterexp = 0.6, htklifter=FALSE,
     sumpower = TRUE, preemph = 0.97, dither = FALSE,
     minfreq = 0, maxfreq = sr/2, nbands = 40, bwidth = 1, 
     dcttype = c("t2", "t1", "t3", "t4"), 
-    fbtype = c("mel", "htkmel", "fcmel", "bark"),  usecmp = FALSE, 
+    fbtype = c("mel", "htkmel", "fcmel", "bark"), usecmp = FALSE, 
     modelorder = NULL, spec_out=FALSE, frames_in_rows=TRUE)
 }
 \arguments{
@@ -33,11 +33,11 @@ squared afterwards.}
   \item{bwidth}{ Width of spectral bands in Bark/Mel. }
   \item{dcttype}{ Type of DCT used - 1 or 2 (or 3 for HTK or 4 for feacalc). }
   \item{fbtype}{ Auditory frequency scale to use: \sQuote{mel},
-    \sQuote{bark},\sQuote{htkmel},\sQuote{fcmel} }
+    \sQuote{bark}, \sQuote{htkmel}, \sQuote{fcmel} }
   \item{usecmp}{ Apply equal-loudness weighting and cube-root compression (PLP
 instead of LPC). }
   \item{modelorder}{ If > 0, fit a linear prediction (autoregressive-) model of this order and
-calculation of cepstra out of 'lpcas' }
+calculation of cepstra out of \sQuote{lpcas} }
   \item{spec_out}{ Should matrices of the power- and the auditory-spectrum be
     returned}
   \item{frames_in_rows}{ Return time frames in rows instead of columns (original Matlab code)}
@@ -58,24 +58,27 @@ row/column)}
   \item{aspectrum }{Auditory spectrum (spectrum after transformation to Mel/Bark
 scale) of the signal}
   \item{pspectrum }{Power spectrum of the input signal.}
-  \item{lpcas }{If 'modelorder > 0' the linear prediction coefficients (LPC/PLP).}
+  \item{lpcas }{If \code{modelorder > 0} the linear prediction coefficients (LPC/PLP).}
 }
 \references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
 \note{
-The following non-default values nearly duplicate Malcolm Slaney's mfcc
-(i.e. \code{melfcc(d, 16000, ...)} =~= \code{log(10)*2*mfcc(d,16000)} )
-with \code{wintime=0.016}, \code{lifterexp=0}, \code{minfreq=133.33},
-\code{maxfreq=6855.6}, \code{sumpower=FALSE}.
+The following non-default values nearly duplicate Malcolm Slaney's mfcc (i.e. 
+\preformatted{
+melfcc(d, 16000, wintime=0.016, lifterexp=0, minfreq=133.33, 
+       maxfreq=6855.6, sumpower=FALSE)
+}
+=~= \code{log(10) * 2 * mfcc(d, 16000)} in the Auditory toolbox for Matlab).
 
-The following non-default values nearly duplicate HTK's MFCC
-(i.e. \code{melfcc(d, 16000, ...)} =~= \code{2*htkmelfcc(:,[13,[1:12]])}
+The following non-default values nearly duplicate HTK's MFCC (i.e. 
+\preformatted{
+melfcc(d, 16000, lifterexp=22, htklifter=TRUE, nbands=20, maxfreq=8000, 
+    sumpower=FALSE, fbtype="htkmel", dcttype="t3")
+} 
+=~= \code{2 * htkmelfcc(:,[13,[1:12]])}
 where HTK config has \sQuote{PREEMCOEF = 0.97}, \sQuote{NUMCHANS = 20},
 \sQuote{CEPLIFTER = 22}, \sQuote{NUMCEPS = 12}, \sQuote{WINDOWSIZE = 250000.0}, \sQuote{USEHAMMING = T},
-\sQuote{TARGETKIND = MFCC_0})
-\code{lifterexp=22}, \code{htklifter=TRUE}, \code{nbands=20},
-\code{maxfreq=8000}, \code{sumpower=FALSE},
-\code{fbtype="htkmel"}, \code{dcttype="t3"}
+\sQuote{TARGETKIND = MFCC_0}).
 
 For more detail on reproducing other programs' outputs, see
 \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/mfccs.html}
@@ -86,7 +89,8 @@ For more detail on reproducing other programs' outputs, see
 
   #Use PLP features to calculate cepstra and output the matrices like the
   #original Matlab code (note: modelorder limits the number of cepstra)
-  m2 <- melfcc(testsound, numcep=9, usecmp=TRUE, modelorder=8, spec_out=TRUE, frames_in_rows=FALSE)
+  m2 <- melfcc(testsound, numcep=9, usecmp=TRUE, modelorder=8, 
+    spec_out=TRUE, frames_in_rows=FALSE)
 }
 \keyword{ts}
 \concept{mfcc}

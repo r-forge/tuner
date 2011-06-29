@@ -3,7 +3,7 @@
 # International Computer Science Institute.  For more details, see:
 # http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/
 
-spec2cep <- function(spec, ncep=13, type=c("t2", "t1", "t3", "t4")){
+spec2cep <- function(spec, ncep=12, type=c("t2", "t1", "t3", "t4")){
 
     if(!(is.numeric(spec) && is.matrix(spec)))
       stop("'spec' has to be a numeric matrix")

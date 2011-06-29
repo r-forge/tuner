@@ -6,7 +6,7 @@ Calculate cepstra from spectral samples (in columns of spec) through Discrete
 Cosine Transformation.
 }
 \usage{
-spec2cep(spec, ncep = 13, type = c("t2", "t1", "t3", "t4"))
+spec2cep(spec, ncep = 12, type = c("t2", "t1", "t3", "t4"))
 }
 \arguments{
   \item{spec}{ Input spectra (samples/time frames in columns)}
@@ -19,13 +19,13 @@ spec2cep(spec, ncep = 13, type = c("t2", "t1", "t3", "t4"))
 }
 \references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
-\seealso{ \code{\link{cep2spec}}, \code{\link{lpc2cep}}, \code{\link{lpc2spec}}
-}
+\seealso{\code{\link{lpc2cep}}} 
+%% \code{\link{cep2spec}}, \code{\link{lpc2spec}}
 \examples{
   testsound <- normalize(sine(400) + sine(1000) + square(250), "16")
   pspectrum <- powspec(testsound@left, testsound@samp.rate)
   aspectrum <- audspec(pspectrum, testsound@samp.rate)
-  cepstra <- spec2cep(aspectrum$aspectrum, numcep, dcttype)
+  cepstra <- spec2cep(aspectrum$aspectrum)
 }
 \concept{ cepstra }
 \concept{ spectra }

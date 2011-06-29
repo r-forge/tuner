@@ -12,6 +12,6 @@ export(channel, bind, prepComb, downsample, mono, stereo,
     quantize, quantplot, quantMerge, lilyinput,
     setWavPlayer, getWavPlayer,
     silence, sine, sawtooth, square, noise, panorama,
-    MFCC, melfcc, deltas, audspec, lifter, powspec, 
-    bark2hz, hz2bark, hz2mel, mel2hz, lpc2cep, spec2cep    
+    MFCC, melfcc, deltas, audspec, dolpc, lifter, postaud, powspec,
+    bark2hz, hz2bark, hz2mel, mel2hz, lpc2cep, spec2cep
 )

@@ -15,8 +15,6 @@ powspec(x, sr = 8000, wintime = 0.025, steptime = 0.01, dither = FALSE)
   \item{steptime}{ Step between successive windows in sec. }
   \item{dither}{ Add offset to spectrum as if dither noise. }
 }
-\details{
-}
 \value{
 Matrix, where each column represents a power spectrum for a given frame
 and each row represents a frequency.

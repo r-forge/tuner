@@ -2,7 +2,7 @@
 \alias{levinson}
 \title{ Durbin-Levinson Recursion }
 \description{
-Perform Durbin-Levinson recursion on vector or matrix.
+Internal: Perform Durbin-Levinson recursion on vector or matrix.
 }
 \usage{
 levinson(x, p = NULL)
@@ -38,8 +38,7 @@ implementation of the filter.}
 \author{ Original Octave version by Paul Kienzle
   \email{pkienzle@users.sf.net}. Conversion to R by Sebastian Krey
 \email{krey@statistik.tu-dortmund.de}. }
-\examples{
-}
+\keyword{internal}
 \concept{ levinson }
 \concept{ durbin }
 \concept{ recursion }

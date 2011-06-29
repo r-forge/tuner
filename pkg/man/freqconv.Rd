@@ -28,6 +28,12 @@ The value of the input in the target frequency scale.
 Slaney: Auditory Toolbox }
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
 \examples{
+hz2bark(440)
+bark2hz(hz2bark(440))
+hz2mel(440, htk = TRUE)
+mel2hz(hz2mel(440, htk = TRUE), htk = TRUE)
+hz2mel(440, htk = FALSE)
+mel2hz(hz2mel(440, htk = FALSE), htk = FALSE)
 }
 \concept{ mel }
 \concept{ bark }

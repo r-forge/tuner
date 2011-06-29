@@ -1,7 +1,7 @@
 \name{fftfreqconvmx}
 \alias{fft2barkmx}
 \alias{fft2melmx}
-\title{ Convert FFT frequency bins to Bark/Mel bins }
+\title{Internal: Convert FFT frequency bins to Bark/Mel bins }
 \description{
  Generate a matrix of weights to combine FFT bins into Bark/Mel bins.
 }
@@ -40,8 +40,9 @@ Slaney: Auditory Toolbox
 \seealso{ \code{\link{hz2bark}}, \code{\link{hz2mel}} }
 \examples{
   #Mel matrix in Slaney's mfcc.m:
-  fft2melmx(512, 8000, 40, 1, 133.33, 6855.5, FALSE, FALSE)
+  #tuneR:::fft2melmx(512, 8000, 40, 1, 133.33, 6855.5, FALSE, FALSE)
 }
+\keyword{internal}
 \concept{fft}
 \concept{frequency}
 \concept{bark}

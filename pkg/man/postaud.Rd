@@ -1,11 +1,12 @@
 \name{postaud}
 \alias{postaud}
-\title{ Equal loudness compression }
+\title{Equal loudness compression }
 \description{
 Do loudness equalization and cube root compression
 }
 \usage{
-postaud(x, fmax, fbtype = c("bark", "mel", "htkmel", "fcmel"), broaden = FALSE)
+postaud(x, fmax, fbtype = c("bark", "mel", "htkmel", "fcmel"), 
+    broaden = FALSE)
 }
 \arguments{
   \item{x}{ Matrix of spectra (output of \code{\link{audspec}}). }
@@ -22,8 +23,14 @@ dependant loudness equalization and compression. }
 \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/}, Hynek
 Hermansky }
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
-\seealso{ \code{\link{audspec}}, \code{\link{dolpc}}, \code{\link{rastaplp}} }
+\seealso{ \code{\link{audspec}}, \code{\link{dolpc}}} 
+%% \code{\link{rastaplp}}
 \examples{
+  testsound <- normalize(sine(400) + sine(1000) + square(250), "16")
+  pspectrum <- powspec(testsound@left, testsound@samp.rate)
+  aspectrum <- audspec(pspectrum, testsound@samp.rate)
+  paspectrum <- postaud(x = aspectrum$aspectrum, fmax = 5000, 
+    fbtype = "mel")
 }
 \concept{ plp }
 \concept{ loudness }

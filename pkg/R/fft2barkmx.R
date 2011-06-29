@@ -34,8 +34,7 @@ fft2barkmx <- function(nfft, sr=8000, nfilts=NULL, width=1.0, minfreq=0, maxfreq
         hif <- (binbarks - f_bark_mid)/width + 0.5
         return(10^(pmin(0, pmin(hif, -2.5 * lof))))
     }
-    wts[,1:(nfft/2+1), drop=FALSE] <- t(sapply(seq(nfilts), function(x) wtscalc(i=x,
+    wts[,1:(nfft/2+1)] <- t(sapply(seq(nfilts), function(x) wtscalc(i=x,
                 min_bark=min_bark, step_barks=step_barks, binbarks=binbarks)))
     return(list(wts=wts))
 }
-

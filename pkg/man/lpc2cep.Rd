@@ -16,7 +16,8 @@ Matrix of cepstra (one column per time frame).
 }
 \references{Daniel P. W. Ellis: \url{http://www.ee.columbia.edu/~dpwe/resources/matlab/rastamat/} }
 \author{ Sebastian Krey \email{krey@statistik.tu-dortmund.de} }
-\seealso{ \code{\link{lpc2spec}}, \code{\link{spec2cep}}, \code{\link{cep2spec}} }
+\seealso{\code{\link{spec2cep}}}
+%%, \code{\link{cep2spec}},  \code{\link{lpc2spec}} }
 \examples{
   testsound <- normalize(sine(400) + sine(1000) + square(250), "16")
   pspectrum <- powspec(testsound@left, testsound@samp.rate)

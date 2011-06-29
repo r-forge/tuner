@@ -26,6 +26,6 @@ Matrix of the liftered cepstra.
 \examples{
   testsound <- normalize(sine(400) + sine(1000) + square(250), "16")
   m <- melfcc(testsound, frames_in_rows=FALSE)
-  unlm <- lifter(m$cepstra, inv=TRUE)
+  unlm <- lifter(m, inv=TRUE)
 }
 \concept{ liftering }

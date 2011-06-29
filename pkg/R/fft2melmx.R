@@ -40,8 +40,7 @@ fft2melmx <- function(nfft, sr=8000, nfilts=40, width=1.0, minfreq=0, maxfreq=sr
     }
 
     # Ensure 2nd half of FFT ist zero
-#    wts[,(nfft/2 + 1):nfft, drop=FALSE] <- 0
+#    wts[,(nfft/2 + 1):nfft] <- 0
 
     return(list(wts=wts, binfreqs=binfreqs))
 }
-
