@@ -9,7 +9,7 @@ Author: Uwe Ligges <ligges@statistik.tu-dortmund.de> with contributions from Seb
 Maintainer: Uwe Ligges <ligges@statistik.tu-dortmund.de>
 Depends: R (>= 2.10.0), methods
 Suggests: pastecs
-Imports: signal
+Imports: signal (>= 0.7-3)
 Description: Collection of tools to analyze music, extract features like MFCCs, handling wave files, read mp3, transcription, ...
     Also contains functions ported from the rastamat Matlab package.
 License: GPL-2
