@@ -34,7 +34,9 @@ function(filename, from = 1, to = Inf,
     }
     fmt.length <- readBin(con, int, n = 1, size = 4, endian = "little")
     pcm <- readBin(con, int, n = 1, size = 2, endian = "little", signed = FALSE)
+    ## FormatTag: only WAVE_FORMAT_PCM, WAVE_FORMAT_IEEE_FLOAT, WAVE_FORMAT_EXTENSIBLE (determined by SubFormat)
     if(!(pcm %in% c(0, 1, 3, 65534)))
+        ## change error message?
         stop("Only PCM/uncompressed Wave formats supported")
     channels <- readBin(con, int, n = 1, size = 2, endian = "little")
     sample.rate <- readBin(con, int, n = 1, size = 4, endian = "little")
@@ -43,14 +45,17 @@ function(filename, from = 1, to = Inf,
     bits <- readBin(con, int, n = 1, size = 2, endian = "little")
     if(!(bits %in% c(8, 16, 24, 32)))
         stop("Only 8-, 16-, 24-, or 32-bit Wave formats supported")
+    ## non-PCM (chunk size 18 or 40) 
     if(fmt.length >= 18)    
         cbSize <- readBin(con, int, n = 1, size = 2, endian = "little")
-    if(cbSize == 22 && fmt.length == 40){
+    ## chunk size 40 (extension 22)
+    if(exists("cbSize") && cbSize == 22 && fmt.length == 40){
         validBits <- readBin(con, int, n = 1, size = 2, endian = "little", signed = FALSE)
         dwChannelMask <- readBin(con, int, n = 1, size = 4, endian = "little")    
         SubFormat <- readBin(con, int, n = 1, size = 2, endian = "little", signed = FALSE)
     }
-    if(!(SubFormat %in% c(0, 1, 3)))
+    if(exists("SubFormat") && !(SubFormat %in% c(0, 1, 3)))
+        ## change error message?
         stop("Only PCM/uncompressed Wave formats supported")
     if(fmt.length > 26)
         seek(con, where = fmt.length - 26, origin = "current")
@@ -93,10 +98,12 @@ function(filename, from = 1, to = Inf,
     seek(con, where = (from - 1) * bytes * channels, origin = "current")
 
     ## reading in sample data
+    ## IEEE FLOAT 
     if(pcm == 3 || (exists("SubFormat") && SubFormat==3)){
                 sample.data <- readBin(con, "numeric", n = N, size = bytes, 
                     endian = "little")        
     } else {
+        ## special case of 24 bits
         if(bits == 24){
             sample.data <- readBin(con, int, n = N * bytes, size = 1, 
                 signed = FALSE, endian = "little")
