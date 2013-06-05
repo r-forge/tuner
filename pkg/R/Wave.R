@@ -1,12 +1,19 @@
-require(methods)
 ##########
 # define class Wave
 setClass("Wave",
     representation = representation(left = "numeric",
     right = "numeric", stereo = "logical",
-    samp.rate = "numeric", bit = "numeric"),
+    samp.rate = "numeric", bit = "numeric", pcm = "logical"),
     prototype = prototype(stereo = TRUE, samp.rate = 44100, 
-        bit = 16))
+        bit = 16, pcm = TRUE))
+
+
+## convert Wave objects from tuneR <= 0.4-1 to the extended representation
+updateWave <- function(object){
+     if(!("pcm" %in% .hasSlot(object, "pcm")))
+        object@pcm <- TRUE
+     object
+}
 
 setValidity("Wave", 
 function(object){
@@ -25,8 +32,10 @@ function(object){
         (length(object@samp.rate) < 2) && (object@samp.rate > 0)))
             return("slot 'samp.rate' of a Wave object must be a positive numeric of length 1")
     if(!(is(object@bit, "numeric") &&
-        (length(object@bit) < 2) && (object@bit %in% c(1, 8, 16, 24, 32))))
-            return("slot 'bit' of a Wave object must be a positive numeric (8, 16, 24 or 32) of length 1")
+        (length(object@bit) < 2) && (object@bit %in% c(1, 8, 16, 24, 32, 64))))
+            return("slot 'bit' of a Wave object must be a positive numeric (1, 8, 16, 24, 32 or 64) of length 1")
+    if(!(is(object@pcm, "logical") && (length(object@pcm) < 2)))
+        return("slot 'pcm' of a Wave object must be a logical of length 1")
     return(TRUE)
 })
 
@@ -105,7 +114,7 @@ function(object){
     cat("\n\tSamplingrate (Hertz):  ", object@samp.rate)
     cat("\n\tChannels (Mono/Stereo):",
         if(object@stereo) "Stereo" else "Mono")
-    cat("\n\tBit (8/16/24/32):      ", object@bit, "\n\n")
+    cat("\n\tBit (8/16/24/32/64):   ", object@bit, "\n\n")
 })
 
 setMethod("summary", signature(object = "Wave"), 
@@ -118,7 +127,7 @@ function(object, ...){
     cat("\n\tSamplingrate (Hertz):  ", object@samp.rate)
     cat("\n\tChannels (Mono/Stereo):",
         if(object@stereo) "Stereo" else "Mono")
-    cat("\n\tBit (8/16/24/32):      ", object@bit)
+    cat("\n\tBit (8/16/24/32/64):   ", object@bit)
     cat("\n\nSummary statistics for channel(s):\n\n")
     if(object@stereo)
         print(rbind(left = summary(object@left), right = summary(object@right)))
