@@ -56,8 +56,8 @@ function(filename, from = 1, to = Inf,
     }
     if(exists("SubFormat") && !(SubFormat %in% c(0, 1, 3)))
         stop("Only uncompressed PCM and IEEE_FLOAT Wave formats supported")
-    if(fmt.length > 26)
-        seek(con, where = fmt.length - 26, origin = "current")
+    #if(fmt.length > 26)
+    #    seek(con, where = fmt.length - 26, origin = "current")
     DATA <- readChar(con, 4)
     ## waiting for the data chunk    
     i <- 0    
