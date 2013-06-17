@@ -2,8 +2,12 @@ plot.Wave.channel <-
 function(x, xunit, ylim, xlab, ylab, main, nr, simplify, ...){
     null <- if(x@bit == 8) 128 else 0
     l <- length(x@left)
-    at <- round((ylim[2] - null) * 2/3, -floor(log(ylim[2], 10)))
-    at <- null + c(-at, 0, at)
+    if(all(ylim <= 0)) {
+      at <- pretty(x)
+    } else {
+      at <- round((ylim[2] - null) * 2/3, -floor(log(ylim[2], 10)))
+      at <- null + c(-at, 0, at)
+    }
     if(simplify && (l > nr)){
         nr <- ceiling(l / round(l / nr))
         index <- seq(1, l, length = nr)
