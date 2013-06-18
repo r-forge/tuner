@@ -3,7 +3,7 @@ function(x, xunit, ylim, xlab, ylab, main, nr, simplify, axes = TRUE, yaxt = par
     null <- if(x@bit == 8) 128 else 0
     l <- length(x@left)
     if(all(ylim <= 0)) {
-      at <- pretty(x)
+      at <- pretty(x@left)
     } else {
       at <- round((ylim[2] - null) * 2/3, -floor(log(ylim[2], 10)))
       at <- null + c(-at, 0, at)
