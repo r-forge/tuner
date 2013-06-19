@@ -26,7 +26,7 @@ function(object, filename){
           warning("channels' data will be rounded to integers for writing the wave file")
     } else {                                                                                    
       if( (max(sample.data) > 1) || (min(sample.data) < -1) )
-          stop("for IEEE float Wave files, data range is supposed to be in [-1,1]") 
+          stop("for IEEE float Wave files, data range is supposed to be in [-1,1], see ?normalize") 
     }
     
     # Open connection
@@ -49,12 +49,7 @@ function(object, filename){
     # fmt chunk
     writeChar("fmt ", con, 4, eos = NULL)
     writeBin(as.integer(16), con, size = 4, endian = "little")
-    ## Fallunterscheidung                                                       
-    if(pcm) {    
-      writeBin(as.integer(1), con, size = 2, endian = "little")
-    } else {
-      writeBin(as.integer(3), con, size = 2, endian = "little")
-    }
+    writeBin(as.integer(if(pcm) 1 else 3), con, size = 2, endian = "little")
       
     writeBin(as.integer(channels), con, size = 2, endian = "little")
     writeBin(as.integer(object@samp.rate), con, size = 4, endian = "little")
@@ -63,12 +58,13 @@ function(object, filename){
     writeBin(as.integer(object@bit), con, size = 2, endian = "little")
     #if(extensible) {
     #  writeBin(as.integer(22), con, size = 4, endian = "little")
-    #  #wValidBitsPerSample  (evtl. abweichend von bitspersample?)
+    #  #wValidBitsPerSample # (same as bitspersample?)
     #  writeBin(as.integer(object@bit), con, size = 2, endian = "little")
-    #  #dwChannelMask (hier muss angegeben werden, wie die Zuordnung zu den einzelnen Channels erfolgt, auch übergeben?)
+    #  #dwChannelMask (specification about assignments to channels)
     #  writeBin(as.integer(1), con, size = 2, endian = "little")
-    #  #SubFormat      ## irgendwie kommt das in den Beispielen nicht danach, in was für einem Fomrat??
-    #  writeBin(as.character("\x00\x00\x00\x00\x10\x00\x80\x00\x00\xAA\x00\x38\x9B\x71"), con, size = 14, endian = "little")
+    #  #SubFormat
+    #  writeBin(as.raw(c(0,   0,   0,  0,  16,   0, 128,   0 ,  0, 170,   0,  56, 155, 113)), con)
+   
     #  if(waveformat = pcm)    
     #    writeBin(as.integer(1), con, size = 2, endian = "little")
     #  if(waveformat = ieee)    
