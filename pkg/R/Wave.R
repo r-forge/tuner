@@ -36,6 +36,10 @@ function(object){
             return("slot 'bit' of a Wave object must be a positive numeric (1, 8, 16, 24, 32 or 64) of length 1")
     if(!(is(object@pcm, "logical") && (length(object@pcm) < 2)))
         return("slot 'pcm' of a Wave object must be a logical of length 1")
+    if(pcm && bit==64)
+        return("pcm Wave objects must have a resolution < 64 bit")
+    if((!pcm) && !(bit %in% c(32, 64)))
+        return("Float (non pcm) Wave objects must have a resolution of either 32 or 64 bit")
     return(TRUE)
 })
 
@@ -63,7 +67,7 @@ function(left, right = numeric(0), samp.rate = 44100, bit = 16, ...){
         warning("'bit' not specified, assuming 16bit")
     return(
         new("Wave", stereo = length(right) > 0, samp.rate = samp.rate, 
-            bit = bit, left = left, right = right))
+            bit = bit, left = left, right = right, ...))
 })
 
 setMethod("Wave", signature(left = "matrix"), 
@@ -114,6 +118,7 @@ function(object){
     cat("\n\tSamplingrate (Hertz):  ", object@samp.rate)
     cat("\n\tChannels (Mono/Stereo):",
         if(object@stereo) "Stereo" else "Mono")
+    cat("\n\tPCM (integer format):  ", object@pcm, "\n\n")
     cat("\n\tBit (8/16/24/32/64):   ", object@bit, "\n\n")
 })
 
@@ -127,6 +132,7 @@ function(object, ...){
     cat("\n\tSamplingrate (Hertz):  ", object@samp.rate)
     cat("\n\tChannels (Mono/Stereo):",
         if(object@stereo) "Stereo" else "Mono")
+    cat("\n\tPCM (integer format):  ", object@pcm, "\n\n")
     cat("\n\tBit (8/16/24/32/64):   ", object@bit)
     cat("\n\nSummary statistics for channel(s):\n\n")
     if(object@stereo)

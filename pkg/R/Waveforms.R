@@ -14,15 +14,15 @@ preWaveform <- function(freq, duration, from, xunit, samp.rate){
     return(c(duration = round(duration), from = round(from)))
 }
 
-postWaveform <- function(channel, samp.rate, bit, stereo, ...){
-    if(!is.numeric(bit) || length(bit)!=1 || (!bit %in% c(0,1,8,16)))
-        stop("'bit' must be an integer of length 1 in {0,1,8,16}")
+postWaveform <- function(channel, samp.rate, bit, stereo, pcm = FALSE, ...){
+    if(!is.numeric(bit) || length(bit)!=1 || (!bit %in% c(0,1,8,16,24,32,64)))
+        stop("'bit' must be an integer of length 1 in {0,1,8,16,24,32,64}")
     if(bit == 8)
         channel <- channel + 127
     if(stereo && !is.matrix(channel))
         channel <- matrix(channel, ncol = 2, nrow = length(channel))
     Wobj <- Wave(channel, samp.rate = samp.rate, 
-                 bit = if(bit %in% 0:1) 16 else bit, ...)
+                 bit = if(bit %in% 0:1) 32 else bit, pcm = pcm, ...)
     normalize(Wobj, unit = as.character(bit), center = FALSE)
 }
 
