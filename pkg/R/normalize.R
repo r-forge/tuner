@@ -64,5 +64,3 @@ normalize <- function(object, unit = c("1", "8", "16", "24", "32", "64", "0"), c
     }
     return(object)
 }
-
-str(normalize(f, unit="32", pcm=FALSE, rescale=FALSE))
