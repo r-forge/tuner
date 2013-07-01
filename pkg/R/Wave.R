@@ -118,7 +118,7 @@ function(object){
     cat("\n\tSamplingrate (Hertz):  ", object@samp.rate)
     cat("\n\tChannels (Mono/Stereo):",
         if(object@stereo) "Stereo" else "Mono")
-    cat("\n\tPCM (integer format):  ", object@pcm, "\n\n")
+    cat("\n\tPCM (integer format):  ", object@pcm)
     cat("\n\tBit (8/16/24/32/64):   ", object@bit, "\n\n")
 })
 
@@ -132,7 +132,7 @@ function(object, ...){
     cat("\n\tSamplingrate (Hertz):  ", object@samp.rate)
     cat("\n\tChannels (Mono/Stereo):",
         if(object@stereo) "Stereo" else "Mono")
-    cat("\n\tPCM (integer format):  ", object@pcm, "\n\n")
+    cat("\n\tPCM (integer format):  ", object@pcm)
     cat("\n\tBit (8/16/24/32/64):   ", object@bit)
     cat("\n\nSummary statistics for channel(s):\n\n")
     if(object@stereo)
