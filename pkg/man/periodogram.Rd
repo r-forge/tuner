@@ -91,7 +91,7 @@ Support for processing of stereo \code{\link{Wave}} objects has not yet been imp
 }}
 \examples{
 # constructing a Wave object (1 sec.) containing sinus sound with 440Hz:
-Wobj <- sine(440, bit = 16)
+Wobj <- sine(440)
 Wobj
 
 # Calculate periodograms in windows of 4096 samples each - without

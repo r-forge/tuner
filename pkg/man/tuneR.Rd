@@ -37,7 +37,7 @@ library(tuneR) # in a regular session, we are loading tuneR
   
 # constructing a mono Wave object (2 sec.) containing sinus 
 # sound with 440Hz and folled by 220Hz:
-Wobj <- bind(sine(440, bit = 16), sine(220, bit = 16))
+Wobj <- bind(sine(440), sine(220))
 show(Wobj)
 plot(Wobj) # it does not make sense to plot the whole stuff
 plot(extractWave(Wobj, from = 1, to = 500))
@@ -92,4 +92,3 @@ qlily
 \concept{Wave}
 \concept{periodogram}
 \concept{music}
-

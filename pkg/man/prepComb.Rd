@@ -32,8 +32,8 @@ prepComb(object, zero = 0, where = c("both", "start", "end"))
     based on code from Matthias Heymann's former package \sQuote{sound}.}
 \seealso{\code{\link{bind}}, \link{Wave-class}, \code{\link{Wave}}, \code{\link{extractWave}}, and \code{\link{noSilence}} to cut off silence}
 \examples{
-Wobj1 <- sine(440, duration = 520, bit = 16)
-Wobj2 <- extractWave(sine(330, duration = 500, bit = 16), from = 110, to = 500)
+Wobj1 <- sine(440, duration = 520)
+Wobj2 <- extractWave(sine(330, duration = 500), from = 110, to = 500)
 par(mfrow = c(2,1))
 plot(bind(Wobj1, Wobj2), xunit = "samples")
 abline(v = 520, col = "red")  # here is a "click"!

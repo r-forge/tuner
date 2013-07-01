@@ -38,7 +38,7 @@ Wobj <- Wave(left = channel)
 Wobj
 
 # or more easily:
-Wobj <- sine(440, bit = 16)
+Wobj <- sine(440)
 }
 \keyword{methods}
 \concept{Wave}

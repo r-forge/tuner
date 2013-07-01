@@ -62,8 +62,8 @@ square(freq, duration = samp.rate, from = 0, samp.rate = 44100,
     code for pink noise adapted and simplified from C code of Steve Moshier.}
 \seealso{\link{Wave-class}, \code{\link{Wave}}, \code{\link{normalize}}, \code{\link{noSilence}}}
 \examples{
-Wobj <- sine(440, bit = 16, duration = 1000)
-Wobj2 <- noise(bit = 16, duration = 1000)
+Wobj <- sine(440, duration = 1000)
+Wobj2 <- noise(duration = 1000)
 plot(Wobj)
 plot(Wobj2)
 }
@@ -73,4 +73,3 @@ plot(Wobj2)
 \concept{waveform}
 \concept{silcence}
 \concept{sample}
-

@@ -27,7 +27,7 @@ writeWave(object, filename)
 \author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de}}
 \seealso{\link{Wave-class}, \code{\link{Wave}}, \code{\link{normalize}}}
 \examples{
-Wobj <- sine(440, bit = 16)
+Wobj <- sine(440)
 
 tdir <- tempdir()
 tfile <- file.path(tdir, "myWave.wav")

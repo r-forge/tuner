@@ -37,7 +37,7 @@ Moreover, setting both \code{from} or \code{to} implies \code{interact = FALSE}.
     An object of class \code{\link{Wave}}.
 }
 \examples{
-Wobj <- sine(440, bit = 16)
+Wobj <- sine(440)
 # extracting the middle 0.5 seconds of that 1 sec. sound:
 Wobj2 <- extractWave(Wobj, from = 0.25, to = 0.75, xunit = "time")
 Wobj2
