@@ -19,10 +19,10 @@
 \description{Constructors and coercion for class Wave objects}
 \usage{
 Wave(left, ...)
-\S4method{Wave}{numeric}(left, right = numeric(0), samp.rate = 44100, bit = 16, ...)
+\S4method{Wave}{numeric}(left, right = numeric(0), samp.rate = 44100, bit = 16, pcm = TRUE, ...)
 }
 \arguments{
-    \item{left, right, samp.rate, bit}{See Section \dQuote{Slots}.}
+    \item{left, right, samp.rate, bit, pcm}{See Section \dQuote{Slots}.}
     \item{...}{Further arguments to be passed to the default method \code{Wave.default}.}
 }
 \value{

@@ -17,6 +17,8 @@ or more conveniently using the function \code{\link{Wave}}.
     \item{\code{samp.rate}:}{Object of class \code{"numeric"} - the sampling rate, e.g. 44100 for CD quality.}
     \item{\code{bit}:}{Object of class \code{"numeric"}, common is 16 for CD quality, or
         8 for a rather rough representation.}
+    \item{\code{pcm}:}{Object of class \code{"logical"} indicating whether this is a 
+        PCM or IEEE_FLOAT Wave format.}
   }
 }
 \author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de}}
