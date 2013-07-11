@@ -1,0 +1,519 @@
+
+R Under development (unstable) (2013-07-10 r63264) -- "Unsuffered Consequences"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library("tuneR")
+> library("tools")
+> 
+> ## writeWave
+> files <- tempfile(as.character(1:100), fileext = ".wav")
+> ## 8bit
+> writeWave(sine(440, pcm=TRUE, bit=8), file = files[1]) 
+> writeWave(stereo(sine(440, bit=8, pcm=TRUE), sine(220, bit=8, pcm=TRUE)), file = files[2])
+> ## 16bit
+> writeWave(sine(440, pcm=TRUE, bit=16), file = files[3])
+> writeWave(stereo(sine(440, bit=16, pcm=TRUE), sine(220, bit=16, pcm=TRUE)), file = files[4])
+> ## 24bit
+> writeWave(sine(440, pcm=TRUE, bit=24), file = files[5])
+> writeWave(stereo(sine(440, bit=24, pcm=TRUE), sine(220, bit=24, pcm=TRUE)), file = files[6])
+> ## 32bit
+> sine32 <- sine(440, bit=32)
+> sine32@left <- round(sine32@left, 5)
+> writeWave(sine32, file = files[7])
+> writeWave(sine(440, pcm=TRUE, bit=32), file = files[8])
+> writeWave(stereo(sine32, sine32), file = files[9])
+> writeWave(stereo(sine(440, bit=32, pcm=TRUE), sine(220, bit=32, pcm=TRUE)), file = files[10])
+> ## 64bit
+> exact64 <- c(-2^(-40:0), 2^(-40:0))
+> writeWave(Wave(left = exact64, bit = 64, pcm = FALSE, samp.rate = 44100), file = files[11])
+> writeWave(Wave(left = exact64, right = exact64, bit = 64, pcm = FALSE, samp.rate = 44100), file = files[12])
+> as.vector(md5sum(files[1:12]))
+ [1] "066c12805ca174ab1bcebbc1b328d559" "eb8fc5f6593e05d02cbcd94adad83cac"
+ [3] "b88c144de300c7d7b73c11dfb2b0f2f9" "074475bd4f6ca8f1afdd355cfd32259a"
+ [5] "6a7ea29331b04c2f0345190d73793102" "369affc2316a1f43945e751527a5877b"
+ [7] "35b731e1f43084f392cd6adcdf2a9d9b" "2d71a604150e2d782b494f4e209a3304"
+ [9] "2660fa3ed691082a3656dd41deceba7b" "8c85547613c0eeaa90c773e0fb113712"
+[11] "6d6a1b6d5e86054aff75dd8ab5ef70e8" "c00165746d9207683ddcc3df952120ff"
+> 
+> ## Waveforms
+> ## sine
+> (x1 <- sine(440, pcm=TRUE, bit=8))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    8 
+
+> length(x1@left)
+[1] 44100
+> x1@stereo
+[1] FALSE
+> x1@samp.rate
+[1] 44100
+> x1@bit
+[1] 8
+> x1@pcm
+[1] TRUE
+> (x2 <- stereo(sine(440, bit=8, pcm=TRUE), sine(220, bit=8, pcm=TRUE)))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    8 
+
+> length(x2@left)
+[1] 44100
+> x2@stereo
+[1] TRUE
+> x2@samp.rate
+[1] 44100
+> x2@bit
+[1] 8
+> x2@pcm
+[1] TRUE
+> (x3 <- sine(440, bit=32, duration = 1000))
+
+Wave Object
+	Number of Samples:      1000
+	Duration (seconds):     0.02
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    32 
+
+> length(x3@left)
+[1] 1000
+> x3@stereo
+[1] FALSE
+> x3@samp.rate
+[1] 44100
+> x3@bit
+[1] 32
+> x3@pcm
+[1] FALSE
+> (x4 <- sine(440, bit=8, pcm=TRUE, samp.rate=11025))
+
+Wave Object
+	Number of Samples:      11025
+	Duration (seconds):     1
+	Samplingrate (Hertz):   11025
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    8 
+
+> length(x4@left)
+[1] 11025
+> x4@stereo
+[1] FALSE
+> x4@samp.rate
+[1] 11025
+> x4@bit
+[1] 8
+> x4@pcm 
+[1] TRUE
+> (x5 <- sine(440, bit=8, pcm=TRUE, stereo = TRUE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    8 
+
+> length(x5@left)
+[1] 44100
+> x5@stereo
+[1] TRUE
+> x5@samp.rate
+[1] 44100
+> x5@bit
+[1] 8
+> x5@pcm
+[1] TRUE
+> 
+> ## normalize
+> obj <- sine(440, pcm=TRUE, bit=8)
+> obj2 <- stereo(sine(440, bit=8, pcm=TRUE), sine(220, bit=8, pcm=TRUE))
+> (x6 <- normalize(obj, unit = "1", center = TRUE, level = 1, rescale = TRUE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    32 
+
+> x6@left[1:10]
+ [1] 0.00000000 0.06299213 0.12598425 0.18897638 0.25196850 0.30708661
+ [7] 0.37007874 0.42519685 0.48031496 0.53543307
+> (x7 <- normalize(obj, unit = "1", center = TRUE, level = 1, rescale = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    32 
+
+> x7@left[1:10]
+ [1] 0.0000000 0.0625000 0.1250000 0.1875000 0.2500000 0.3046875 0.3671875
+ [8] 0.4218750 0.4765625 0.5312500
+> (x8 <- normalize(obj, unit = "8", center = TRUE, level = 2, rescale = TRUE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    8 
+
+> x8@left[1:10]
+ [1] 127 143 159 175 191 205 221 235 249 263
+> (x9 <- normalize(obj, unit = "8", center = TRUE, level = 2, rescale = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    8 
+
+> x9@left[1:10]
+ [1] 127 143 159 175 190 204 220 234 248 262
+> (x10 <- normalize(obj, unit = "16", center = TRUE, level = 1, rescale = TRUE)) 
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    16 
+
+> x10@left[1:10]
+ [1]     0  2064  4128  6192  8256 10062 12126 13932 15738 17545
+> (x12 <- normalize(obj, unit = "16", center = TRUE, level = 1, rescale = FALSE)) 
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    16 
+
+> x12@left[1:10]
+ [1]     0  2048  4096  6144  8192  9984 12032 13824 15616 17407
+> (x13 <- normalize(obj, unit = "24", center = TRUE, level = 1, rescale = TRUE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    24 
+
+> x13@left[1:10]
+ [1]       0  528416 1056832 1585249 2113665 2576029 3104445 3566809 4029173
+[10] 4491538
+> (x14 <- normalize(obj, unit = "24", center = TRUE, level = 1, rescale = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    24 
+
+> x14@left[1:10]
+ [1]       0  524288 1048576 1572864 2097152 2555904 3080192 3538944 3997696
+[10] 4456447
+> (x15 <- normalize(obj, unit = "32", center = TRUE, level = 1, rescale = TRUE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    32 
+
+> x15@left[1:10]
+ [1]          0  135274560  270549121  405823681  541098242  659463482
+ [7]  794738043  913103283 1031468523 1149833764
+> (x16 <- normalize(obj, unit = "32", center = TRUE, level = 1, rescale = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    32 
+
+> x16@left[1:10]
+ [1]          0  134217728  268435456  402653184  536870912  654311424
+ [7]  788529152  905969664 1023410176 1140850687
+> (x17 <- normalize(obj, unit = "32", center = TRUE, level = 1, rescale = TRUE, pcm = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    32 
+
+> x17@left[1:10]
+ [1] 0.00000000 0.06299213 0.12598425 0.18897638 0.25196850 0.30708661
+ [7] 0.37007874 0.42519685 0.48031496 0.53543307
+> (x18 <- normalize(obj, unit = "32", center = TRUE, level = 1, rescale = FALSE, pcm = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    32 
+
+> x18@left[1:10]
+ [1] 0.0000000 0.0625000 0.1250000 0.1875000 0.2500000 0.3046875 0.3671875
+ [8] 0.4218750 0.4765625 0.5312500
+> (x19 <- normalize(obj, unit = "64", center = TRUE, level = 1, rescale = TRUE, pcm = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    64 
+
+> x19@left[1:10]
+ [1] 0.00000000 0.06299213 0.12598425 0.18897638 0.25196850 0.30708661
+ [7] 0.37007874 0.42519685 0.48031496 0.53543307
+> (x20 <- normalize(obj, unit = "64", center = TRUE, level = 1, rescale = FALSE, pcm = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    64 
+
+> x20@left[1:10]
+ [1] 0.0000000 0.0625000 0.1250000 0.1875000 0.2500000 0.3046875 0.3671875
+ [8] 0.4218750 0.4765625 0.5312500
+> (x21 <- normalize(obj2, unit = "1", center = TRUE, level = 1, rescale = TRUE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    32 
+
+> x21@left[1:10]
+ [1] 0.00000000 0.06299213 0.12598425 0.18897638 0.25196850 0.30708661
+ [7] 0.37007874 0.42519685 0.48031496 0.53543307
+> x21@right[1:10]
+ [1] 0.00000000 0.03149606 0.06299213 0.09448819 0.12598425 0.15748031
+ [7] 0.18897638 0.22047244 0.25196850 0.27559055
+> (x22 <- normalize(obj2, unit = "1", center = TRUE, level = 1, rescale = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    32 
+
+> x22@left[1:10]
+ [1] 0.0000000 0.0625000 0.1250000 0.1875000 0.2500000 0.3046875 0.3671875
+ [8] 0.4218750 0.4765625 0.5312500
+> (x23 <- normalize(obj2, unit = "8", center = TRUE, level = 2, rescale = TRUE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    8 
+
+> x23@left[1:10]
+ [1] 127 143 159 175 191 205 221 235 249 263
+> (x24 <- normalize(obj2, unit = "8", center = TRUE, level = 2, rescale = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    8 
+
+> x24@left[1:10]
+ [1] 127 143 159 175 190 204 220 234 248 262
+> (x25 <- normalize(obj2, unit = "16", center = TRUE, level = 1, rescale = TRUE)) 
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    16 
+
+> x25@left[1:10]
+ [1]     0  2064  4128  6192  8256 10062 12126 13932 15738 17545
+> (x26 <- normalize(obj2, unit = "16", center = TRUE, level = 1, rescale = FALSE)) 
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    16 
+
+> x26@left[1:10]
+ [1]     0  2048  4096  6144  8192  9984 12032 13824 15616 17407
+> (x27 <- normalize(obj2, unit = "24", center = TRUE, level = 1, rescale = TRUE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    24 
+
+> x27@left[1:10]
+ [1]       0  528416 1056832 1585249 2113665 2576029 3104445 3566809 4029173
+[10] 4491538
+> (x28 <- normalize(obj2, unit = "24", center = TRUE, level = 1, rescale = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    24 
+
+> x28@left[1:10]
+ [1]       0  524288 1048576 1572864 2097152 2555904 3080192 3538944 3997696
+[10] 4456447
+> (x29 <- normalize(obj2, unit = "32", center = TRUE, level = 1, rescale = TRUE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    32 
+
+> x29@left[1:10]
+ [1]          0  135274560  270549121  405823681  541098242  659463482
+ [7]  794738043  913103283 1031468523 1149833764
+> (x30 <- normalize(obj2, unit = "32", center = TRUE, level = 1, rescale = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    32 
+
+> x30@left[1:10]
+ [1]          0  134217728  268435456  402653184  536870912  654311424
+ [7]  788529152  905969664 1023410176 1140850687
+> (x31 <- normalize(obj2, unit = "32", center = TRUE, level = 1, rescale = TRUE, pcm = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    32 
+
+> x31@left[1:10]
+ [1] 0.00000000 0.06299213 0.12598425 0.18897638 0.25196850 0.30708661
+ [7] 0.37007874 0.42519685 0.48031496 0.53543307
+> (x32 <- normalize(obj2, unit = "32", center = TRUE, level = 1, rescale = FALSE, pcm = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    32 
+
+> x32@left[1:10]
+ [1] 0.0000000 0.0625000 0.1250000 0.1875000 0.2500000 0.3046875 0.3671875
+ [8] 0.4218750 0.4765625 0.5312500
+> (x33 <- normalize(obj2, unit = "64", center = TRUE, level = 1, rescale = TRUE, pcm = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    64 
+
+> x33@left[1:10]
+ [1] 0.00000000 0.06299213 0.12598425 0.18897638 0.25196850 0.30708661
+ [7] 0.37007874 0.42519685 0.48031496 0.53543307
+> (x34 <- normalize(obj2, unit = "64", center = TRUE, level = 1, rescale = FALSE, pcm = FALSE))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    64 
+
+> x34@left[1:10]
+ [1] 0.0000000 0.0625000 0.1250000 0.1875000 0.2500000 0.3046875 0.3671875
+ [8] 0.4218750 0.4765625 0.5312500
+> 
+> proc.time()
+   user  system elapsed 
+   1.27    0.10    1.38 

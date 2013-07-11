@@ -35,14 +35,14 @@ square(freq, duration = samp.rate, from = 0, samp.rate = 44100,
   \item{from}{Starting value of the \code{Wave} in \code{xunit}.}
   \item{samp.rate}{Sampling rate of the \code{Wave}.}
   \item{bit}{Resolution of the \code{Wave} and rescaling unit. This may be\cr
-        \code{1} (default) for rescaling to real values in [-1,1],\cr
+        \code{1} (default) for rescaling to numeric values in [-1,1],\cr
         \code{8} (i.e. 8-bit) for rescaling to integers in [0, 254],\cr
         \code{16} (i.e. 16-bit) for rescaling to integers in [-32767, 32767],\cr
         \code{24} (i.e. 24-bit) for rescaling to integers in [-8388607, 8388607],\cr
         \code{32} (i.e. 32-bit) for rescaling either to integers in [-2147483647, 2147483647] 
-                    (PCM Wave format, if \code{pcm=TRUE}) or to real values in [-1, 1] 
+                    (PCM Wave format, if \code{pcm=TRUE}) or to numeric values in [-1, 1] 
                     (FLOAT_IEEE Wave format if \code{pcm=FALSE}),\cr
-        \code{64} (i.e. 64-bit) for rescaling to real values in [-1, 1] (FLOAT_IEEE Wave format), and\cr
+        \code{64} (i.e. 64-bit) for rescaling to numeric values in [-1, 1] (FLOAT_IEEE Wave format), and\cr
         \code{0} for not rescaling at all. These numbers are internally passed to \code{\link{normalize}}.
         
         The \code{Wave} slot \code{bit} will be set to 32 if \code{bit=0}, \code{bit=1} or \code{bit=32}.}  

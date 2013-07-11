@@ -13,13 +13,16 @@ writeWave(stereo(sine(440, bit=16, pcm=TRUE), sine(220, bit=16, pcm=TRUE)), file
 writeWave(sine(440, pcm=TRUE, bit=24), file = files[5])
 writeWave(stereo(sine(440, bit=24, pcm=TRUE), sine(220, bit=24, pcm=TRUE)), file = files[6])
 ## 32bit
-writeWave(sine(440, bit=32), file = files[7])
+sine32 <- sine(440, bit=32)
+sine32@left <- round(sine32@left, 5)
+writeWave(sine32, file = files[7])
 writeWave(sine(440, pcm=TRUE, bit=32), file = files[8])
-writeWave(stereo(sine(440, bit=32), sine(220, bit=32)), file = files[9])
+writeWave(stereo(sine32, sine32), file = files[9])
 writeWave(stereo(sine(440, bit=32, pcm=TRUE), sine(220, bit=32, pcm=TRUE)), file = files[10])
 ## 64bit
-writeWave(sine(440, bit=64), file = files[11])
-writeWave(stereo(sine(440, bit=64), sine(220, bit=64)), file = files[12])
+exact64 <- c(-2^(-40:0), 2^(-40:0))
+writeWave(Wave(left = exact64, bit = 64, pcm = FALSE, samp.rate = 44100), file = files[11])
+writeWave(Wave(left = exact64, right = exact64, bit = 64, pcm = FALSE, samp.rate = 44100), file = files[12])
 as.vector(md5sum(files[1:12]))
 
 ## Waveforms
@@ -71,9 +74,9 @@ x10@left[1:10]
 (x12 <- normalize(obj, unit = "16", center = TRUE, level = 1, rescale = FALSE)) 
 x12@left[1:10]
 (x13 <- normalize(obj, unit = "24", center = TRUE, level = 1, rescale = TRUE))
-13@left[1:10]
+x13@left[1:10]
 (x14 <- normalize(obj, unit = "24", center = TRUE, level = 1, rescale = FALSE))
-14@left[1:10]
+x14@left[1:10]
 (x15 <- normalize(obj, unit = "32", center = TRUE, level = 1, rescale = TRUE))
 x15@left[1:10]
 (x16 <- normalize(obj, unit = "32", center = TRUE, level = 1, rescale = FALSE))

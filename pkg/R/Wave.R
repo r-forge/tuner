@@ -60,14 +60,14 @@ setGeneric("Wave",
 function(left, ...) standardGeneric("Wave"))
 
 setMethod("Wave", signature(left = "numeric"), 
-function(left, right = numeric(0), samp.rate = 44100, bit = 16, ...){
+function(left, right = numeric(0), samp.rate = 44100, bit = 16, pcm = TRUE, ...){
     if(missing(samp.rate)) 
         warning("'samp.rate' not specified, assuming 44100Hz")
     if(missing(bit)) 
         warning("'bit' not specified, assuming 16bit")
     return(
         new("Wave", stereo = length(right) > 0, samp.rate = samp.rate, 
-            bit = bit, left = left, right = right, ...))
+            bit = bit, left = left, right = right, pcm = pcm, ...))
 })
 
 setMethod("Wave", signature(left = "matrix"), 

@@ -1,0 +1,248 @@
+
+R Under development (unstable) (2013-07-10 r63264) -- "Unsuffered Consequences"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library("tuneR")
+> (x1 <- readWave("Testfiles/8bit_PCM_mono.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    8 
+
+> x1@left[1:10]
+ [1] 127 135 143 151 159 166 174 181 188 195
+> (x2 <- readWave("Testfiles/8bit_PCM_stereo.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    8 
+
+> x2@left[1:10]
+ [1] 127 135 143 151 159 166 174 181 188 195
+> x2@right[1:10]
+ [1] 127 131 135 139 143 147 151 155 159 162
+> (x3 <- readWave("Testfiles/16bit_PCM_mono.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    16 
+
+> x3@left[1:10]
+ [1]     0  2053  4098  6126  8131 10103 12036 13922 15753 17522
+> (x4 <- readWave("Testfiles/16bit_PCM_stereo.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    16 
+
+> x4@left[1:10]
+ [1]     0  2053  4098  6126  8131 10103 12036 13922 15753 17522
+> x4@right[1:10]
+ [1]    0 1027 2053 3077 4098 5114 6126 7132 8131 9122
+> (x5 <- readWave("Testfiles/24bit_PCM_mono.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    24 
+
+> x5@left[1:10]
+ [1]       0  525568 1049088 1568256 2081536 2586368 3081216 3564032 4032768
+[10] 4485632
+> (x6 <- readWave("Testfiles/24bit_PCM_mono_ex.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    24 
+
+> x6@left[1:10]
+ [1]       0  525568 1049088 1568256 2081536 2586368 3081216 3564032 4032768
+[10] 4485632
+> (x7 <- readWave("Testfiles/24bit_PCM_stereo.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    24 
+
+> x7@left[1:10]
+ [1]       0  525568 1049088 1568256 2081536 2586368 3081216 3564032 4032768
+[10] 4485632
+> x7@right[1:10]
+ [1]       0  262912  525568  787712 1049088 1309184 1568256 1825792 2081536
+[10] 2335232
+> (x8 <- readWave("Testfiles/24bit_PCM_stereo_ex.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    24 
+
+> x8@left[1:10]
+ [1]       0  525568 1049088 1568256 2081536 2586368 3081216 3564032 4032768
+[10] 4485632
+> x8@right[1:10]
+ [1]       0  262912  525568  787712 1049088 1309184 1568256 1825792 2081536
+[10] 2335232
+> (x9 <- readWave("Testfiles/32bit_float_mono.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    32 
+
+> x9@left[1:10]
+ [1] 0.00000000 0.06265259 0.12506104 0.18695068 0.24813843 0.30831909
+ [7] 0.36730957 0.42486572 0.48074341 0.53472900
+> (x10 <- readWave("Testfiles/32bit_float_stereo.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    32 
+
+> x10@left[1:10]
+ [1] 0.00000000 0.06265259 0.12506104 0.18695068 0.24813843 0.30831909
+ [7] 0.36730957 0.42486572 0.48074341 0.53472900
+> x10@right[1:10]
+ [1] 0.00000000 0.03134155 0.06265259 0.09390259 0.12506104 0.15606689
+ [7] 0.18695068 0.21765137 0.24813843 0.27838135
+> (x12 <- readWave("Testfiles/32bit_PCM_mono.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    32 
+
+> x12@left[1:10]
+ [1]          0  134545408  268566528  401473536  532873216  662110208
+ [7]  788791296  912392192 1032388608 1148321792
+> (x13 <- readWave("Testfiles/32bit_PCM_mono_ex.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    32 
+
+> x13@left[1:10]
+ [1]          0  134545408  268566528  401473536  532873216  662110208
+ [7]  788791296  912392192 1032388608 1148321792
+> (x14 <- readWave("Testfiles/32bit_PCM_stereo.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    32 
+
+> x14@left[1:10]
+ [1]          0  134545408  268566528  401473536  532873216  662110208
+ [7]  788791296  912392192 1032388608 1148321792
+> x14@right[1:10]
+ [1]         0  67305472 134545408 201654272 268566528 335151104 401473536
+ [8] 467402752 532873216 597819392
+> (x15 <- readWave("Testfiles/32bit_PCM_stereo_ex.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   TRUE
+	Bit (8/16/24/32/64):    32 
+
+> x15@left[1:10]
+ [1]          0  134545408  268566528  401473536  532873216  662110208
+ [7]  788791296  912392192 1032388608 1148321792
+> x15@right[1:10]
+ [1]         0  67305472 134545408 201654272 268566528 335151104 401473536
+ [8] 467402752 532873216 597819392
+> (x16 <- readWave("Testfiles/64bit_float_mono.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Mono
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    64 
+
+> x16@left[1:10]
+ [1] 0.00000000 0.06265449 0.12506484 0.18695637 0.24814597 0.30832846
+ [7] 0.36732074 0.42487864 0.48075802 0.53474526
+> (x17 <- readWave("Testfiles/64bit_float_stereo.wav"))
+
+Wave Object
+	Number of Samples:      44100
+	Duration (seconds):     1
+	Samplingrate (Hertz):   44100
+	Channels (Mono/Stereo): Stereo
+	PCM (integer format):   FALSE
+	Bit (8/16/24/32/64):    64 
+
+> x17@left[1:10]
+ [1] 0.00000000 0.06265449 0.12506484 0.18695637 0.24814597 0.30832846
+ [7] 0.36732074 0.42487864 0.48075802 0.53474526
+> x17@right[1:10]
+ [1] 0.00000000 0.03134251 0.06265449 0.09390544 0.12506484 0.15607164
+ [7] 0.18695637 0.21765798 0.24814597 0.27838981
+> 
+> proc.time()
+   user  system elapsed 
+   0.57    0.07    0.64 
