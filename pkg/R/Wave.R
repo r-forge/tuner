@@ -2,13 +2,13 @@
 # define class Wave
 setClass("WaveGeneral",
     slots = representation(samp.rate = "numeric", bit = "numeric", pcm = "logical"),
-    prototype = prototype(stereo = TRUE, samp.rate = 44100, 
-        bit = 16, pcm = TRUE))
+    prototype = prototype(samp.rate = 44100, bit = 16, pcm = TRUE))
 
 setClass("Wave",
     slots = representation(left = "numeric",
     right = "numeric", stereo = "logical"),
-    contains = "WaveGeneral")
+    contains = "WaveGeneral",
+    prototype = prototype(stereo = TRUE))
 
 setClass("WaveMC", contains=c("WaveGeneral", "matrix"))
 
@@ -22,21 +22,18 @@ updateWave <- function(object){
 }
 
 
-## TODO Wave <-> WaveMC
+## TODO
 ## mehr Infos für channels bei WaveMC?
-## 
 
 ## TODO hier kann was raus:
 
 setValidity("WaveGeneral", 
 function(object){
-    if(!(is(object@samp.rate, "numeric") &&
-        (length(object@samp.rate) < 2) && (object@samp.rate > 0)))
+    if(!((length(object@samp.rate) < 2) && (object@samp.rate > 0)))
             return("slot 'samp.rate' of a Wave object must be a positive numeric of length 1")
-    if(!(is(object@bit, "numeric") &&
-        (length(object@bit) < 2) && (object@bit %in% c(1, 8, 16, 24, 32, 64))))
+    if(!((length(object@bit) < 2) && (object@bit %in% c(1, 8, 16, 24, 32, 64))))
             return("slot 'bit' of a Wave object must be a positive numeric (1, 8, 16, 24, 32 or 64) of length 1")
-    if(!(is(object@pcm, "logical") && (length(object@pcm) < 2)))
+    if(!((length(object@pcm) < 2)))
         return("slot 'pcm' of a Wave object must be a logical of length 1")
     if(object@pcm && object@bit==64)
         return("pcm Wave objects must have a resolution < 64 bit")
@@ -47,12 +44,9 @@ function(object){
 
 setValidity("Wave", 
 function(object){
-    if(!is(object@left, "numeric")) return("channels of Wave objects must be numeric")
-    if(!(is(object@stereo, "logical") && (length(object@stereo) < 2)))
+    if(!(length(object@stereo) < 2))
         return("slot 'stereo' of a Wave object must be a logical of length 1")
     if(object@stereo){
-        if(!is(object@right, "numeric"))
-            return("channels of Wave objects bust be numeric")
         if(length(object@left) != length(object@right))
             return("both channels of Wave objects must have the same length")
     }
@@ -63,7 +57,7 @@ function(object){
 
 setValidity("WaveMC", 
 function(object){
-    if(!is(object@.Data, "numeric")) return("channels of WaveMC objects must be numeric")
+    if(!(mode(object@.Data) == "numeric")) return("channels of WaveMC objects must be numeric")
     return(TRUE)
 })
 
@@ -115,10 +109,8 @@ function(left, right = numeric(0), samp.rate = 44100, bit = 16, pcm = TRUE, ...)
 })
 
 setMethod("WaveMC", signature(data = "numeric"), 
-function(data = numeric(0), samp.rate = 44100, bit = 16, pcm = TRUE, ...){
-    return(
-        new("WaveMC", .Data = as.matrix(data), samp.rate = samp.rate, 
-            bit = bit, pcm = pcm, ...))
+function(data = numeric(0), ...){
+    WaveMC(as.matrix(data), ...)
 })
 
 setMethod("Wave", signature(left = "matrix"), 
@@ -146,6 +138,12 @@ function(left, ...)
 setMethod("WaveMC", signature(data = "data.frame"), 
 function(data, ...)
     WaveMC(as.matrix(data), ...)
+)
+
+
+setMethod("WaveMC", signature(data = "Wave"), 
+function(data, ...)
+    as(data, "WaveMC")
 )
 
 
@@ -193,6 +191,10 @@ setAs("WaveMC", "matrix", function(from, to)
     return(from@.Data))
 setAs("WaveGeneral", "list", function(from, to)
     return(as(as(from, "data.frame"), "list")))
+
+setAs("Wave", "WaveMC", function(from, to){
+    WaveMC(.Data=cbind(from@left, from@right), samp.rate = from@samp.rate, bit = from@bit, pcm = from@pcm)
+})
 
 
 setMethod("show", signature(object = "Wave"), 
