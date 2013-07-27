@@ -58,6 +58,14 @@ function(filename, from = 1, to = Inf,
         stop("Only uncompressed PCM and IEEE_FLOAT Wave formats supported")
     #if(fmt.length > 26)
     #    seek(con, where = fmt.length - 26, origin = "current")
+    
+    ## fact chunk
+    if((pcm %in% c(0, 3)) || (pcm = 65534 && SubFormat %in% c(0, 3))) {
+      fact <- readChar(con, 4)
+      fact.length <- readBin(con, int, n = 1, size = 4, endian = "little")
+      dwSampleLength <- readBin(con, int, n = 1, size = 4, endian = "little")
+    }
+    
     DATA <- readChar(con, 4)
     ## waiting for the data chunk    
     i <- 0    
