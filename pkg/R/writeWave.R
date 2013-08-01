@@ -42,38 +42,31 @@ function(object, filename){
             
     ## Writing the header:
     # RIFF
-    writeChar("RIFF", con, 4, eos = NULL)
-    writeBin(as.integer(bytes + 36), con, size = 4, endian = "little")
+    writeChar("RIFF", con, 4, eos = NULL) 
+    writeBin(as.integer(bytes + 72), con, size = 4, endian = "little") # cksize RIFF
     # WAVE
     writeChar("WAVE", con, 4, eos = NULL)
     # fmt chunk
     writeChar("fmt ", con, 4, eos = NULL)
-    writeBin(as.integer(16), con, size = 4, endian = "little")
-    writeBin(as.integer(if(pcm) 1 else 3), con, size = 2, endian = "little")
-      
-    writeBin(as.integer(channels), con, size = 2, endian = "little")
-    writeBin(as.integer(object@samp.rate), con, size = 4, endian = "little")
-    writeBin(as.integer(object@samp.rate * block.align), con, size = 4, endian = "little")
-    writeBin(as.integer(block.align), con, size = 2, endian = "little")
-    writeBin(as.integer(object@bit), con, size = 2, endian = "little")
-    #if(extensible) {
-    #  writeBin(as.integer(22), con, size = 4, endian = "little")
-    #  #wValidBitsPerSample # (same as bitspersample?)
-    #  writeBin(as.integer(object@bit), con, size = 2, endian = "little")
-    #  #dwChannelMask (specification about assignments to channels)
-    #  writeBin(as.integer(1), con, size = 2, endian = "little")
-    #  #SubFormat
-    #  writeBin(as.raw(c(0,   0,   0,  0,  16,   0, 128,   0 ,  0, 170,   0,  56, 155, 113)), con)
-   
-    #  if(waveformat = pcm)    
-    #    writeBin(as.integer(1), con, size = 2, endian = "little")
-    #  if(waveformat = ieee)    
-    #    writeBin(as.integer(3), con, size = 2, endian = "little")
-    #}
+    writeBin(as.integer(40), con, size = 4, endian = "little") # cksize format chunk
+    writeBin(as.integer(65534), con, size = 2, endian = "little") # wFormatTag: extensible
+    writeBin(as.integer(channels), con, size = 2, endian = "little") # nChannels
+    writeBin(as.integer(object@samp.rate), con, size = 4, endian = "little") # nSamplesPerSec
+    writeBin(as.integer(object@samp.rate * block.align), con, size = 4, endian = "little") # nAvgBytesPerSec
+    writeBin(as.integer(block.align), con, size = 2, endian = "little") # nBlockAlign
+    writeBin(as.integer(object@bit), con, size = 2, endian = "little") # wBitsPerSample
+    # extensible
+    writeBin(as.integer(22), con, size = 2, endian = "little") # cbsize extensible
+    writeBin(as.integer(object@bit), con, size = 2, endian = "little") # wValidBitsPerSample
     
+    writeBin(as.integer(0), con, size = 4, endian = "little") #  dbChannelMask , ToDo: specification about assignments to channels
+    writeBin(as.integer(if(pcm) 1 else 3), con, size = 2, endian = "little") # SubFormat 1-2
+    writeBin(as.raw(c(0,   0,   0,  0,  16,   0, 128,   0 ,  0, 170,   0,  56, 155, 113)), con) # SubFormat 3-16
     # fact
-    #if(extensible) {
-    #}
+    writeChar("fact", con, 4, eos = NULL)
+    writeBin(as.integer(4), con, size = 4, endian = "little") # cksize fact chunk
+    writeBin(as.integer(l), con, size = 4, endian = "little") # dwSampleLength
+
     # data
     writeChar("data", con, 4, eos = NULL)
     writeBin(as.integer(bytes), con, size = 4, endian = "little")

@@ -49,7 +49,7 @@ function(filename, from = 1, to = Inf,
         cbSize <- readBin(con, int, n = 1, size = 2, endian = "little")
     ## chunk size 40 (extension 22)
     if(exists("cbSize") && cbSize == 22 && fmt.length == 40){
-        validBits <- readBin(con, int, n = 1, size = 2, endian = "little", signed = FALSE)
+        validBits <- readBin(con, int, n = 1, size = 2, endian = "little")
         dwChannelMask <- readBin(con, int, n = 1, size = 4, endian = "little")    
         SubFormat <- readBin(con, int, n = 1, size = 2, endian = "little", signed = FALSE)
         x <- readBin(con, "raw", n=14)
@@ -60,11 +60,11 @@ function(filename, from = 1, to = Inf,
     #    seek(con, where = fmt.length - 26, origin = "current")
     
     ## fact chunk
-    if((pcm %in% c(0, 3)) || (pcm = 65534 && SubFormat %in% c(0, 3))) {
-      fact <- readChar(con, 4)
-      fact.length <- readBin(con, int, n = 1, size = 4, endian = "little")
-      dwSampleLength <- readBin(con, int, n = 1, size = 4, endian = "little")
-    }
+#    if((pcm %in% c(0, 3)) || (pcm = 65534 && SubFormat %in% c(0, 3))) {
+#      fact <- readChar(con, 4)
+#      fact.length <- readBin(con, int, n = 1, size = 4, endian = "little")
+#      dwSampleLength <- readBin(con, int, n = 1, size = 4, endian = "little")
+#    }
     
     DATA <- readChar(con, 4)
     ## waiting for the data chunk    
