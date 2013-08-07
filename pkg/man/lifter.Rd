@@ -14,7 +14,7 @@ lifter(x, lift = 0.6, inv = FALSE, htk=FALSE)
   \item{htk}{ Switch liftering type. }
 }
 \details{
- If \code{htk=FALSE}, then perform \eqn{x i^lift}, \eqn{i = 1, ldots, nrow(x)}
+ If \code{htk=FALSE}, then perform \eqn{x i^lift}, \eqn{i = 1, \ldots,} \code{nrow(x)}
 liftering. If \code{htk=TRUE}, then perform HTK-style sin-curve
 liftering with length \code{lift}.
 }

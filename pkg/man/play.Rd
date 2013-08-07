@@ -5,7 +5,7 @@
 \alias{play,character-method}
 \alias{play,Wave-method}
 \title{Playing Waves}
-\description{Plays wave files and objects of class Wave.}
+\description{Plays wave files and objects of class \code{Wave}.}
 \usage{
 play(object, player, ...)
 }
