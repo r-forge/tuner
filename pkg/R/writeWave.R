@@ -1,14 +1,23 @@
 writeWave <- 
 function(object, filename){
-    if(!is(object, "Wave")) 
-        stop("'object' needs to be of class 'Wave'")
+    if(!is(object, "WaveGeneral")) 
+        stop("'object' needs to be of class 'Wave' or 'WaveMC'")
     validObject(object)
-
-    if(object@stereo){
-        sample.data <- matrix(c(object@left, object@right), nrow = 2, byrow = TRUE)
-        dim(sample.data) <- NULL
+    if(is(object, "Wave")){
+        object <- as(object, "WaveMC")
+        colnames(object) <- c("FL", if(ncol(object) > 1) "FR")
     }
-    else sample.data <- object@left
+    cn <- colnames(object)
+    if((length(cn) != ncol(object) || !all(cn %in% MCnames[["name"]])) || any(duplicated(cn)))
+        stop("colnames(object) must be specified and must uniquely identify the channel ordering for WaveMC objects, see ?MCnames for possible channels")
+    cnamesnum <- as.numeric(factor(colnames(object), levels=MCnames[["name"]]))
+    if(is.unsorted(cnamesnum))
+        object <- object[,cnamesnum]
+    dwChannelMask <- sum(2^(cnamesnum - 1))
+
+    l <- length(object)
+    sample.data <- t(object@.Data)
+    dim(sample.data) <- NULL
     
     ## PCM or IEEE FLOAT
     pcm <- object@pcm                                 
@@ -34,9 +43,8 @@ function(object, filename){
     on.exit(close(con)) # be careful ...
         
     # Some calculations:
-    l <- length(object@left)
     byte <- as.integer(object@bit / 8)
-    channels <- object@stereo + 1
+    channels <- ncol(object)
     block.align <- channels * byte
     bytes <- l * byte * channels
             
@@ -59,7 +67,7 @@ function(object, filename){
     writeBin(as.integer(22), con, size = 2, endian = "little") # cbsize extensible
     writeBin(as.integer(object@bit), con, size = 2, endian = "little") # wValidBitsPerSample
     
-    writeBin(as.integer(0), con, size = 4, endian = "little") #  dbChannelMask , ToDo: specification about assignments to channels
+    writeBin(as.integer(dwChannelMask), con, size = 4, endian = "little") #  dbChannelMask
     writeBin(as.integer(if(pcm) 1 else 3), con, size = 2, endian = "little") # SubFormat 1-2
     writeBin(as.raw(c(0,   0,   0,  0,  16,   0, 128,   0 ,  0, 170,   0,  56, 155, 113)), con) # SubFormat 3-16
     # fact

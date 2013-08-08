@@ -1,6 +1,6 @@
 readWave <- 
 function(filename, from = 1, to = Inf, 
-    units = c("samples", "seconds", "minutes", "hours"), header = FALSE){
+    units = c("samples", "seconds", "minutes", "hours"), header = FALSE, toWaveMC = NULL){
         
     if(!is.character(filename))
         stop("'filename' must be of type character.")
@@ -51,6 +51,7 @@ function(filename, from = 1, to = Inf,
     if(exists("cbSize") && cbSize == 22 && fmt.length == 40){
         validBits <- readBin(con, int, n = 1, size = 2, endian = "little")
         dwChannelMask <- readBin(con, int, n = 1, size = 4, endian = "little")    
+        channelNames <- MCnames[as.logical(intToBits(dwChannelMask)),"name"]
         SubFormat <- readBin(con, int, n = 1, size = 2, endian = "little", signed = FALSE)
         x <- readBin(con, "raw", n=14)
     }
@@ -122,17 +123,28 @@ function(filename, from = 1, to = Inf,
         }
     }
     
-    ## Constructing the Wave object:    
-    object <- new("Wave", stereo = (channels == 2), samp.rate = sample.rate, bit = bits, 
-        pcm = !(pcm == 3 || (exists("SubFormat") && SubFormat==3)))
-    if(channels == 2) {
-        sample.data <- matrix(sample.data, nrow = 2)
-        object@left <- sample.data[1, ]
-        object@right <- sample.data[2, ]
+    ## output to WaveMC if selected by the user or if dwChannelMask suggests this is a multichannel Wave
+    toWaveMC <- if(dwChannelMask %in% c(1,3)) isTRUE(toWaveMC) else TRUE  
+    
+    if(toWaveMC){
+        ## Constructing the WaveMC object: 
+        object <- new("WaveMC", samp.rate = sample.rate, bit = bits, 
+            pcm = !(pcm == 3 || (exists("SubFormat") && SubFormat==3)))
+        object@.Data <- matrix(sample.data, ncol = channels, byrow=TRUE)
+        if(exists("channelNames")) colnames(object@.Data) <- channelNames
     } else {
-        object@left <- sample.data
+        ## Constructing the Wave object: 
+        object <- new("Wave", stereo = (channels == 2), samp.rate = sample.rate, bit = bits, 
+            pcm = !(pcm == 3 || (exists("SubFormat") && SubFormat==3)))
+        if(channels == 2) {
+            sample.data <- matrix(sample.data, nrow = 2)
+            object@left <- sample.data[1, ]
+            object@right <- sample.data[2, ]
+        } else {
+            object@left <- sample.data
+        }
     }
-
+    
     ## Return the Wave object
     return(object)
 }
