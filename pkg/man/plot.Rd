@@ -1,6 +1,5 @@
 \name{plot}
 \docType{methods}
-\alias{plot-methods}
 \alias{plot,ANY,ANY-method}
 \title{S4 generic for plot}
 \description{S4 generic for plot.}

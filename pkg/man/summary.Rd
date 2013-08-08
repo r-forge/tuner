@@ -1,6 +1,5 @@
 \name{summary-methods}
 \docType{methods}
-\alias{summary-methods}
 \alias{summary,ANY-method}
 \alias{summary,Wave-method}
 \alias{summary,Wspec-method}

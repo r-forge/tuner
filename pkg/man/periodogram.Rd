@@ -1,7 +1,6 @@
 \name{periodogram-methods}
 \docType{methods}
 \alias{periodogram}
-\alias{periodogram-methods}
 \alias{periodogram,Wave-method}
 \alias{periodogram,character-method}
 \title{Periodogram (Spectral Density) Estimation on Wave objects}

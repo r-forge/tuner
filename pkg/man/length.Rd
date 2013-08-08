@@ -1,6 +1,5 @@
 \name{length}
 \docType{methods}
-\alias{length-methods}
 \alias{length,Wave-method}
 \alias{length,WaveMC-method}
 \alias{length,ANY-method}

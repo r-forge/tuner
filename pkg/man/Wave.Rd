@@ -1,7 +1,6 @@
 \name{Wave}
 \docType{methods}
 \alias{Wave}
-\alias{Wave-methods}
 \alias{Wave,ANY-method}
 \alias{Wave,numeric-method}
 \alias{Wave,matrix-method}

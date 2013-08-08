@@ -2,7 +2,6 @@
 \docType{methods}
 \alias{plot-WspecMat}
 \alias{plot,WspecMat,missing-method}
-\alias{image-methods}
 \alias{image,ANY-method}
 \alias{image-Wspec}
 \alias{image,Wspec-method}

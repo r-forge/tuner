@@ -1,6 +1,5 @@
 \name{play-methods}
 \docType{methods}
-\alias{play-methods}
 \alias{play}
 \alias{play,character-method}
 \alias{play,Wave-method}

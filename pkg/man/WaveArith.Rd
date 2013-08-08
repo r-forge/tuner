@@ -1,6 +1,5 @@
 \name{Arith-methods}
 \docType{methods}
-\alias{Arith-methods}
 \alias{Arith,Wave,missing-method}
 \alias{Arith,Wave,numeric-method}
 \alias{Arith,Wave,Wave-method}
