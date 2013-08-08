@@ -193,7 +193,7 @@ setAs("WaveGeneral", "list", function(from, to)
     return(as(as(from, "data.frame"), "list")))
 
 setAs("Wave", "WaveMC", function(from, to){
-    WaveMC(.Data=cbind(from@left, from@right), samp.rate = from@samp.rate, bit = from@bit, pcm = from@pcm)
+    WaveMC(data = cbind(from@left, from@right), samp.rate = from@samp.rate, bit = from@bit, pcm = from@pcm)
 })
 
 
