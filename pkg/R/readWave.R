@@ -124,7 +124,7 @@ function(filename, from = 1, to = Inf,
     }
     
     ## output to WaveMC if selected by the user or if dwChannelMask suggests this is a multichannel Wave
-    toWaveMC <- if(dwChannelMask %in% c(1,3)) isTRUE(toWaveMC) else TRUE  
+    toWaveMC <- if(pcm != 65534 || (exists("dwChannelMask") && dwChannelMask %in% c(1,3))) isTRUE(toWaveMC) else TRUE  
     
     if(toWaveMC){
         ## Constructing the WaveMC object: 
