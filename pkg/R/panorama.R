@@ -7,7 +7,7 @@ function(object, pan = 1){
         stop("'object' needs to be of class 'Wave' or 'WaveMC'")
     validObject(object)
     if(!is.numeric(pan) || abs(pan) > 1)
-    stop("'pan' must be numeric in [-1, 1].")
+        stop("'pan' must be numeric in [-1, 1].")
     if(!object@stereo){
         warning("panorama called on a mono Wave object, returned object is unchanged")
         return(object)
@@ -25,10 +25,10 @@ function(object, pan = 1){
     if(!is(object, "WaveMC")) 
         stop("'object' needs to be of class 'Wave' or 'WaveMC'")
     if(ncol(object) > 2)
-      stop("object needs to be a stereo Wave object")
+        stop("object needs to be a stereo Wave object")
     validObject(object)
     if(!is.numeric(pan) || abs(pan) > 1)
-    stop("'pan' must be numeric in [-1, 1].")
+        stop("'pan' must be numeric in [-1, 1].")
     if(ncol(object)==1){
         warning("panorama called on a mono WaveMC object, returned object is unchanged")
         return(object)
