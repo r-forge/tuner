@@ -1,4 +1,5 @@
 \name{Waveforms}
+\encoding{latin1}
 \alias{Waveforms}
 \alias{sine}
 \alias{sawtooth}
@@ -9,9 +10,9 @@
 \description{Create a \code{\link{Wave}} object of special waveform such as
 silcence, (white/pink) noise, sawtooth, sine, and square.}
 \usage{
-noise(kind = c("white", "pink"), duration = samp.rate, 
+noise(kind = c("white", "pink", "power", "red"), duration = samp.rate, 
         samp.rate = 44100, bit = 1, stereo = FALSE, 
-        xunit = c("samples", "time"), ...)
+        xunit = c("samples", "time"), alpha = 1, ...)
 
 sawtooth(freq, duration = samp.rate, from = 0, samp.rate = 44100, 
         bit = 1, stereo = FALSE, xunit = c("samples", "time"), 
@@ -28,8 +29,9 @@ square(freq, duration = samp.rate, from = 0, samp.rate = 44100,
         up = 0.5, ...)
 }
 \arguments{
-  \item{kind}{The kind of noise, either \dQuote{white} or \dQuote{pink} 
-    (the latter is not dB adjusted (!) but linear decreasing on a log-log scale).}
+  \item{kind}{The kind of noise, \dQuote{white}, \dQuote{pink}, \dQuote{power}, or \dQuote{red}
+    (these are not dB adjusted (!) but all except for \dQuote{white} are linear decreasing on a log-log scale).
+    Algorithm for generating power law noise is taken from Timmer and \enc{König}{Koenig} (1995).}
   \item{freq}{The frequency (in Hertz) to be generated.}
   \item{duration}{Duration of the \code{Wave} in \code{xunit}.}
   \item{from}{Starting value of the \code{Wave} in \code{xunit}.}
@@ -52,6 +54,8 @@ square(freq, duration = samp.rate, from = 0, samp.rate = 44100,
   \item{xunit}{Character indicating which units are used
     (both in arguments \code{duration} and \code{from}).
     If \code{xunit = "time"}, the unit is time in seconds, otherwise the number of samples.}
+  \item{alpha}{The power for the power law noise (defaults are 1 for pink and 1.5 for red noise)
+    \eqn{1/f^{\alpha}}{(1/f)^alpha}.}
   \item{reverse}{Logical, if \code{TRUE}, the waveform will be mirrored vertically.}
   \item{up}{A number between 0 and 1 giving the percentage of the waveform at max value 
     (= 1 - percentage of min value).}
@@ -60,9 +64,12 @@ square(freq, duration = samp.rate, from = 0, samp.rate = 44100,
 \value{
   A \code{\link{Wave}} object.
 }
+\references{
+J. Timmer and M. \enc{König}{Koenig} (1995): On generating power law noise. Astron. Astrophys. 300, 707-710.
+}
 \author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de},
     partly based on code from Matthias Heymann's former package \sQuote{sound},
-    code for pink noise adapted and simplified from C code of Steve Moshier.}
+    Anita Thieler}
 \seealso{\link{Wave-class}, \code{\link{Wave}}, \code{\link{normalize}}, \code{\link{noSilence}}}
 \examples{
 Wobj <- sine(440, duration = 1000)

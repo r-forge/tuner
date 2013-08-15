@@ -3,8 +3,6 @@ function(object, pan = 1) standardGeneric("panorama"))
 
 setMethod("panorama", signature(object = "Wave"), 
 function(object, pan = 1){
-    if(!is(object, "Wave")) 
-        stop("'object' needs to be of class 'Wave' or 'WaveMC'")
     validObject(object)
     if(!is.numeric(pan) || abs(pan) > 1)
         stop("'pan' must be numeric in [-1, 1].")
@@ -22,8 +20,6 @@ function(object, pan = 1){
 
 setMethod("panorama", signature(object = "WaveMC"), 
 function(object, pan = 1){
-    if(!is(object, "WaveMC")) 
-        stop("'object' needs to be of class 'Wave' or 'WaveMC'")
     if(ncol(object) > 2)
         stop("object needs to be a stereo Wave object")
     validObject(object)

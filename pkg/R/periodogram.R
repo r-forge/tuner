@@ -1,10 +1,11 @@
-periodogram.default <-
+setGeneric("periodogram",
+    function(object, ...) standardGeneric("periodogram"))
+
+setMethod("periodogram", signature(object = "Wave"), 
 function(object, width = length(object), overlap = 0,
     starts = NULL, ends = NULL, taper = 0, normalize = TRUE, 
     frqRange = c(-Inf, Inf), ...)
 {
-    if(!is(object, "Wave")) 
-        stop("'object' needs to be of class 'Wave'")
     validObject(object)
 
     if(width > length(object))
@@ -82,11 +83,11 @@ function(object, width = length(object), overlap = 0,
 
     Wspec@freq <- Wspec@freq[store]
     return(Wspec)
-}
+})
 
 
 
-periodogram.character <-
+setMethod("periodogram", signature(object = "character"), 
 function(object, width, overlap = 0, from = 1, to = Inf, 
     units = c("samples", "seconds", "minutes", "hours"), 
     downsample = NA, channel = c("left", "right"), 
@@ -149,13 +150,4 @@ function(object, width, overlap = 0, from = 1, to = Inf,
         }
     }
     return(WspecObj)
-}
-
-
-
-setGeneric("periodogram",
-    function(object, ...) standardGeneric("periodogram"))
-
-setMethod("periodogram", signature(object = "Wave"), periodogram.default)
-
-setMethod("periodogram", signature(object = "character"), periodogram.character)
+})

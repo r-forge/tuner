@@ -3,12 +3,12 @@ Version: 0.9
 Date: 2013-08-14
 Title: Analysis of music and speech
 Author: Uwe Ligges <ligges@statistik.tu-dortmund.de> with contributions
-        from Sebastian Krey, Olaf Mersmann, Sarah Schnackenberg, 
-	Andrea Preusser, and Claus Weihs, as well as code fragments 
-	and ideas from the former package 'sound' by Matthias Heymann 
-	and functions from 'rastamat' by Daniel P. W. Ellis.  
-	The included parts of the libmad MPEG audio decoder library are 
-	authored by Underbit Technologies.
+        from Sebastian Krey, Olaf Mersmann, Sarah Schnackenberg,
+    Andrea Preusser, Anita Thieler, and Claus Weihs, as well as code fragments
+    and ideas from the former package 'sound' by Matthias Heymann
+    and functions from 'rastamat' by Daniel P. W. Ellis.
+    The included parts of the libmad MPEG audio decoder library are
+    authored by Underbit Technologies.
 Maintainer: Uwe Ligges <ligges@statistik.tu-dortmund.de>
 Depends: R (>= 2.10.0)
 Suggests: pastecs

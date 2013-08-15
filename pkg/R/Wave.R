@@ -73,6 +73,16 @@ function(x, i, j, ..., drop=FALSE){
     x@left <- x@left[i]
     if(x@stereo)
         x@right <- x@right[i]
+    if(missing(j)) return(x)
+
+    j <- gsub("1", "left", j)
+    j <- gsub("2", "right", j)      
+    if(!("right" %in% j))
+        x <- channel(x, "left")
+    if(!("left" %in% j))
+        x <- channel(x, "right")
+    if(length(j)==2 && j == c("right", "left"))
+        x <- channel(x, "mirror")
     return(x)
 })
 
