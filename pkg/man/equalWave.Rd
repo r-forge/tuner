@@ -1,7 +1,7 @@
 \name{equalWave}
 \alias{equalWave}
 \title{Checking Wave objects}
-\description{Checks for some kind of equality of objects of class \code{Wave} or class \code{WaveMC}.}
+\description{Internal S4 generic function that checks for some kind of equality of objects of class \code{Wave} or class \code{WaveMC}.}
 \usage{
 equalWave(object1, object2)
 }

@@ -8,12 +8,12 @@
 \description{Showing \code{Wave}, \code{Wspec}, and \code{WspecMat} objects.}
 \section{Methods}{
 \describe{
-\item{object = "Wave"}{The \code{Wave} object is eeing \code{show}ed.
+\item{object = "Wave"}{The \code{Wave} object is being \code{show}n.
     The number of samples, duration in seconds, Samplingrate (Hertz),
     Stereo / Mono, PCM / IEEE, and the resolution in bits are printed.
     Note that it does not make sense to print the whole channels 
     containing several thousands or millions of samples.}
-\item{object = "WaveMC"}{The \code{WaveMC} object is being \code{show}ed.
+\item{object = "WaveMC"}{The \code{WaveMC} object is being \code{show}n.
     The number of samples, duration in seconds, Samplingrate (Hertz),
     number of channels, PCM / IEEE, and the resolution in bits are printed.
     Note that it does not make sense to print the whole channels 
