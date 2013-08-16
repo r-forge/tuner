@@ -1,20 +1,20 @@
 \name{bind}
 \alias{bind}
 \title{Concatenating Wave objects}
-\description{Concatenating objects of class \code{Wave}.}
+\description{Generic function for concatenating objects of class \code{Wave} or \code{WaveMC}.}
 \usage{
 bind(...)
 }
 \arguments{
-  \item{\dots}{Objects of class \code{\link{Wave}}, each of the same kind (checked by \code{\link{equalWave}}),
-   i.e. identical  sampling rate, resolution (bit), and number of channels (stereo/mono).}
+  \item{\dots}{Objects of class \code{\link{Wave}} or class \code{\link{WaveMC}}, each of the same class and of the same kind (checked by \code{\link{equalWave}}),
+   i.e. identical sampling rate, resolution (bit), and number of channels (for \code{WaveMC}, resp. stereo/mono for \code{Wave}).}
 }
 \value{
-    An object of class \code{\link{Wave}}.
+    An object of class \code{\link{Wave}} or class \code{\link{WaveMC}}.
 }
 \author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de}}
 \seealso{\code{\link{prepComb}} for preparing the concatenation, \link{Wave-class},
-         \code{\link{Wave}}, \code{\link{extractWave}}, \code{\link{stereo}}}
+         \code{\link{Wave}}, \link{WaveMC-class}, \code{\link{WaveMC}}, \code{\link{extractWave}}, \code{\link{stereo}}}
 \keyword{manip}
 \keyword{utilities}
 \concept{Wave}
