@@ -15,7 +15,7 @@ equalWave(object1, object2)
     the two objects don't have the same properties, i.e.
     identical sampling rate, resolution (bit), and number of channels (for \code{WaveMC}, resp. stereo/mono for \code{Wave}).
 }
-\author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de}}
+\author{Uwe Ligges \email{ligges@statistik.tu-dortmund.de}, Sarah Schnackenberg}
 \seealso{\link{Wave-class}, \code{\link{Wave}}, \link{WaveMC-class}, \code{\link{WaveMC}}}
 \keyword{error}
 \keyword{utilities}

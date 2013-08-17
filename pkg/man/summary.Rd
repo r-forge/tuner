@@ -25,7 +25,7 @@ The function invokes particular methods which depend on the class of the first a
     \code{df}, \code{taper} (see \code{\link{spectrum}}) 
     and for the underlying \code{\link{Wave}} object the number of channels and its sampling rate.}
 }}
-\author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de}}
+\author{Uwe Ligges \email{ligges@statistik.tu-dortmund.de}}
 \seealso{For the S3 generic: \code{\link[base]{summary.default}}, \code{\link{plot-methods}}, 
     \link{Wave-class}, \code{\link{Wave}}, \link{WaveMC-class}, \code{\link{WaveMC}}, \code{\link{Wspec}}, \code{\link{WspecMat}}, \code{\link{show}}}
 \keyword{methods}
