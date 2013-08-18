@@ -13,19 +13,12 @@ setClass("Wave",
 setClass("WaveMC", contains=c("WaveGeneral", "matrix"))
 
 
-
 ## convert Wave objects from tuneR <= 0.4-1 to the extended representation
 updateWave <- function(object){
-     if(!("pcm" %in% .hasSlot(object, "pcm")))
+     if(!.hasSlot(object, "pcm"))
         object@pcm <- TRUE
      object
 }
-
-
-## TODO
-## mehr Infos für channels bei WaveMC?
-
-## TODO hier kann was raus:
 
 setValidity("WaveGeneral", 
 function(object){
