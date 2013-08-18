@@ -16,7 +16,6 @@ R/Wspec.R:    cat("Properties of the Wave object:\n")
 - Arith-method: WaveMC Klasse
 - channel, mono: Verweis auf "[" Methode zur Selektion bei WaveMC.
 - coerce-method: Auch für WaveMC
-- downsample
 - melfcc
 - MFCC: remove?
 - Waveforms
