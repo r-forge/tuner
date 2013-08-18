@@ -8,7 +8,7 @@ updateWave(object)
 \arguments{
   \item{object}{An object of \link{Wave-class}.}
 }
-\details{This function is only needed to convert \link{Wave-class} object that have been saved with \pkg{tuneR} versions prior to 1.0-0 to match the new class definition.}
+\details{This function is only needed to convert \link{Wave-class} objects that have been saved with \pkg{tuneR} versions prior to 1.0-0 to match the new class definition.}
 \value{An object of \link{Wave-class} as implemented in \pkg{tuneR} versions >= 1.0-0.}
 \author{Uwe Ligges \email{ligges@statistik.tu-dortmund.de}, Sarah Schnackenberg}
 \seealso{\link{Wave-class}, \code{\link{Wave}}}
