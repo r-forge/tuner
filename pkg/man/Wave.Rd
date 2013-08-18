@@ -27,8 +27,10 @@ Wave(left, ...)
 \value{
     An object of \link{Wave-class}.
 }
+\details{The class definition has been extended in \pkg{tuneR} version 1.0-0. Saved objects of class Wave generated with former versions can be 
+updated with \code{\link{updateWave}} to match the new definition.}
 \author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de}}
-\seealso{\link{Wave-class}, \code{\link{writeWave}}, \code{\link{readWave}}}
+\seealso{\link{Wave-class}, \code{\link{writeWave}}, \code{\link{readWave}}, \code{\link{updateWave}}}
 \examples{
 # constructing a Wave object (1 sec.) containing sinus sound with 440Hz:
 x <- seq(0, 2*pi, length = 44100)

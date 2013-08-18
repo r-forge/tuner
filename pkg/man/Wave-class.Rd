@@ -22,7 +22,9 @@ or more conveniently using the function \code{\link{Wave}}.
   }
 }
 \author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de}}
-\seealso{\code{\link{Wave}}}
+\details{The class definition has been extended in \pkg{tuneR} version 1.0-0. Saved objects of class Wave generated with former versions can be 
+updated with \code{\link{updateWave}} to match the new definition.}
+\seealso{\code{\link{Wave}}, \code{\link{updateWave}}}
 \keyword{classes}
 \concept{Wave}
 \concept{channel}
