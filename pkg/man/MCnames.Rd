@@ -15,6 +15,6 @@
 \source{Data derived from the technical documentation given at \url{http://www.microsoft.com/whdc/device/audio/multichaud.mspx}.}
 \references{Microsoft Corporation (2007): Multiple Channel Audio Data and WAVE Files, \url{http://www.microsoft.com/whdc/device/audio/multichaud.mspx}.}
 \examples{
-MCnames # the 18 predefined channels channels in a multichannel Wave file (WaveMC object)
+MCnames # the 18 predefined channels in a multichannel Wave file (WaveMC object)
 }
 \keyword{datasets}
