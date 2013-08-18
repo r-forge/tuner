@@ -6,7 +6,7 @@ exportClasses("Wspec","WspecMat","Wave","WaveMC")
 exportMethods("plot","image","panorama","summary","show","Wave","WaveMC","coerce","[","play","Arith", "periodogram", "bind", "length", "nchannel")
 export(channel, prepComb, downsample, mono, stereo,
     extractWave, normalize, noSilence,
-    writeWave, readWave, readMP3,
+    writeWave, readWave, readMP3, MCnames,
     FFpure, noteFromFF, FF,
     smoother, notenames, melodyplot,
     quantize, quantplot, quantMerge, lilyinput,

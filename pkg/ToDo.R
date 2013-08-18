@@ -24,6 +24,4 @@ R/Wspec.R:    cat("Properties of the Wave object:\n")
 - periodogram?
 - plot
 - readWave (WaveIO)
-- tuneR: WaveMC einbringen
 - writeWave (WaveIO)
-- MCnames
