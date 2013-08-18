@@ -21,10 +21,11 @@ or more conveniently using the function \code{\link{Wave}}.
         PCM or IEEE_FLOAT Wave format.}
   }
 }
-\author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de}}
+\author{Uwe Ligges \email{ligges@statistik.tu-dortmund.de}}
 \details{The class definition has been extended in \pkg{tuneR} version 1.0-0. Saved objects of class Wave generated with former versions can be 
-updated with \code{\link{updateWave}} to match the new definition.}
-\seealso{\code{\link{Wave}}, \code{\link{updateWave}}}
+updated with \code{\link{updateWave}} to match the new definition.
+}
+\seealso{\code{\link{Wave}}, \code{\link{updateWave}}, and for multi channel Wave files see \link{WaveMC-class}}
 \keyword{classes}
 \concept{Wave}
 \concept{channel}
