@@ -1,7 +1,7 @@
 \name{MCnames}
 \alias{MCnames}
 \docType{data}
-\title{Default channel ordering for multichannel wave files}
+\title{Default channel ordering for multi channel wave files}
 \description{A data frame representing the default channel ordering with id, descriptive label, and abbreviated name for multi channel wave files.}
 \usage{data(MCnames)}
 \format{
@@ -15,6 +15,6 @@
 \source{Data derived from the technical documentation given at \url{http://www.microsoft.com/whdc/device/audio/multichaud.mspx}.}
 \references{Microsoft Corporation (2007): Multiple Channel Audio Data and WAVE Files, \url{http://www.microsoft.com/whdc/device/audio/multichaud.mspx}.}
 \examples{
-MCnames # the 18 predefined channels in a multichannel Wave file (WaveMC object)
+MCnames # the 18 predefined channels in a multi channel Wave file (WaveMC object)
 }
 \keyword{datasets}

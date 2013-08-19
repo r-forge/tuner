@@ -29,7 +29,7 @@ prepComb(object, zero = 0, where = c("both", "start", "end"))
      before the last \code{zero} level crossing from negative to positive.
 }
 \note{If stereo (for \code{Wave}), only the left channel is analyzed while the right channel will simply be cut at the same locations.
-If multichannel  (for \code{WaveMC}), only the first channel is analyzed while all other channels will simply be cut at the same locations.}
+If multi channel  (for \code{WaveMC}), only the first channel is analyzed while all other channels will simply be cut at the same locations.}
 \author{Uwe Ligges \email{ligges@statistik.tu-dortmund.de}, Sarah Schnackenberg,
     based on code from Matthias Heymann's former package \sQuote{sound}.}
 \seealso{\code{\link{bind}}, \link{Wave-class}, \code{\link{Wave}}, \link{WaveMC-class}, 

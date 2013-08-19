@@ -21,7 +21,7 @@ or more conveniently using the function \code{\link{WaveMC}}.
 }
 \author{Uwe Ligges \email{ligges@statistik.tu-dortmund.de}, Sarah Schnackenberg}
 \details{This class has been added in \pkg{tuneR} version 1.0-0 for representation and construction 
-of multichannel Wave files. Objects of class \code{Wave} can be transformed to the new class definition 
+of multi channel Wave files. Objects of class \code{Wave} can be transformed to the new class definition 
 by calls of the form \code{as(..., "WaveMC")} and vice versa. Coercing back to the \link{Wave-class} 
 can be useful since some (very few) functions cannot yet deal with multi channel Wave objects.
 
