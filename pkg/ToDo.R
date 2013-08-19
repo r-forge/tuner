@@ -8,7 +8,6 @@ x2 <- readWave("D:/uwe/R/library-devel/tuneR/pkg/tests/Testfiles/16bit_PCM_stere
 R/periodogram.R:    if(!is(object, "Wave"))
 R/Wspec.R:    cat("Properties of the Wave object:\n")
 
-- WaveMC-class: neu
 - WaveMC: neu
 -> See also: auf vielen Seiten ergänzen
 - WaveMC-method
