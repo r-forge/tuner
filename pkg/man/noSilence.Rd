@@ -16,14 +16,14 @@ noSilence(object, zero = 0, level = 0, where = c("both", "start", "end"))
   \item{level}{Values in the interval between \code{zero} and \code{zero - level}/\code{zero + level}
     are considered as silence.}  
   \item{where}{One of \dQuote{both} (default), \dQuote{start}, or \dQuote{end}
-    indicating at \code{where} to prepare the \code{\link{Wave}} object for concatenation.}
+    indicating at \code{where} to prepare the \code{\link{Wave}} or \code{\link{WaveMC}} object for concatenation.}
 }
 \value{
-    An object of class \code{\link{Wave}}.
+    An object of class \code{\link{Wave} or \code{\link{WaveMC}}.
 }
 \details{Silcence is removed at the locations given by \code{where} of the \code{\link{Wave}} or \code{\link{WaveMC}} object,
     where silence is defined such that (in both channels if stereo, in all channels if multichannel for \code{WaveMC}) all values are in 
-    the interval between \code{zero} and \code{zero - level}/\code{zero + level}.
+    the interval between \code{zero - level} and \code{zero + level}.
     All values before (or after, respectively) the first non-silent value are removed from the object.
     }
 \author{Uwe Ligges \email{ligges@statistik.tu-dortmund.de}, Sarah Schnackenberg,

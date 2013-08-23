@@ -116,6 +116,11 @@ function(data = numeric(0), ...){
     WaveMC(as.matrix(data), ...)
 })
 
+setMethod("Wave", signature(left = "WaveMC"), 
+function(left, ...)
+    as(left, "Wave")
+)
+
 setMethod("Wave", signature(left = "matrix"), 
 function(left, ...)
     Wave(as.data.frame(left), ...)
@@ -137,7 +142,6 @@ function(left, ...)
     Wave(as.list(left), ...)
 )
 
-
 setMethod("WaveMC", signature(data = "data.frame"), 
 function(data, ...)
     WaveMC(as.matrix(data), ...)
@@ -153,6 +157,9 @@ function(data, ...)
 setMethod("Wave", signature(left = "list"), 
 function(left, ...){
     if(length(left) > 1){
+        if(length(left) > 2){    
+            warning("Object has ", length(left), " channels, using only the first 2: not more than 2 channels are supported by the Wave class, use the WaveMC class instead.")
+        }
         if(all(c("left", "right") %in% names(left)))
             Wave(left$left, left$right, ...)
         else 
@@ -198,6 +205,11 @@ setAs("WaveGeneral", "list", function(from, to)
 setAs("Wave", "WaveMC", function(from, to){
     WaveMC(data = cbind(from@left, from@right), samp.rate = from@samp.rate, bit = from@bit, pcm = from@pcm)
 })
+
+setAs("WaveMC", "Wave", function(from, to){
+    Wave(from@.Data, samp.rate = from@samp.rate, bit = from@bit, pcm = from@pcm)
+})
+
 
 
 setMethod("show", signature(object = "Wave"), 

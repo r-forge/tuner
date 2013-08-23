@@ -1,7 +1,7 @@
 setGeneric("periodogram",
     function(object, ...) standardGeneric("periodogram"))
 
-setMethod("periodogram", signature(object = "Wave"), 
+setMethod("periodogram", signature(object = "WaveGeneral"), 
 function(object, width = length(object), overlap = 0,
     starts = NULL, ends = NULL, taper = 0, normalize = TRUE, 
     frqRange = c(-Inf, Inf), ...)
@@ -10,8 +10,8 @@ function(object, width = length(object), overlap = 0,
 
     if(width > length(object))
         stop("width must be less or equal length(object)")
-    if(object@stereo) 
-        stop("Stereo processing not yet implemented...")
+    if(nchannel(object) > 1) 
+        stop("Processing more than one channel is not yet implemented...")
     
     testwidth <- 2^ceiling(log(width, 2))
     if(width !=  testwidth) {
@@ -21,19 +21,19 @@ function(object, width = length(object), overlap = 0,
     }
         
     Wspec <- new("Wspec")
-    Wspec@stereo <- object@stereo
+    Wspec@stereo <- FALSE
     Wspec@samp.rate <- object@samp.rate
     Wspec@taper <- taper
     temp <- width / 2
     Wspec@freq <- object@samp.rate * seq(1, width / 2) / width
 
     wo <- width - overlap
-    lo <- length(object@left)
+    lo <- length(object)
     lw <- lo - width
     n <- lw %/% wo
     add <- lw - n*wo
     lo <- lo + add
-    dat <- c(object@left, rep(0, add))
+    dat <- c(object[,1], rep(0, add))
     dat <- dat - mean(dat)
     if(normalize) 
         dat <- dat / max(abs(dat))

@@ -8,7 +8,7 @@
 \alias{noise}
 \title{Create Wave Objects of Special Waveforms}
 \description{Create a \code{\link{Wave}} object of special waveform such as
-silcence, (white/pink) noise, sawtooth, sine, and square.}
+silcence, power law (white, red, pink, ...) noise, sawtooth, sine, and square.}
 \usage{
 noise(kind = c("white", "pink", "power", "red"), duration = samp.rate, 
         samp.rate = 44100, bit = 1, stereo = FALSE, 
@@ -67,7 +67,7 @@ square(freq, duration = samp.rate, from = 0, samp.rate = 44100,
 \references{
 J. Timmer and M. \enc{König}{Koenig} (1995): On generating power law noise. Astron. Astrophys. 300, 707-710.
 }
-\author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de},
+\author{Uwe Ligges \email{ligges@statistik.tu-dortmund.de},
     partly based on code from Matthias Heymann's former package \sQuote{sound},
     Anita Thieler}
 \seealso{\link{Wave-class}, \code{\link{Wave}}, \code{\link{normalize}}, \code{\link{noSilence}}}
