@@ -5,17 +5,14 @@ x2 <- readWave("D:/uwe/R/library-devel/tuneR/pkg/tests/Testfiles/16bit_PCM_stere
 
 #setwd("D:/uwe/R/library-devel/tuneR/pkg/tests")
 
--> See also: WaveMC auf vielen Seiten ergänzen
-
-
-
 Uwe:
-- melfcc
-- MFCC: remove?
-- normalize
 - Antrag
 
 Sarah:
 - plot
 - readWave (WaveIO)
 - writeWave (WaveIO)
+
+
+Alle:
+- test cases
