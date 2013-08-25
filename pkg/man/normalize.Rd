@@ -1,14 +1,18 @@
-\name{normalize}
+\name{normalize-methods}
+\docType{methods}
 \alias{normalize}
+\alias{normalize,Wave-method}
+\alias{normalize,WaveMC-method}
+
 \title{Rescale the range of values}
-\description{Centering and rescaling the waveform of a Wave object to either [-1, 1], [0, 254], 
-    [-32767, 32767], [-8388607, 8388607], or [-2147483647, 2147483647].}
+\description{Centering and rescaling the waveform of a Wave or WaveMC object to a canonical interval corresponding to the Wave format (e.g. [-1, 1], [0, 254], 
+    [-32767, 32767], [-8388607, 8388607], or [-2147483647, 2147483647]).}
 \usage{
 normalize(object, unit = c("1", "8", "16", "24", "32", "64", "0"), 
     center = TRUE, level = 1, rescale = TRUE, pcm = object@pcm)
 }
 \arguments{
-    \item{object}{Object of class \code{\link{Wave}}.}
+    \item{object}{Object of class \code{\link{Wave}} or \code{\link{WaveMC}}.}
     \item{unit}{Unit to rescale to.\cr
         \code{"1"} (default) for rescaling to numeric values in [-1, 1],\cr
         \code{"8"} (i.e. 8-bit) for rescaling to integers in [0, 254],\cr
@@ -26,11 +30,12 @@ normalize(object, unit = c("1", "8", "16", "24", "32", "64", "0"),
     Otherwise, if \code{TRUE}, the object is coerced to the PCM Wave format. If \code{FALSE}, the object is coerced to the FLOAT_IEEE format, i.e. numeric values in [-1, 1].}
 }
 \value{
-  An object of class \code{\link{Wave}}.
+  An object containing the normalized data of the same class as the input \code{object}, 
+    i.e. either \code{\link{Wave}} or \code{\link{WaveMC}}.
 }
-\author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de},
+\author{Uwe Ligges \email{ligges@statistik.tu-dortmund.de}, Sarah Schnackenberg,
     based on code from Matthias Heymann's former package \sQuote{sound}.}
-\seealso{\link{Wave-class}, \code{\link{Wave}}, \code{\link{writeWave}}}
+\seealso{\code{\link{writeWave}}, \link{Wave-class}, \code{\link{Wave}}, \link{WaveMC-class}, \code{\link{WaveMC}}}
 \keyword{manip}
 \concept{Wave}
 

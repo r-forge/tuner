@@ -14,7 +14,7 @@ melfcc(samples, sr = samples@samp.rate, wintime = 0.025,
     modelorder = NULL, spec_out=FALSE, frames_in_rows=TRUE)
 }
 \arguments{
-  \item{samples}{ Object of class \sQuote{Wave}. }
+  \item{samples}{ Object of \link{Wave-class} or \link{WaveMC-class}. Only the first channel will be used.}
   \item{sr}{ Sampling rate of the signal. }
   \item{wintime}{ Window length in sec. }
   \item{hoptime}{ Step between successive windows in sec. }
@@ -49,7 +49,7 @@ Calculation of the MFCCs imlcudes the following steps:
   \item{Take the absolute value of the STFT (usage of Hamming window)}
   \item{Warp to auditory frequency scale (Mel/Bark)}
   \item{Take the DCT of the log-auditory-spectrum}
-  \item{Return the first 'ncep' components}
+  \item{Return the first \sQuote{ncep} components}
   }
 }
 \value{
