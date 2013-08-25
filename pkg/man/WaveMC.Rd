@@ -2,6 +2,7 @@
 \docType{methods}
 \alias{WaveMC}
 \alias{WaveMC,ANY-method}
+\alias{WaveMC,Wave-method}
 \alias{WaveMC,numeric-method}
 \alias{WaveMC,matrix-method}
 \alias{WaveMC,data.frame-method}
@@ -13,7 +14,6 @@
 \alias{coerce,numeric,WaveMC-method}
 \alias{coerce,WaveMC,data.frame-method}
 \alias{coerce,WaveMC,matrix-method}
-\alias{coerce,WaveMC,list-method}
 \alias{coerce,WaveMC,Wave-method}
 \title{Constructors and coercion for class WaveMC objects}
 \description{Constructors and coercion for class WaveMC objects}

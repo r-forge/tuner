@@ -2,6 +2,7 @@
 \docType{methods}
 \alias{Wave}
 \alias{Wave,ANY-method}
+\alias{Wave,WaveMC-method}
 \alias{Wave,numeric-method}
 \alias{Wave,matrix-method}
 \alias{Wave,data.frame-method}
@@ -13,7 +14,7 @@
 \alias{coerce,numeric,Wave-method}
 \alias{coerce,Wave,data.frame-method}
 \alias{coerce,Wave,matrix-method}
-\alias{coerce,Wave,list-method}
+\alias{coerce,WaveGeneral,list-method}
 \alias{coerce,Wave,WaveMC-method}
 \title{Constructors and coercion for class Wave objects}
 \description{Constructors and coercion for class Wave objects}
