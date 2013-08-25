@@ -33,7 +33,7 @@ function(object, width = length(object), overlap = 0,
     n <- lw %/% wo
     add <- lw - n*wo
     lo <- lo + add
-    dat <- c(object[,1], rep(0, add))
+    dat <- c(if(is(object, "Wave")) object@left else object@.Data[,1], rep(0, add))
     dat <- dat - mean(dat)
     if(normalize) 
         dat <- dat / max(abs(dat))
