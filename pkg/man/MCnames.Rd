@@ -3,7 +3,6 @@
 \docType{data}
 \title{Default channel ordering for multi channel wave files}
 \description{A data frame representing the default channel ordering with id, descriptive label, and abbreviated name for multi channel wave files.}
-\usage{data(MCnames)}
 \format{
   A data frame with 18 observations on the following 3 variables:
   \describe{
