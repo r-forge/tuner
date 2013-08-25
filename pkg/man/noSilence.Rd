@@ -19,7 +19,7 @@ noSilence(object, zero = 0, level = 0, where = c("both", "start", "end"))
     indicating at \code{where} to prepare the \code{\link{Wave}} or \code{\link{WaveMC}} object for concatenation.}
 }
 \value{
-    An object of class \code{\link{Wave} or \code{\link{WaveMC}}.
+    An object of class \code{\link{Wave}} or \code{\link{WaveMC}}.
 }
 \details{Silcence is removed at the locations given by \code{where} of the \code{\link{Wave}} or \code{\link{WaveMC}} object,
     where silence is defined such that (in both channels if stereo, in all channels if multichannel for \code{WaveMC}) all values are in 
