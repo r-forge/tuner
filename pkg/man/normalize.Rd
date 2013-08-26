@@ -23,7 +23,7 @@ normalize(object, unit = c("1", "8", "16", "24", "32", "64", "0"),
                     (FLOAT_IEEE Wave format if \code{pcm=FALSE}),\cr
         \code{"64"} (i.e. 64-bit) for rescaling to real values in [-1, 1] (FLOAT_IEEE Wave format), and\cr
         \code{"0"} for not rescaling (hence only centering if \code{center=TRUE}).}
-  \item{center}{If \code{TRUE} (default), values are centered around 0 (or 127 if \code{unit="8"}).}
+  \item{center}{If \code{TRUE} (default), values are centered around 0 (or 127 if \code{unit = "8"}).}
   \item{level}{Maximal percentage of the amplitude used for normalizing (default is 1).} 
   \item{rescale}{Logical, whether to rescale to the maximal possible dynamic range.}
   \item{pcm}{Logical. By default, the \code{pcm} information from the \code{object} is kept.
