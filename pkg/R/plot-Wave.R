@@ -2,7 +2,7 @@ plot.Wave.channel <-
 function(x, xunit, ylim, xlab, ylab, main, nr, simplify, axes = TRUE, yaxt = par("yaxt"), 
         las = 1, center = TRUE, ...){
     channel <- if(is(x, "WaveMC")) x@.Data[,1] else x@left
-    null <- if(x@bit == 8) 128 else 0
+    null <- if(x@bit == 8) 127 else 0
     l <- length(channel)
     if(simplify && (l > nr)){
         nr <- ceiling(l / round(l / nr))
