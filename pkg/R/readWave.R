@@ -131,7 +131,11 @@ function(filename, from = 1, to = Inf,
         object <- new("WaveMC", samp.rate = sample.rate, bit = bits, 
             pcm = !(pcm == 3 || (exists("SubFormat") && SubFormat==3)))
         object@.Data <- matrix(sample.data, ncol = channels, byrow=TRUE)
-        if(exists("channelNames")) colnames(object@.Data) <- channelNames
+        if(exists("channelNames")) {
+            if((lcN <- length(channelNames)) < channels)
+                channelNames <- c(channelNames, paste("C", (lcN+1):channels, sep=""))
+            colnames(object@.Data) <- channelNames
+        }
     } else {
         ## Constructing the Wave object: 
         object <- new("Wave", stereo = (channels == 2), samp.rate = sample.rate, bit = bits, 
