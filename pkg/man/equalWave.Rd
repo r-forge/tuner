@@ -11,7 +11,7 @@ equalWave(object1, object2)
 \value{
     Does not return anything. 
     It \code{\link{stop}}s code execution with an error message indicating the problem 
-    if the objects are not of the same class (either \code{Wave} oder \code{WaveM}) or if 
+    if the objects are not of the same class (either \code{Wave} oder \code{WaveMC}) or if 
     the two objects don't have the same properties, i.e.
     identical sampling rate, resolution (bit), and number of channels (for \code{WaveMC}, resp. stereo/mono for \code{Wave}).
 }
