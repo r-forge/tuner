@@ -8,11 +8,5 @@ x2 <- readWave("D:/uwe/R/library-devel/tuneR/pkg/tests/Testfiles/16bit_PCM_stere
 Uwe:
 - Antrag
 
-Sarah:
-- plot
-- readWave (WaveIO)
-- writeWave (WaveIO)
-
-
 Alle:
 - test cases
