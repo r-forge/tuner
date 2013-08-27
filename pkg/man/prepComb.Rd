@@ -11,9 +11,9 @@ prepComb(object, zero = 0, where = c("both", "start", "end"))
   \item{object}{Object of class \code{\link{Wave}} or class \code{\link{WaveMC}}.}
   \item{zero}{The zero level (default: 0) at which ideal cut points are determined (see Details).
     A typical alternative would be 127 for 8 bit \code{\link{Wave}} or \code{\link{WaveMC}} objects.
-    If \code{zero=NA}, the mean of the left Wave channel (for a \code{Wave} object) 
+    If \code{zero = NA}, the mean of the left Wave channel (for a \code{Wave} object) 
     or the mean of the first channel (for a \code{WaveMC} object) is taken as zero level.}
-  \item{where}{One of \dQuote{both} (default), \dQuote{start}, or \dQuote{end}
+  \item{where}{One of \code{"both"} (default), \code{"start"}, or \code{"end"}
     indicating at \code{where} to prepare the \code{\link{Wave}} or \code{\link{WaveMC}} object for concatenation.}
 }
 \value{

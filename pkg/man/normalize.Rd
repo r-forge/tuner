@@ -5,7 +5,8 @@
 \alias{normalize,WaveMC-method}
 
 \title{Rescale the range of values}
-\description{Centering and rescaling the waveform of a Wave or WaveMC object to a canonical interval corresponding to the Wave format (e.g. [-1, 1], [0, 254], 
+\description{Centering and rescaling the waveform of a \code{Wave} or \code{WaveMC} object to a canonical interval 
+corresponding to the Wave format (e.g. [-1, 1], [0, 254], 
     [-32767, 32767], [-8388607, 8388607], or [-2147483647, 2147483647]).}
 \usage{
 normalize(object, unit = c("1", "8", "16", "24", "32", "64", "0"), 
@@ -19,10 +20,10 @@ normalize(object, unit = c("1", "8", "16", "24", "32", "64", "0"),
         \code{"16"} (i.e. 16-bit) for rescaling to integers in [-32767, 32767],\cr
         \code{"24"} (i.e. 24-bit) for rescaling to integers in [-8388607, 8388607],\cr
         \code{"32"} (i.e. 32-bit) for rescaling either to integers in [-2147483647, 2147483647] 
-                    (PCM Wave format, if \code{pcm=TRUE}) or to numeric values in [-1, 1] 
-                    (FLOAT_IEEE Wave format if \code{pcm=FALSE}),\cr
+                    (PCM Wave format if \code{pcm=TRUE}) or to numeric values in [-1, 1] 
+                    (FLOAT_IEEE Wave format if \code{pcm = FALSE}),\cr
         \code{"64"} (i.e. 64-bit) for rescaling to real values in [-1, 1] (FLOAT_IEEE Wave format), and\cr
-        \code{"0"} for not rescaling (hence only centering if \code{center=TRUE}).}
+        \code{"0"} for not rescaling (hence only centering if \code{center = TRUE}).}
   \item{center}{If \code{TRUE} (default), values are centered around 0 (or 127 if \code{unit = "8"}).}
   \item{level}{Maximal percentage of the amplitude used for normalizing (default is 1).} 
   \item{rescale}{Logical, whether to rescale to the maximal possible dynamic range.}

@@ -21,19 +21,19 @@ by calls such as \code{as(Wspec_Object, "WspecMat")}.
 \section{Slots}{
     The following slots are defined. For details see the constructor function \code{\link{periodogram}}.
   \describe{
-    \item{\code{freq}:}{Object of class \code{"numeric"}}
-    \item{\code{spec}:}{Object of class \code{"matrix"}}
-    \item{\code{kernel}:}{Object of class \code{"ANY"}}
-    \item{\code{df}:}{Object of class \code{"numeric"}}
-    \item{\code{taper}:}{Object of class \code{"numeric"}}
-    \item{\code{width}:}{Object of class \code{"numeric"}}
-    \item{\code{overlap}:}{Object of class \code{"numeric"}}
-    \item{\code{normalize}:}{Object of class \code{"logical"}}
-    \item{\code{starts}:}{Object of class \code{"numeric"}}
-    \item{\code{stereo}:}{Object of class \code{"logical"}}
-    \item{\code{samp.rate}:}{Object of class \code{"numeric"}}
-    \item{\code{variance}:}{Object of class \code{"numeric"}}
-    \item{\code{energy}:}{Object of class \code{"numeric"}}
+    \item{\code{freq}:}{Object of class \code{"numeric"}.}
+    \item{\code{spec}:}{Object of class \code{"matrix"}.}
+    \item{\code{kernel}:}{Object of class \code{"ANY"}.}
+    \item{\code{df}:}{Object of class \code{"numeric"}.}
+    \item{\code{taper}:}{Object of class \code{"numeric"}.}
+    \item{\code{width}:}{Object of class \code{"numeric"}.}
+    \item{\code{overlap}:}{Object of class \code{"numeric"}.}
+    \item{\code{normalize}:}{Object of class \code{"logical"}.}
+    \item{\code{starts}:}{Object of class \code{"numeric"}.}
+    \item{\code{stereo}:}{Object of class \code{"logical"}.}
+    \item{\code{samp.rate}:}{Object of class \code{"numeric"}.}
+    \item{\code{variance}:}{Object of class \code{"numeric"}.}
+    \item{\code{energy}:}{Object of class \code{"numeric"}.}
   }
 }
 \details{

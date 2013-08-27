@@ -78,7 +78,7 @@ An object of class \code{\link{Wspec}} is returned containing the following slot
 Those slots marked with \dQuote{(1)} contain the information once, 
 because it is unique for all periodograms of estimated by the function call.
 }
-\author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de}}
+\author{Uwe Ligges \email{ligges@statistik.tu-dortmund.de}}
 \note{
 Support for processing more than one channel of \code{\link{Wave}} or \code{\link{WaveMC}} objects has not yet been implemented.
 }

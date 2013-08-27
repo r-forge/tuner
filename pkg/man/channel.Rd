@@ -11,7 +11,7 @@ channel(object, which = c("both", "left", "right", "mirror"))
 }
 \value{\code{Wave} object including channels specified by \code{which}.}
 \details{For objects of \link{WaveMC-class}, channel selection can be performed by simple matrix indexing, e.g. \code{WaveMCobject[,2]} selects the second channel.}
-\author{Uwe Ligges, \email{ligges@statistik.tu-dortmund.de}}
+\author{Uwe Ligges \email{ligges@statistik.tu-dortmund.de}}
 \seealso{\code{\link{Wave}}, \link{Wave-class}, \code{\link{mono}}, \code{\link{extractWave}}}
 \keyword{manip}
 \keyword{utilities}

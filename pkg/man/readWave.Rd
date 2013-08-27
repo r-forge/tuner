@@ -10,8 +10,8 @@ readWave(filename, from = 1, to = Inf,
     \item{filename}{Filename of the file to be read.}
     \item{from}{Where to start reading (in order to save memory by reading wave file piecewise), in \code{units}.}
     \item{to}{Where to stop reading (in order to save memory by reading wave file piecewise), in \code{units}.}
-    \item{units}{Units in which \code{from} and \code{to} is given, the default is \dQuote{samples},
-        but can be set to time intervals such as \dQuote{seconds}, see the Usage Section above.}
+    \item{units}{Units in which \code{from} and \code{to} is given, the default is \code{"samples"},
+        but can be set to time intervals such as \code{"seconds"}, see the Usage Section above.}
     \item{header}{If \code{TRUE}, just header information of the Wave file are returned, 
         otherwise (the default) the whole Wave object.}
     \item{toWaveMC}{If \code{TRUE}, a \link{WaveMC-class} object is returned. 

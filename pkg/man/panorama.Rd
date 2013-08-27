@@ -4,7 +4,7 @@
 \alias{panorama,Wave-method}
 \alias{panorama,WaveMC-method}
 \title{Narrow the Panorama of a Stereo Sample}
-\description{Generic function to narrow the panorama of a stereo Wave or WaveMC object.}
+\description{Generic function to narrow the panorama of a stereo \code{Wave} or \code{WaveMC} object.}
 \usage{panorama(object, pan = 1)}
 \arguments{
   \item{object}{Object of class \code{\link{Wave}} or class \code{\link{WaveMC}}.}

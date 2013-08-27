@@ -2,7 +2,7 @@
 \docType{class}
 \alias{WaveMC-class}
 \title{Class WaveMC}
-\description{Class \dQuote{WaveMC}}
+\description{Class \dQuote{WaveMC}.}
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("WaveMC", ...)},
 or more conveniently using the function \code{\link{WaveMC}}.

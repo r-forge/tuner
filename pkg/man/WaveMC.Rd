@@ -16,14 +16,14 @@
 \alias{coerce,WaveMC,matrix-method}
 \alias{coerce,WaveMC,Wave-method}
 \title{Constructors and coercion for class WaveMC objects}
-\description{Constructors and coercion for class WaveMC objects}
+\description{Constructors and coercion for class \code{WaveMC} objects}
 \usage{
 WaveMC(data, ...)
 \S4method{WaveMC}{matrix}(data = matrix(numeric(0), 0, 0), samp.rate = 44100, bit = 16, pcm = TRUE, ...)
 }
 \arguments{
     \item{data}{Except for a numeric matrix, the argument \code{data} can also be a numeric vector (for one channel), data.frame (columns representing channels), 
-        list (elements containing numeric vectors that represent the channels), or Wave object.}
+        list (elements containing numeric vectors that represent the channels), or \code{Wave} object.}
     \item{samp.rate, bit, pcm}{See Section \dQuote{Slots} on the help page \link{WaveMC-class}.}
     \item{...}{Further arguments to be passed to the matrix method.}
 }                                                                                          
