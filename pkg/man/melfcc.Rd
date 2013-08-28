@@ -20,10 +20,12 @@ melfcc(samples, sr = samples@samp.rate, wintime = 0.025,
   \item{hoptime}{ Step between successive windows in sec. }
   \item{numcep}{ Number of cepstra to return. }
   \item{lifterexp}{ Exponent for liftering; 0 = none. }
-  \item{htklifter}{ Use HTK sin lifter. }%\item{sumpower}{\code{sumpower=TRUE}: \code{sum(abs(fft)^2)}; \code{sumpower=FALSE}: \code{sum(abs(fft))}}
+  \item{htklifter}{ Use HTK sin lifter. }
   \item{sumpower}{ If \code{sumpower = TRUE} the frequency scale transformation is based on the
-powerspectrum, if \code{sumpower = FALSE} it is based on its squareroot (absolute value of the spectrum) and
-squared afterwards.}
+    powerspectrum, if \code{sumpower = FALSE} it is based on its squareroot (absolute value of the spectrum) and
+    squared afterwards. 
+    %\code{sumpower=TRUE}: \code{sum(abs(fft)^2)}; \code{sumpower=FALSE}: \code{sum(abs(fft))}
+  }
   \item{preemph}{ Apply pre-emphasis filter [1 -preemph] (0 = none). }
   \item{dither}{ Add offset to spectrum as if dither noise. }
   \item{minfreq}{ Lowest band edge of mel filters (Hz). }
