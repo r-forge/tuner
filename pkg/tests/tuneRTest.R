@@ -4,6 +4,7 @@ library("tools")
 x1 <- sine(660, pcm=TRUE, bit=8, duration=500)
 x2 <- sine(440, pcm=TRUE, bit=8, duration=500)
 x3 <- sine(220, pcm=TRUE, bit=8, duration=500)
+x1_2 <- stereo(sine(440, bit=8, pcm=TRUE, duration=500), sine(220, bit=8, pcm=TRUE, duration=500))
 
 ## writeWave (always Wave extensible format)
 files <- tempfile(as.character(1:100), fileext = ".wav")
@@ -109,32 +110,45 @@ round(x20@left[1:10], 5)
 x21@left[1:10]
 (x22 <- normalize(x1, unit = "64", center = TRUE, level = 1, rescale = FALSE, pcm = FALSE))
 x22@left[1:10]
-(x23 <- normalize(sine(440, bit=8, pcm=TRUE, stereo = TRUE, duration=500), unit = "1", center = TRUE, level = 1, rescale = TRUE))
+(x23 <- normalize(x1_2, unit = "1", center = TRUE, level = 1, rescale = TRUE))
 round(x23@left[1:10], 5)
 round(x23@right[1:10], 5)
-(x24 <- normalize(x2, unit = "1", center = TRUE, level = 1, rescale = FALSE))
+(x24 <- normalize(x1_2, unit = "1", center = TRUE, level = 1, rescale = FALSE))
 round(x24@left[1:10], 5)
-(x25 <- normalize(x2, unit = "8", center = TRUE, level = 2, rescale = TRUE))
+round(x24@right[1:10], 5)
+(x25 <- normalize(x1_2, unit = "8", center = TRUE, level = 2, rescale = TRUE))
 x25@left[1:10]
-(x26 <- normalize(x2, unit = "8", center = TRUE, level = 2, rescale = FALSE))
+x25@right[1:10]
+(x26 <- normalize(x1_2, unit = "8", center = TRUE, level = 2, rescale = FALSE))
 x26@left[1:10]
-(x27 <- normalize(x2, unit = "16", center = TRUE, level = 1, rescale = TRUE)) 
+x26@right[1:10]
+(x27 <- normalize(x1_2, unit = "16", center = TRUE, level = 1, rescale = TRUE)) 
 x27@left[1:10]
-(x28 <- normalize(x2, unit = "16", center = TRUE, level = 1, rescale = FALSE)) 
+x27@right[1:10]
+(x28 <- normalize(x1_2, unit = "16", center = TRUE, level = 1, rescale = FALSE)) 
 x28@left[1:10]
-(x29 <- normalize(x2, unit = "24", center = TRUE, level = 1, rescale = TRUE))
+x28@right[1:10]
+(x29 <- normalize(x1_2, unit = "24", center = TRUE, level = 1, rescale = TRUE))
 x29@left[1:10]
-(x30 <- normalize(x2, unit = "24", center = TRUE, level = 1, rescale = FALSE))
+x29@right[1:10]
+(x30 <- normalize(x1_2, unit = "24", center = TRUE, level = 1, rescale = FALSE))
 x30@left[1:10]
-(x31 <- normalize(x2, unit = "32", center = TRUE, level = 1, rescale = TRUE))
+x30@right[1:10]
+(x31 <- normalize(x1_2, unit = "32", center = TRUE, level = 1, rescale = TRUE))
 x31@left[1:10]
-(x32 <- normalize(x2, unit = "32", center = TRUE, level = 1, rescale = FALSE))
+x31@right[1:10]
+(x32 <- normalize(x1_2, unit = "32", center = TRUE, level = 1, rescale = FALSE))
 x32@left[1:10]
-(x33 <- normalize(x2, unit = "32", center = TRUE, level = 1, rescale = TRUE, pcm = FALSE))
+x32@right[1:10]
+(x33 <- normalize(x1_2, unit = "32", center = TRUE, level = 1, rescale = TRUE, pcm = FALSE))
 round(x33@left[1:10], 5)
-(x34 <- normalize(x2, unit = "32", center = TRUE, level = 1, rescale = FALSE, pcm = FALSE))
+round(x33@right[1:10], 5)
+(x34 <- normalize(x1_2, unit = "32", center = TRUE, level = 1, rescale = FALSE, pcm = FALSE))
 round(x34@left[1:10], 5)
-(x35 <- normalize(x2, unit = "64", center = TRUE, level = 1, rescale = TRUE, pcm = FALSE))
+round(x34@right[1:10], 5)
+(x35 <- normalize(x1_2, unit = "64", center = TRUE, level = 1, rescale = TRUE, pcm = FALSE))
 x35@left[1:10]
-(x36 <- normalize(x2, unit = "64", center = TRUE, level = 1, rescale = FALSE, pcm = FALSE))
+x35@right[1:10]
+(x36 <- normalize(x1_2, unit = "64", center = TRUE, level = 1, rescale = FALSE, pcm = FALSE))
 x36@left[1:10]
+x36@right[1:10]
