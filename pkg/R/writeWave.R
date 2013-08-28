@@ -12,7 +12,7 @@ function(object, filename){
         stop("colnames(object) must be specified and must uniquely identify the channel ordering for WaveMC objects, see ?MCnames for possible channels")
     cnamesnum <- as.numeric(factor(colnames(object), levels=MCnames[["name"]]))
     if(is.unsorted(cnamesnum))
-        object <- object[,cnamesnum]
+        object <- object[,order(cnamesnum)]
     dwChannelMask <- sum(2^(cnamesnum - 1))
 
     l <- length(object)
