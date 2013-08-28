@@ -107,9 +107,9 @@ round(x19@left[1:10], 5)
 (x20 <- normalize(x1, unit = "32", center = TRUE, level = 1, rescale = FALSE, pcm = FALSE))
 round(x20@left[1:10], 5)
 (x21 <- normalize(x1, unit = "64", center = TRUE, level = 1, rescale = TRUE, pcm = FALSE))
-x21@left[1:10]
+round(x21@left[1:10], 8)
 (x22 <- normalize(x1, unit = "64", center = TRUE, level = 1, rescale = FALSE, pcm = FALSE))
-x22@left[1:10]
+round(x22@left[1:10], 8)
 (x23 <- normalize(x1_2, unit = "1", center = TRUE, level = 1, rescale = TRUE))
 round(x23@left[1:10], 5)
 round(x23@right[1:10], 5)
@@ -147,8 +147,8 @@ round(x33@right[1:10], 5)
 round(x34@left[1:10], 5)
 round(x34@right[1:10], 5)
 (x35 <- normalize(x1_2, unit = "64", center = TRUE, level = 1, rescale = TRUE, pcm = FALSE))
-x35@left[1:10]
-x35@right[1:10]
+round(x35@left[1:10], 8)
+round(x35@right[1:10], 8)
 (x36 <- normalize(x1_2, unit = "64", center = TRUE, level = 1, rescale = FALSE, pcm = FALSE))
-x36@left[1:10]
-x36@right[1:10]
+round(x36@left[1:10], 8)
+round(x36@right[1:10], 8)
