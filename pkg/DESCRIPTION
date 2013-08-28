@@ -10,7 +10,7 @@ Author: Uwe Ligges <ligges@statistik.tu-dortmund.de> with contributions
     The included parts of the libmad MPEG audio decoder library are
     authored by Underbit Technologies.
 Maintainer: Uwe Ligges <ligges@statistik.tu-dortmund.de>
-Depends: R (>= 2.10.0)
+Depends: R (>= 3.0.0)
 Suggests: pastecs
 Imports: signal, methods
 Description: Collection of tools to analyze music, extract features
