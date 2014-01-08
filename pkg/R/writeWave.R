@@ -1,5 +1,5 @@
 writeWave <- 
-function(object, filename, extensible = TRUE){
+function(object, filename, extensible = TRUE) {
     if(!is(object, "WaveGeneral")) 
         stop("'object' needs to be of class 'Wave' or 'WaveMC'")
     validObject(object)
@@ -54,7 +54,7 @@ function(object, filename, extensible = TRUE){
     ## Writing the header:
     # RIFF
     writeChar("RIFF", con, 4, eos = NULL) 
-    writeBin(as.integer(bytes + 72), con, size = 4, endian = "little") # cksize RIFF
+    writeBin(as.integer(bytes + if(extensible) 72 else 36), con, size = 4, endian = "little") # cksize RIFF
     # WAVE
     writeChar("WAVE", con, 4, eos = NULL)
     # fmt chunk
