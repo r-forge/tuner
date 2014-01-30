@@ -3,7 +3,7 @@ Version: 1.1
 Date: 2014-01-08
 Title: Analysis of music and speech
 Author: Uwe Ligges <ligges@statistik.tu-dortmund.de> with contributions
-        from Sebastian Krey, Olaf Mersmann, Sarah Schnackenberg,
+        from Sebastian Krey, Olaf Mersmann, Sarah Schnackenberg, Guillaume Guenard,
     Andrea Preusser, Anita Thieler, and Claus Weihs, as well as code fragments
     and ideas from the former package 'sound' by Matthias Heymann
     and functions from 'rastamat' by Daniel P. W. Ellis.
