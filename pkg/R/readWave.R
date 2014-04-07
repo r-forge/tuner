@@ -28,7 +28,7 @@ function(filename, from = 1, to = Inf,
     ## extract possible bext information, if header = TRUE
     if (header && (FMT == "bext" || FMT == "BEXT")){
         bext.length <- readBin(con, int, n = 1, size = 4, endian = "little")
-        bext <- sapply(seq(bext.length), function(x) readChar(con, 1))
+        bext <- sapply(seq(bext.length), function(x) readChar(con, 1, useBytes=TRUE))
         bext[bext==""] <- " "
         bext <- paste(bext, collapse="")
         FMT <- readChar(con, 4)
