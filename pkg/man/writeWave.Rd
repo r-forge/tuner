@@ -26,8 +26,10 @@ In the case of writing a multi channel Wave file, the column names of the object
 must uniquely identify the channel ordering for WaveMC objects.
 The column names of the object of class \code{\link{WaveMC}} have to be a subset of the 18 standard channels
 and have to match the corresponding abbreviated names.
-(See \code{{\link{MCnames}} for possible channels and the abbreviated names: \dQuote{FL}, \dQuote{FR}, \dQuote{FC}, \dQuote{LF}, \dQuote{BL}, \dQuote{BR},
-\dQuote{FLC}, \dQuote{FRC}, \dQuote{BC}, \dQuote{SL}, \dQuote{SR}, \dQuote{TC}, \dQuote{TFL}, \dQuote{TFC}, \dQuote{TFR}, \dQuote{TBL}, \dQuote{TBC} and \dQuote{TBR}).
+(See \code{\link{MCnames}} for possible channels and the abbreviated names: 
+\dQuote{FL}, \dQuote{FR}, \dQuote{FC}, \dQuote{LF}, \dQuote{BL}, \dQuote{BR},
+\dQuote{FLC}, \dQuote{FRC}, \dQuote{BC}, \dQuote{SL}, \dQuote{SR}, \dQuote{TC}, 
+\dQuote{TFL}, \dQuote{TFC}, \dQuote{TFR}, \dQuote{TBL}, \dQuote{TBC} and \dQuote{TBR}).
 
 The function \code{\link{normalize}} can be used to transform and rescale data to an appropriate amplitude range for
 various Wave file formats (either pcm with 8-, 16-, 24- or 32-bit or IEEE_FLOAT with 32- or 64-bit).
