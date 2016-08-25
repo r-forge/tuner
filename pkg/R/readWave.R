@@ -56,6 +56,7 @@ function(filename, from = 1, to = Inf,
     if(!(bits %in% c(8, 16, 24, 32, 64)))
         stop("Only 8-, 16-, 24-, 32- or 64-bit Wave formats supported")
     ## non-PCM (chunk size 18 or 40)
+    
     if(fmt.length >= 18){    
         cbSize <- readBin(con, int, n = 1, size = 2, endian = "little")
     ## chunk size 40 (extension 22)
@@ -67,7 +68,7 @@ function(filename, from = 1, to = Inf,
             x <- readBin(con, "raw", n=14)
         } else {
             if(cbSize > 0) 
-                seek(con, where = cbSize, origin = "current")
+                seek(con, where = fmt.length-18, origin = "current")
         }   
     }    
     if(exists("SubFormat") && !(SubFormat %in% c(0, 1, 3)))
