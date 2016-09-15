@@ -1,6 +1,6 @@
 Package: tuneR
 Version: 1.3.0
-Date: 2016-08-24
+Date: 2016-09-16
 Title: Analysis of Music and Speech
 Author: Uwe Ligges <ligges@statistik.tu-dortmund.de> with contributions
         from Sebastian Krey, Olaf Mersmann, Sarah Schnackenberg, Guillaume Guenard,
@@ -13,6 +13,6 @@ Maintainer: Uwe Ligges <ligges@statistik.tu-dortmund.de>
 Depends: R (>= 3.0.0)
 Suggests: pastecs
 Imports: signal, methods
-Description: Analyze music, extract features like MFCCs, handle wave files, read mp3, read midi, transcription, ...
+Description: Analyze music and speech, extract features like MFCCs, handle wave files and their representation in various ways, read mp3, read midi, perform steps of a transcription, ...
         Also contains functions ported from the 'rastamat' 'Matlab' package.
 License: GPL-2 | GPL-3
