@@ -1,15 +1,20 @@
 Package: tuneR
 Version: 1.4.0
-Date: 2022-03-10
+Date: 2022-03-29
 Title: Analysis of Music and Speech
-Author: Uwe Ligges <ligges@statistik.tu-dortmund.de> with contributions
-        from Sebastian Krey, Olaf Mersmann, Sarah Schnackenberg, Guillaume Guenard,
-    Andrea Preusser, Anita Thieler, Johanna Mielke and Claus Weihs, as well as code fragments
-    and ideas from the former package 'sound' by Matthias Heymann
-    and functions from 'rastamat' by Daniel P. W. Ellis.
-    The included parts of the libmad MPEG audio decoder library are
-    authored by Underbit Technologies.
-Maintainer: Uwe Ligges <ligges@statistik.tu-dortmund.de>
+Authors@R: c(person("Uwe", "Ligges", email="ligges@statistik.tu-dortmund.de", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0001-5875-6167")),
+             person("Sebastian", "Krey", role = c("aut", "cph")),
+             person("Olaf", "Mersmann", role = c("aut", "cph")),
+             person("Sarah", "Schnackenberg", role = c("aut", "cph")),
+             person("Guillaume", "Guenard", role = c("aut", "cph"), comment = "for the pulse functionality"),
+             person("Daniel P. W.", "Ellis", role = c("aut", "cph"), comment = "functions ported from 'rastamat'"),
+             person("", "Underbit Technologies", role = c("aut", "cph"), comment = "for the included libmad MPEG audio decoder library"),
+             person("Andrea", "Preusser", role = c("ctb")),
+             person("Anita", "Thieler", role = c("ctb")),
+             person("Johanna", "Mielke", role = c("ctb")),
+			 person("Claus", "Weihs", role = c("ctb")),
+			 person("Brian D.", "Ripley", role = c("ctb")),			 
+			 person("Matthias", "Heymann", role = c("ctb"), comment = "for ideas from the former sound package"))
 Depends: R (>= 3.0.0)
 Suggests: pastecs
 Imports: signal, methods
