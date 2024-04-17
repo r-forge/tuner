@@ -22,3 +22,4 @@ Imports: signal, methods
 Description: Analyze music and speech, extract features like MFCCs, handle wave files and their representation in various ways, read mp3, read midi, perform steps of a transcription, ...
         Also contains functions ported from the 'rastamat' 'Matlab' package.
 License: GPL-2 | GPL-3
+URL: https://tuner.R-forge.R-project.org
